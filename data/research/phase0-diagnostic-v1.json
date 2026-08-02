@@ -1,0 +1,1793 @@
+{
+  "schema_version": "retrievallab-probe-v1",
+  "suite": "phase0-diagnostic-v1",
+  "classification": "synthetic_diagnostic",
+  "description": "Deterministic complete-versus-partial fixtures for implementation falsification. These cases are not evidence of generalization or publication readiness.",
+  "generator": "scripts/build_phase0_fixture.py",
+  "cases": [
+    {
+      "id": "catalog-security-platform",
+      "family": "catalog",
+      "query": "Find a cloud security platform with SOC 2 Type II certified, European Union data residency, self hosted deployment, under 500 dollars monthly, without setup fee.",
+      "required": [
+        {
+          "id": "c1",
+          "text": "SOC 2 Type II certified",
+          "aliases": [
+            "independent SOC2 type 2 attestation"
+          ]
+        },
+        {
+          "id": "c2",
+          "text": "European Union data residency",
+          "aliases": [
+            "customer data remains in EU regions"
+          ]
+        },
+        {
+          "id": "c3",
+          "text": "self hosted deployment",
+          "aliases": [
+            "runs inside the customer network"
+          ]
+        },
+        {
+          "id": "c4",
+          "text": "under 500 dollars monthly",
+          "aliases": [
+            "monthly price below $500"
+          ]
+        }
+      ],
+      "excluded": [
+        {
+          "id": "x1",
+          "text": "setup fee",
+          "aliases": [
+            "one-time onboarding charge"
+          ]
+        }
+      ],
+      "documents": [
+        {
+          "id": "catalog-security-platform-complete-literal",
+          "title": "Complete literal match",
+          "passages": [
+            "Cloud Security Platform. Verified evidence: SOC 2 Type II certified; European Union data residency; self hosted deployment; under 500 dollars monthly."
+          ]
+        },
+        {
+          "id": "catalog-security-platform-complete-paraphrase",
+          "title": "Complete paraphrased match",
+          "passages": [
+            "Cloud Security Platform. Verified evidence: independent SOC2 type 2 attestation; customer data remains in EU regions; runs inside the customer network; monthly price below $500."
+          ]
+        },
+        {
+          "id": "catalog-security-platform-missing-1",
+          "title": "Partial match missing condition 1",
+          "passages": [
+            "Cloud Security Platform. Verified evidence: European Union data residency; self hosted deployment; under 500 dollars monthly."
+          ]
+        },
+        {
+          "id": "catalog-security-platform-missing-2",
+          "title": "Partial match missing condition 2",
+          "passages": [
+            "Cloud Security Platform. Verified evidence: SOC 2 Type II certified; self hosted deployment; under 500 dollars monthly."
+          ]
+        },
+        {
+          "id": "catalog-security-platform-missing-3",
+          "title": "Partial match missing condition 3",
+          "passages": [
+            "Cloud Security Platform. Verified evidence: SOC 2 Type II certified; European Union data residency; under 500 dollars monthly."
+          ]
+        },
+        {
+          "id": "catalog-security-platform-missing-4",
+          "title": "Partial match missing condition 4",
+          "passages": [
+            "Cloud Security Platform. Verified evidence: SOC 2 Type II certified; European Union data residency; self hosted deployment."
+          ]
+        },
+        {
+          "id": "catalog-security-platform-violates-exclusion",
+          "title": "Topical match with forbidden condition",
+          "passages": [
+            "Cloud Security Platform. Verified evidence: SOC 2 Type II certified; European Union data residency; self hosted deployment; under 500 dollars monthly; setup fee."
+          ]
+        },
+        {
+          "id": "catalog-security-platform-topical-decoy",
+          "title": "High-topic low-constraint decoy",
+          "passages": [
+            "Comparison guide for the cloud security platform. This cloud security platform review discusses features, pricing, deployment, compliance, and support for cloud security platform buyers."
+          ]
+        }
+      ],
+      "complete_document_ids": [
+        "catalog-security-platform-complete-literal",
+        "catalog-security-platform-complete-paraphrase"
+      ],
+      "partial_document_ids": [
+        "catalog-security-platform-missing-1",
+        "catalog-security-platform-missing-2",
+        "catalog-security-platform-missing-3",
+        "catalog-security-platform-missing-4",
+        "catalog-security-platform-violates-exclusion",
+        "catalog-security-platform-topical-decoy"
+      ]
+    },
+    {
+      "id": "catalog-clinical-database",
+      "family": "catalog",
+      "query": "Find a managed clinical database with point in time recovery, HIPAA business associate agreement, Virginia cloud region, pay as you go pricing, without annual contract.",
+      "required": [
+        {
+          "id": "c1",
+          "text": "point in time recovery",
+          "aliases": [
+            "restore to any second"
+          ]
+        },
+        {
+          "id": "c2",
+          "text": "HIPAA business associate agreement",
+          "aliases": [
+            "signed healthcare BAA"
+          ]
+        },
+        {
+          "id": "c3",
+          "text": "Virginia cloud region",
+          "aliases": [
+            "data center in Virginia"
+          ]
+        },
+        {
+          "id": "c4",
+          "text": "pay as you go pricing",
+          "aliases": [
+            "usage based monthly billing"
+          ]
+        }
+      ],
+      "excluded": [
+        {
+          "id": "x1",
+          "text": "annual contract",
+          "aliases": [
+            "twelve month commitment"
+          ]
+        }
+      ],
+      "documents": [
+        {
+          "id": "catalog-clinical-database-complete-literal",
+          "title": "Complete literal match",
+          "passages": [
+            "Managed Clinical Database. Verified evidence: point in time recovery; HIPAA business associate agreement; Virginia cloud region; pay as you go pricing."
+          ]
+        },
+        {
+          "id": "catalog-clinical-database-complete-paraphrase",
+          "title": "Complete paraphrased match",
+          "passages": [
+            "Managed Clinical Database. Verified evidence: restore to any second; signed healthcare BAA; data center in Virginia; usage based monthly billing."
+          ]
+        },
+        {
+          "id": "catalog-clinical-database-missing-1",
+          "title": "Partial match missing condition 1",
+          "passages": [
+            "Managed Clinical Database. Verified evidence: HIPAA business associate agreement; Virginia cloud region; pay as you go pricing."
+          ]
+        },
+        {
+          "id": "catalog-clinical-database-missing-2",
+          "title": "Partial match missing condition 2",
+          "passages": [
+            "Managed Clinical Database. Verified evidence: point in time recovery; Virginia cloud region; pay as you go pricing."
+          ]
+        },
+        {
+          "id": "catalog-clinical-database-missing-3",
+          "title": "Partial match missing condition 3",
+          "passages": [
+            "Managed Clinical Database. Verified evidence: point in time recovery; HIPAA business associate agreement; pay as you go pricing."
+          ]
+        },
+        {
+          "id": "catalog-clinical-database-missing-4",
+          "title": "Partial match missing condition 4",
+          "passages": [
+            "Managed Clinical Database. Verified evidence: point in time recovery; HIPAA business associate agreement; Virginia cloud region."
+          ]
+        },
+        {
+          "id": "catalog-clinical-database-violates-exclusion",
+          "title": "Topical match with forbidden condition",
+          "passages": [
+            "Managed Clinical Database. Verified evidence: point in time recovery; HIPAA business associate agreement; Virginia cloud region; pay as you go pricing; annual contract."
+          ]
+        },
+        {
+          "id": "catalog-clinical-database-topical-decoy",
+          "title": "High-topic low-constraint decoy",
+          "passages": [
+            "Comparison guide for the managed clinical database. This managed clinical database review discusses features, pricing, deployment, compliance, and support for managed clinical database buyers."
+          ]
+        }
+      ],
+      "complete_document_ids": [
+        "catalog-clinical-database-complete-literal",
+        "catalog-clinical-database-complete-paraphrase"
+      ],
+      "partial_document_ids": [
+        "catalog-clinical-database-missing-1",
+        "catalog-clinical-database-missing-2",
+        "catalog-clinical-database-missing-3",
+        "catalog-clinical-database-missing-4",
+        "catalog-clinical-database-violates-exclusion",
+        "catalog-clinical-database-topical-decoy"
+      ]
+    },
+    {
+      "id": "catalog-support-suite",
+      "family": "catalog",
+      "query": "Find a customer support suite with single sign on, immutable audit logs, 30 day data retention, Slack integration, without seat minimum.",
+      "required": [
+        {
+          "id": "c1",
+          "text": "single sign on",
+          "aliases": [
+            "SAML SSO"
+          ]
+        },
+        {
+          "id": "c2",
+          "text": "immutable audit logs",
+          "aliases": [
+            "tamper resistant activity history"
+          ]
+        },
+        {
+          "id": "c3",
+          "text": "30 day data retention",
+          "aliases": [
+            "records deleted after one month"
+          ]
+        },
+        {
+          "id": "c4",
+          "text": "Slack integration",
+          "aliases": [
+            "native Slack connector"
+          ]
+        }
+      ],
+      "excluded": [
+        {
+          "id": "x1",
+          "text": "seat minimum",
+          "aliases": [
+            "minimum agent license count"
+          ]
+        }
+      ],
+      "documents": [
+        {
+          "id": "catalog-support-suite-complete-literal",
+          "title": "Complete literal match",
+          "passages": [
+            "Customer Support Suite. Verified evidence: single sign on; immutable audit logs; 30 day data retention; Slack integration."
+          ]
+        },
+        {
+          "id": "catalog-support-suite-complete-paraphrase",
+          "title": "Complete paraphrased match",
+          "passages": [
+            "Customer Support Suite. Verified evidence: SAML SSO; tamper resistant activity history; records deleted after one month; native Slack connector."
+          ]
+        },
+        {
+          "id": "catalog-support-suite-missing-1",
+          "title": "Partial match missing condition 1",
+          "passages": [
+            "Customer Support Suite. Verified evidence: immutable audit logs; 30 day data retention; Slack integration."
+          ]
+        },
+        {
+          "id": "catalog-support-suite-missing-2",
+          "title": "Partial match missing condition 2",
+          "passages": [
+            "Customer Support Suite. Verified evidence: single sign on; 30 day data retention; Slack integration."
+          ]
+        },
+        {
+          "id": "catalog-support-suite-missing-3",
+          "title": "Partial match missing condition 3",
+          "passages": [
+            "Customer Support Suite. Verified evidence: single sign on; immutable audit logs; Slack integration."
+          ]
+        },
+        {
+          "id": "catalog-support-suite-missing-4",
+          "title": "Partial match missing condition 4",
+          "passages": [
+            "Customer Support Suite. Verified evidence: single sign on; immutable audit logs; 30 day data retention."
+          ]
+        },
+        {
+          "id": "catalog-support-suite-violates-exclusion",
+          "title": "Topical match with forbidden condition",
+          "passages": [
+            "Customer Support Suite. Verified evidence: single sign on; immutable audit logs; 30 day data retention; Slack integration; seat minimum."
+          ]
+        },
+        {
+          "id": "catalog-support-suite-topical-decoy",
+          "title": "High-topic low-constraint decoy",
+          "passages": [
+            "Comparison guide for the customer support suite. This customer support suite review discusses features, pricing, deployment, compliance, and support for customer support suite buyers."
+          ]
+        }
+      ],
+      "complete_document_ids": [
+        "catalog-support-suite-complete-literal",
+        "catalog-support-suite-complete-paraphrase"
+      ],
+      "partial_document_ids": [
+        "catalog-support-suite-missing-1",
+        "catalog-support-suite-missing-2",
+        "catalog-support-suite-missing-3",
+        "catalog-support-suite-missing-4",
+        "catalog-support-suite-violates-exclusion",
+        "catalog-support-suite-topical-decoy"
+      ]
+    },
+    {
+      "id": "catalog-observability-stack",
+      "family": "catalog",
+      "query": "Find a observability stack with OpenTelemetry ingestion, on premise deployment, PII redaction, under 1000 dollars monthly, without egress charge.",
+      "required": [
+        {
+          "id": "c1",
+          "text": "OpenTelemetry ingestion",
+          "aliases": [
+            "accepts OTEL traces"
+          ]
+        },
+        {
+          "id": "c2",
+          "text": "on premise deployment",
+          "aliases": [
+            "installed in a private data center"
+          ]
+        },
+        {
+          "id": "c3",
+          "text": "PII redaction",
+          "aliases": [
+            "removes personal information"
+          ]
+        },
+        {
+          "id": "c4",
+          "text": "under 1000 dollars monthly",
+          "aliases": [
+            "monthly price below $1,000"
+          ]
+        }
+      ],
+      "excluded": [
+        {
+          "id": "x1",
+          "text": "egress charge",
+          "aliases": [
+            "fee for exporting data"
+          ]
+        }
+      ],
+      "documents": [
+        {
+          "id": "catalog-observability-stack-complete-literal",
+          "title": "Complete literal match",
+          "passages": [
+            "Observability Stack. Verified evidence: OpenTelemetry ingestion; on premise deployment; PII redaction; under 1000 dollars monthly."
+          ]
+        },
+        {
+          "id": "catalog-observability-stack-complete-paraphrase",
+          "title": "Complete paraphrased match",
+          "passages": [
+            "Observability Stack. Verified evidence: accepts OTEL traces; installed in a private data center; removes personal information; monthly price below $1,000."
+          ]
+        },
+        {
+          "id": "catalog-observability-stack-missing-1",
+          "title": "Partial match missing condition 1",
+          "passages": [
+            "Observability Stack. Verified evidence: on premise deployment; PII redaction; under 1000 dollars monthly."
+          ]
+        },
+        {
+          "id": "catalog-observability-stack-missing-2",
+          "title": "Partial match missing condition 2",
+          "passages": [
+            "Observability Stack. Verified evidence: OpenTelemetry ingestion; PII redaction; under 1000 dollars monthly."
+          ]
+        },
+        {
+          "id": "catalog-observability-stack-missing-3",
+          "title": "Partial match missing condition 3",
+          "passages": [
+            "Observability Stack. Verified evidence: OpenTelemetry ingestion; on premise deployment; under 1000 dollars monthly."
+          ]
+        },
+        {
+          "id": "catalog-observability-stack-missing-4",
+          "title": "Partial match missing condition 4",
+          "passages": [
+            "Observability Stack. Verified evidence: OpenTelemetry ingestion; on premise deployment; PII redaction."
+          ]
+        },
+        {
+          "id": "catalog-observability-stack-violates-exclusion",
+          "title": "Topical match with forbidden condition",
+          "passages": [
+            "Observability Stack. Verified evidence: OpenTelemetry ingestion; on premise deployment; PII redaction; under 1000 dollars monthly; egress charge."
+          ]
+        },
+        {
+          "id": "catalog-observability-stack-topical-decoy",
+          "title": "High-topic low-constraint decoy",
+          "passages": [
+            "Comparison guide for the observability stack. This observability stack review discusses features, pricing, deployment, compliance, and support for observability stack buyers."
+          ]
+        }
+      ],
+      "complete_document_ids": [
+        "catalog-observability-stack-complete-literal",
+        "catalog-observability-stack-complete-paraphrase"
+      ],
+      "partial_document_ids": [
+        "catalog-observability-stack-missing-1",
+        "catalog-observability-stack-missing-2",
+        "catalog-observability-stack-missing-3",
+        "catalog-observability-stack-missing-4",
+        "catalog-observability-stack-violates-exclusion",
+        "catalog-observability-stack-topical-decoy"
+      ]
+    },
+    {
+      "id": "catalog-translation-sdk",
+      "family": "catalog",
+      "query": "Find a translation SDK with offline mode, at least 30 languages, mobile software development kit, custom glossary, without per character billing.",
+      "required": [
+        {
+          "id": "c1",
+          "text": "offline mode",
+          "aliases": [
+            "works without an internet connection"
+          ]
+        },
+        {
+          "id": "c2",
+          "text": "at least 30 languages",
+          "aliases": [
+            "supports thirty or more languages"
+          ]
+        },
+        {
+          "id": "c3",
+          "text": "mobile software development kit",
+          "aliases": [
+            "native iOS and Android SDK"
+          ]
+        },
+        {
+          "id": "c4",
+          "text": "custom glossary",
+          "aliases": [
+            "customer terminology dictionary"
+          ]
+        }
+      ],
+      "excluded": [
+        {
+          "id": "x1",
+          "text": "per character billing",
+          "aliases": [
+            "charge for every translated character"
+          ]
+        }
+      ],
+      "documents": [
+        {
+          "id": "catalog-translation-sdk-complete-literal",
+          "title": "Complete literal match",
+          "passages": [
+            "Translation Sdk. Verified evidence: offline mode; at least 30 languages; mobile software development kit; custom glossary."
+          ]
+        },
+        {
+          "id": "catalog-translation-sdk-complete-paraphrase",
+          "title": "Complete paraphrased match",
+          "passages": [
+            "Translation Sdk. Verified evidence: works without an internet connection; supports thirty or more languages; native iOS and Android SDK; customer terminology dictionary."
+          ]
+        },
+        {
+          "id": "catalog-translation-sdk-missing-1",
+          "title": "Partial match missing condition 1",
+          "passages": [
+            "Translation Sdk. Verified evidence: at least 30 languages; mobile software development kit; custom glossary."
+          ]
+        },
+        {
+          "id": "catalog-translation-sdk-missing-2",
+          "title": "Partial match missing condition 2",
+          "passages": [
+            "Translation Sdk. Verified evidence: offline mode; mobile software development kit; custom glossary."
+          ]
+        },
+        {
+          "id": "catalog-translation-sdk-missing-3",
+          "title": "Partial match missing condition 3",
+          "passages": [
+            "Translation Sdk. Verified evidence: offline mode; at least 30 languages; custom glossary."
+          ]
+        },
+        {
+          "id": "catalog-translation-sdk-missing-4",
+          "title": "Partial match missing condition 4",
+          "passages": [
+            "Translation Sdk. Verified evidence: offline mode; at least 30 languages; mobile software development kit."
+          ]
+        },
+        {
+          "id": "catalog-translation-sdk-violates-exclusion",
+          "title": "Topical match with forbidden condition",
+          "passages": [
+            "Translation Sdk. Verified evidence: offline mode; at least 30 languages; mobile software development kit; custom glossary; per character billing."
+          ]
+        },
+        {
+          "id": "catalog-translation-sdk-topical-decoy",
+          "title": "High-topic low-constraint decoy",
+          "passages": [
+            "Comparison guide for the translation SDK. This translation SDK review discusses features, pricing, deployment, compliance, and support for translation SDK buyers."
+          ]
+        }
+      ],
+      "complete_document_ids": [
+        "catalog-translation-sdk-complete-literal",
+        "catalog-translation-sdk-complete-paraphrase"
+      ],
+      "partial_document_ids": [
+        "catalog-translation-sdk-missing-1",
+        "catalog-translation-sdk-missing-2",
+        "catalog-translation-sdk-missing-3",
+        "catalog-translation-sdk-missing-4",
+        "catalog-translation-sdk-violates-exclusion",
+        "catalog-translation-sdk-topical-decoy"
+      ]
+    },
+    {
+      "id": "catalog-vector-database",
+      "family": "catalog",
+      "query": "Find a vector database with hybrid lexical semantic search, metadata filters, automatic backups, ARM processor support, without GPU requirement.",
+      "required": [
+        {
+          "id": "c1",
+          "text": "hybrid lexical semantic search",
+          "aliases": [
+            "combined BM25 and vector retrieval"
+          ]
+        },
+        {
+          "id": "c2",
+          "text": "metadata filters",
+          "aliases": [
+            "structured attribute constraints"
+          ]
+        },
+        {
+          "id": "c3",
+          "text": "automatic backups",
+          "aliases": [
+            "scheduled snapshots"
+          ]
+        },
+        {
+          "id": "c4",
+          "text": "ARM processor support",
+          "aliases": [
+            "runs on arm64 servers"
+          ]
+        }
+      ],
+      "excluded": [
+        {
+          "id": "x1",
+          "text": "GPU requirement",
+          "aliases": [
+            "dedicated accelerator required"
+          ]
+        }
+      ],
+      "documents": [
+        {
+          "id": "catalog-vector-database-complete-literal",
+          "title": "Complete literal match",
+          "passages": [
+            "Vector Database. Verified evidence: hybrid lexical semantic search; metadata filters; automatic backups; ARM processor support."
+          ]
+        },
+        {
+          "id": "catalog-vector-database-complete-paraphrase",
+          "title": "Complete paraphrased match",
+          "passages": [
+            "Vector Database. Verified evidence: combined BM25 and vector retrieval; structured attribute constraints; scheduled snapshots; runs on arm64 servers."
+          ]
+        },
+        {
+          "id": "catalog-vector-database-missing-1",
+          "title": "Partial match missing condition 1",
+          "passages": [
+            "Vector Database. Verified evidence: metadata filters; automatic backups; ARM processor support."
+          ]
+        },
+        {
+          "id": "catalog-vector-database-missing-2",
+          "title": "Partial match missing condition 2",
+          "passages": [
+            "Vector Database. Verified evidence: hybrid lexical semantic search; automatic backups; ARM processor support."
+          ]
+        },
+        {
+          "id": "catalog-vector-database-missing-3",
+          "title": "Partial match missing condition 3",
+          "passages": [
+            "Vector Database. Verified evidence: hybrid lexical semantic search; metadata filters; ARM processor support."
+          ]
+        },
+        {
+          "id": "catalog-vector-database-missing-4",
+          "title": "Partial match missing condition 4",
+          "passages": [
+            "Vector Database. Verified evidence: hybrid lexical semantic search; metadata filters; automatic backups."
+          ]
+        },
+        {
+          "id": "catalog-vector-database-violates-exclusion",
+          "title": "Topical match with forbidden condition",
+          "passages": [
+            "Vector Database. Verified evidence: hybrid lexical semantic search; metadata filters; automatic backups; ARM processor support; GPU requirement."
+          ]
+        },
+        {
+          "id": "catalog-vector-database-topical-decoy",
+          "title": "High-topic low-constraint decoy",
+          "passages": [
+            "Comparison guide for the vector database. This vector database review discusses features, pricing, deployment, compliance, and support for vector database buyers."
+          ]
+        }
+      ],
+      "complete_document_ids": [
+        "catalog-vector-database-complete-literal",
+        "catalog-vector-database-complete-paraphrase"
+      ],
+      "partial_document_ids": [
+        "catalog-vector-database-missing-1",
+        "catalog-vector-database-missing-2",
+        "catalog-vector-database-missing-3",
+        "catalog-vector-database-missing-4",
+        "catalog-vector-database-violates-exclusion",
+        "catalog-vector-database-topical-decoy"
+      ]
+    },
+    {
+      "id": "catalog-contact-center",
+      "family": "catalog",
+      "query": "Find a contact center platform with SIP trunking, real time transcription, PCI redaction, 99.99 percent SLA, without long term contract.",
+      "required": [
+        {
+          "id": "c1",
+          "text": "SIP trunking",
+          "aliases": [
+            "bring your own carrier over SIP"
+          ]
+        },
+        {
+          "id": "c2",
+          "text": "real time transcription",
+          "aliases": [
+            "live speech to text"
+          ]
+        },
+        {
+          "id": "c3",
+          "text": "PCI redaction",
+          "aliases": [
+            "payment card details are masked"
+          ]
+        },
+        {
+          "id": "c4",
+          "text": "99.99 percent SLA",
+          "aliases": [
+            "four nines uptime guarantee"
+          ]
+        }
+      ],
+      "excluded": [
+        {
+          "id": "x1",
+          "text": "long term contract",
+          "aliases": [
+            "multi-year commitment"
+          ]
+        }
+      ],
+      "documents": [
+        {
+          "id": "catalog-contact-center-complete-literal",
+          "title": "Complete literal match",
+          "passages": [
+            "Contact Center Platform. Verified evidence: SIP trunking; real time transcription; PCI redaction; 99.99 percent SLA."
+          ]
+        },
+        {
+          "id": "catalog-contact-center-complete-paraphrase",
+          "title": "Complete paraphrased match",
+          "passages": [
+            "Contact Center Platform. Verified evidence: bring your own carrier over SIP; live speech to text; payment card details are masked; four nines uptime guarantee."
+          ]
+        },
+        {
+          "id": "catalog-contact-center-missing-1",
+          "title": "Partial match missing condition 1",
+          "passages": [
+            "Contact Center Platform. Verified evidence: real time transcription; PCI redaction; 99.99 percent SLA."
+          ]
+        },
+        {
+          "id": "catalog-contact-center-missing-2",
+          "title": "Partial match missing condition 2",
+          "passages": [
+            "Contact Center Platform. Verified evidence: SIP trunking; PCI redaction; 99.99 percent SLA."
+          ]
+        },
+        {
+          "id": "catalog-contact-center-missing-3",
+          "title": "Partial match missing condition 3",
+          "passages": [
+            "Contact Center Platform. Verified evidence: SIP trunking; real time transcription; 99.99 percent SLA."
+          ]
+        },
+        {
+          "id": "catalog-contact-center-missing-4",
+          "title": "Partial match missing condition 4",
+          "passages": [
+            "Contact Center Platform. Verified evidence: SIP trunking; real time transcription; PCI redaction."
+          ]
+        },
+        {
+          "id": "catalog-contact-center-violates-exclusion",
+          "title": "Topical match with forbidden condition",
+          "passages": [
+            "Contact Center Platform. Verified evidence: SIP trunking; real time transcription; PCI redaction; 99.99 percent SLA; long term contract."
+          ]
+        },
+        {
+          "id": "catalog-contact-center-topical-decoy",
+          "title": "High-topic low-constraint decoy",
+          "passages": [
+            "Comparison guide for the contact center platform. This contact center platform review discusses features, pricing, deployment, compliance, and support for contact center platform buyers."
+          ]
+        }
+      ],
+      "complete_document_ids": [
+        "catalog-contact-center-complete-literal",
+        "catalog-contact-center-complete-paraphrase"
+      ],
+      "partial_document_ids": [
+        "catalog-contact-center-missing-1",
+        "catalog-contact-center-missing-2",
+        "catalog-contact-center-missing-3",
+        "catalog-contact-center-missing-4",
+        "catalog-contact-center-violates-exclusion",
+        "catalog-contact-center-topical-decoy"
+      ]
+    },
+    {
+      "id": "catalog-document-ai",
+      "family": "catalog",
+      "query": "Find a document AI service with table extraction, handwritten form recognition, private cloud deployment, field confidence scores, without page minimum.",
+      "required": [
+        {
+          "id": "c1",
+          "text": "table extraction",
+          "aliases": [
+            "parses rows and columns"
+          ]
+        },
+        {
+          "id": "c2",
+          "text": "handwritten form recognition",
+          "aliases": [
+            "reads cursive forms"
+          ]
+        },
+        {
+          "id": "c3",
+          "text": "private cloud deployment",
+          "aliases": [
+            "isolated customer cloud"
+          ]
+        },
+        {
+          "id": "c4",
+          "text": "field confidence scores",
+          "aliases": [
+            "probability for each extracted value"
+          ]
+        }
+      ],
+      "excluded": [
+        {
+          "id": "x1",
+          "text": "page minimum",
+          "aliases": [
+            "minimum document volume"
+          ]
+        }
+      ],
+      "documents": [
+        {
+          "id": "catalog-document-ai-complete-literal",
+          "title": "Complete literal match",
+          "passages": [
+            "Document Ai Service. Verified evidence: table extraction; handwritten form recognition; private cloud deployment; field confidence scores."
+          ]
+        },
+        {
+          "id": "catalog-document-ai-complete-paraphrase",
+          "title": "Complete paraphrased match",
+          "passages": [
+            "Document Ai Service. Verified evidence: parses rows and columns; reads cursive forms; isolated customer cloud; probability for each extracted value."
+          ]
+        },
+        {
+          "id": "catalog-document-ai-missing-1",
+          "title": "Partial match missing condition 1",
+          "passages": [
+            "Document Ai Service. Verified evidence: handwritten form recognition; private cloud deployment; field confidence scores."
+          ]
+        },
+        {
+          "id": "catalog-document-ai-missing-2",
+          "title": "Partial match missing condition 2",
+          "passages": [
+            "Document Ai Service. Verified evidence: table extraction; private cloud deployment; field confidence scores."
+          ]
+        },
+        {
+          "id": "catalog-document-ai-missing-3",
+          "title": "Partial match missing condition 3",
+          "passages": [
+            "Document Ai Service. Verified evidence: table extraction; handwritten form recognition; field confidence scores."
+          ]
+        },
+        {
+          "id": "catalog-document-ai-missing-4",
+          "title": "Partial match missing condition 4",
+          "passages": [
+            "Document Ai Service. Verified evidence: table extraction; handwritten form recognition; private cloud deployment."
+          ]
+        },
+        {
+          "id": "catalog-document-ai-violates-exclusion",
+          "title": "Topical match with forbidden condition",
+          "passages": [
+            "Document Ai Service. Verified evidence: table extraction; handwritten form recognition; private cloud deployment; field confidence scores; page minimum."
+          ]
+        },
+        {
+          "id": "catalog-document-ai-topical-decoy",
+          "title": "High-topic low-constraint decoy",
+          "passages": [
+            "Comparison guide for the document AI service. This document AI service review discusses features, pricing, deployment, compliance, and support for document AI service buyers."
+          ]
+        }
+      ],
+      "complete_document_ids": [
+        "catalog-document-ai-complete-literal",
+        "catalog-document-ai-complete-paraphrase"
+      ],
+      "partial_document_ids": [
+        "catalog-document-ai-missing-1",
+        "catalog-document-ai-missing-2",
+        "catalog-document-ai-missing-3",
+        "catalog-document-ai-missing-4",
+        "catalog-document-ai-violates-exclusion",
+        "catalog-document-ai-topical-decoy"
+      ]
+    },
+    {
+      "id": "cross-passage-municipal-plan",
+      "family": "cross-passage",
+      "query": "Find a municipal climate plan with 40 percent emissions reduction, dedicated public transit funding, 2030 completion deadline, without highway expansion.",
+      "required": [
+        {
+          "id": "c1",
+          "text": "40 percent emissions reduction",
+          "aliases": [
+            "cuts emissions by forty percent"
+          ]
+        },
+        {
+          "id": "c2",
+          "text": "dedicated public transit funding",
+          "aliases": [
+            "ring-fenced budget for buses and rail"
+          ]
+        },
+        {
+          "id": "c3",
+          "text": "2030 completion deadline",
+          "aliases": [
+            "must finish by the year 2030"
+          ]
+        }
+      ],
+      "excluded": [
+        {
+          "id": "x1",
+          "text": "highway expansion",
+          "aliases": [
+            "adds new freeway lanes"
+          ]
+        }
+      ],
+      "documents": [
+        {
+          "id": "cross-passage-municipal-plan-complete-literal",
+          "title": "Complete literal match",
+          "passages": [
+            "Municipal Climate Plan. Verified evidence: 40 percent emissions reduction.",
+            "Municipal Climate Plan. Verified evidence: dedicated public transit funding.",
+            "Municipal Climate Plan. Verified evidence: 2030 completion deadline."
+          ]
+        },
+        {
+          "id": "cross-passage-municipal-plan-complete-paraphrase",
+          "title": "Complete paraphrased match",
+          "passages": [
+            "Municipal Climate Plan. Verified evidence: cuts emissions by forty percent.",
+            "Municipal Climate Plan. Verified evidence: ring-fenced budget for buses and rail.",
+            "Municipal Climate Plan. Verified evidence: must finish by the year 2030."
+          ]
+        },
+        {
+          "id": "cross-passage-municipal-plan-missing-1",
+          "title": "Partial match missing condition 1",
+          "passages": [
+            "Municipal Climate Plan. Verified evidence: dedicated public transit funding.",
+            "Municipal Climate Plan. Verified evidence: 2030 completion deadline."
+          ]
+        },
+        {
+          "id": "cross-passage-municipal-plan-missing-2",
+          "title": "Partial match missing condition 2",
+          "passages": [
+            "Municipal Climate Plan. Verified evidence: 40 percent emissions reduction.",
+            "Municipal Climate Plan. Verified evidence: 2030 completion deadline."
+          ]
+        },
+        {
+          "id": "cross-passage-municipal-plan-missing-3",
+          "title": "Partial match missing condition 3",
+          "passages": [
+            "Municipal Climate Plan. Verified evidence: 40 percent emissions reduction.",
+            "Municipal Climate Plan. Verified evidence: dedicated public transit funding."
+          ]
+        },
+        {
+          "id": "cross-passage-municipal-plan-violates-exclusion",
+          "title": "Topical match with forbidden condition",
+          "passages": [
+            "Municipal Climate Plan. Verified evidence: 40 percent emissions reduction.",
+            "Municipal Climate Plan. Verified evidence: dedicated public transit funding.",
+            "Municipal Climate Plan. Verified evidence: 2030 completion deadline.",
+            "Municipal Climate Plan. Verified evidence: highway expansion."
+          ]
+        },
+        {
+          "id": "cross-passage-municipal-plan-topical-decoy",
+          "title": "High-topic low-constraint decoy",
+          "passages": [
+            "Comparison guide for the municipal climate plan. This municipal climate plan review discusses features, pricing, deployment, compliance, and support for municipal climate plan buyers."
+          ]
+        }
+      ],
+      "complete_document_ids": [
+        "cross-passage-municipal-plan-complete-literal",
+        "cross-passage-municipal-plan-complete-paraphrase"
+      ],
+      "partial_document_ids": [
+        "cross-passage-municipal-plan-missing-1",
+        "cross-passage-municipal-plan-missing-2",
+        "cross-passage-municipal-plan-missing-3",
+        "cross-passage-municipal-plan-violates-exclusion",
+        "cross-passage-municipal-plan-topical-decoy"
+      ]
+    },
+    {
+      "id": "cross-passage-clinical-trial",
+      "family": "cross-passage",
+      "query": "Find a oncology clinical trial with adults age 18 to 65, prior treatment failure, two hospital locations, without pregnant participants.",
+      "required": [
+        {
+          "id": "c1",
+          "text": "adults age 18 to 65",
+          "aliases": [
+            "participants between eighteen and sixty-five"
+          ]
+        },
+        {
+          "id": "c2",
+          "text": "prior treatment failure",
+          "aliases": [
+            "previous therapy was unsuccessful"
+          ]
+        },
+        {
+          "id": "c3",
+          "text": "two hospital locations",
+          "aliases": [
+            "recruiting at two medical centers"
+          ]
+        }
+      ],
+      "excluded": [
+        {
+          "id": "x1",
+          "text": "pregnant participants",
+          "aliases": [
+            "enrollment during pregnancy"
+          ]
+        }
+      ],
+      "documents": [
+        {
+          "id": "cross-passage-clinical-trial-complete-literal",
+          "title": "Complete literal match",
+          "passages": [
+            "Oncology Clinical Trial. Verified evidence: adults age 18 to 65.",
+            "Oncology Clinical Trial. Verified evidence: prior treatment failure.",
+            "Oncology Clinical Trial. Verified evidence: two hospital locations."
+          ]
+        },
+        {
+          "id": "cross-passage-clinical-trial-complete-paraphrase",
+          "title": "Complete paraphrased match",
+          "passages": [
+            "Oncology Clinical Trial. Verified evidence: participants between eighteen and sixty-five.",
+            "Oncology Clinical Trial. Verified evidence: previous therapy was unsuccessful.",
+            "Oncology Clinical Trial. Verified evidence: recruiting at two medical centers."
+          ]
+        },
+        {
+          "id": "cross-passage-clinical-trial-missing-1",
+          "title": "Partial match missing condition 1",
+          "passages": [
+            "Oncology Clinical Trial. Verified evidence: prior treatment failure.",
+            "Oncology Clinical Trial. Verified evidence: two hospital locations."
+          ]
+        },
+        {
+          "id": "cross-passage-clinical-trial-missing-2",
+          "title": "Partial match missing condition 2",
+          "passages": [
+            "Oncology Clinical Trial. Verified evidence: adults age 18 to 65.",
+            "Oncology Clinical Trial. Verified evidence: two hospital locations."
+          ]
+        },
+        {
+          "id": "cross-passage-clinical-trial-missing-3",
+          "title": "Partial match missing condition 3",
+          "passages": [
+            "Oncology Clinical Trial. Verified evidence: adults age 18 to 65.",
+            "Oncology Clinical Trial. Verified evidence: prior treatment failure."
+          ]
+        },
+        {
+          "id": "cross-passage-clinical-trial-violates-exclusion",
+          "title": "Topical match with forbidden condition",
+          "passages": [
+            "Oncology Clinical Trial. Verified evidence: adults age 18 to 65.",
+            "Oncology Clinical Trial. Verified evidence: prior treatment failure.",
+            "Oncology Clinical Trial. Verified evidence: two hospital locations.",
+            "Oncology Clinical Trial. Verified evidence: pregnant participants."
+          ]
+        },
+        {
+          "id": "cross-passage-clinical-trial-topical-decoy",
+          "title": "High-topic low-constraint decoy",
+          "passages": [
+            "Comparison guide for the oncology clinical trial. This oncology clinical trial review discusses features, pricing, deployment, compliance, and support for oncology clinical trial buyers."
+          ]
+        }
+      ],
+      "complete_document_ids": [
+        "cross-passage-clinical-trial-complete-literal",
+        "cross-passage-clinical-trial-complete-paraphrase"
+      ],
+      "partial_document_ids": [
+        "cross-passage-clinical-trial-missing-1",
+        "cross-passage-clinical-trial-missing-2",
+        "cross-passage-clinical-trial-missing-3",
+        "cross-passage-clinical-trial-violates-exclusion",
+        "cross-passage-clinical-trial-topical-decoy"
+      ]
+    },
+    {
+      "id": "cross-passage-retrieval-paper",
+      "family": "cross-passage",
+      "query": "Find a retrieval research paper with public source code, evaluation on natural queries, CPU latency measurements, without proprietary dataset only.",
+      "required": [
+        {
+          "id": "c1",
+          "text": "public source code",
+          "aliases": [
+            "open implementation repository"
+          ]
+        },
+        {
+          "id": "c2",
+          "text": "evaluation on natural queries",
+          "aliases": [
+            "tested with human authored searches"
+          ]
+        },
+        {
+          "id": "c3",
+          "text": "CPU latency measurements",
+          "aliases": [
+            "reports processor-only response time"
+          ]
+        }
+      ],
+      "excluded": [
+        {
+          "id": "x1",
+          "text": "proprietary dataset only",
+          "aliases": [
+            "results use closed data exclusively"
+          ]
+        }
+      ],
+      "documents": [
+        {
+          "id": "cross-passage-retrieval-paper-complete-literal",
+          "title": "Complete literal match",
+          "passages": [
+            "Retrieval Research Paper. Verified evidence: public source code.",
+            "Retrieval Research Paper. Verified evidence: evaluation on natural queries.",
+            "Retrieval Research Paper. Verified evidence: CPU latency measurements."
+          ]
+        },
+        {
+          "id": "cross-passage-retrieval-paper-complete-paraphrase",
+          "title": "Complete paraphrased match",
+          "passages": [
+            "Retrieval Research Paper. Verified evidence: open implementation repository.",
+            "Retrieval Research Paper. Verified evidence: tested with human authored searches.",
+            "Retrieval Research Paper. Verified evidence: reports processor-only response time."
+          ]
+        },
+        {
+          "id": "cross-passage-retrieval-paper-missing-1",
+          "title": "Partial match missing condition 1",
+          "passages": [
+            "Retrieval Research Paper. Verified evidence: evaluation on natural queries.",
+            "Retrieval Research Paper. Verified evidence: CPU latency measurements."
+          ]
+        },
+        {
+          "id": "cross-passage-retrieval-paper-missing-2",
+          "title": "Partial match missing condition 2",
+          "passages": [
+            "Retrieval Research Paper. Verified evidence: public source code.",
+            "Retrieval Research Paper. Verified evidence: CPU latency measurements."
+          ]
+        },
+        {
+          "id": "cross-passage-retrieval-paper-missing-3",
+          "title": "Partial match missing condition 3",
+          "passages": [
+            "Retrieval Research Paper. Verified evidence: public source code.",
+            "Retrieval Research Paper. Verified evidence: evaluation on natural queries."
+          ]
+        },
+        {
+          "id": "cross-passage-retrieval-paper-violates-exclusion",
+          "title": "Topical match with forbidden condition",
+          "passages": [
+            "Retrieval Research Paper. Verified evidence: public source code.",
+            "Retrieval Research Paper. Verified evidence: evaluation on natural queries.",
+            "Retrieval Research Paper. Verified evidence: CPU latency measurements.",
+            "Retrieval Research Paper. Verified evidence: proprietary dataset only."
+          ]
+        },
+        {
+          "id": "cross-passage-retrieval-paper-topical-decoy",
+          "title": "High-topic low-constraint decoy",
+          "passages": [
+            "Comparison guide for the retrieval research paper. This retrieval research paper review discusses features, pricing, deployment, compliance, and support for retrieval research paper buyers."
+          ]
+        }
+      ],
+      "complete_document_ids": [
+        "cross-passage-retrieval-paper-complete-literal",
+        "cross-passage-retrieval-paper-complete-paraphrase"
+      ],
+      "partial_document_ids": [
+        "cross-passage-retrieval-paper-missing-1",
+        "cross-passage-retrieval-paper-missing-2",
+        "cross-passage-retrieval-paper-missing-3",
+        "cross-passage-retrieval-paper-violates-exclusion",
+        "cross-passage-retrieval-paper-topical-decoy"
+      ]
+    },
+    {
+      "id": "cross-passage-sustainable-supplier",
+      "family": "cross-passage",
+      "query": "Find a packaging supplier with ISO 27001 certification, 80 percent recycled materials, delivery under 14 days, without minimum order.",
+      "required": [
+        {
+          "id": "c1",
+          "text": "ISO 27001 certification",
+          "aliases": [
+            "certified information security system"
+          ]
+        },
+        {
+          "id": "c2",
+          "text": "80 percent recycled materials",
+          "aliases": [
+            "four fifths recycled content"
+          ]
+        },
+        {
+          "id": "c3",
+          "text": "delivery under 14 days",
+          "aliases": [
+            "ships within two weeks"
+          ]
+        }
+      ],
+      "excluded": [
+        {
+          "id": "x1",
+          "text": "minimum order",
+          "aliases": [
+            "mandatory purchase quantity"
+          ]
+        }
+      ],
+      "documents": [
+        {
+          "id": "cross-passage-sustainable-supplier-complete-literal",
+          "title": "Complete literal match",
+          "passages": [
+            "Packaging Supplier. Verified evidence: ISO 27001 certification.",
+            "Packaging Supplier. Verified evidence: 80 percent recycled materials.",
+            "Packaging Supplier. Verified evidence: delivery under 14 days."
+          ]
+        },
+        {
+          "id": "cross-passage-sustainable-supplier-complete-paraphrase",
+          "title": "Complete paraphrased match",
+          "passages": [
+            "Packaging Supplier. Verified evidence: certified information security system.",
+            "Packaging Supplier. Verified evidence: four fifths recycled content.",
+            "Packaging Supplier. Verified evidence: ships within two weeks."
+          ]
+        },
+        {
+          "id": "cross-passage-sustainable-supplier-missing-1",
+          "title": "Partial match missing condition 1",
+          "passages": [
+            "Packaging Supplier. Verified evidence: 80 percent recycled materials.",
+            "Packaging Supplier. Verified evidence: delivery under 14 days."
+          ]
+        },
+        {
+          "id": "cross-passage-sustainable-supplier-missing-2",
+          "title": "Partial match missing condition 2",
+          "passages": [
+            "Packaging Supplier. Verified evidence: ISO 27001 certification.",
+            "Packaging Supplier. Verified evidence: delivery under 14 days."
+          ]
+        },
+        {
+          "id": "cross-passage-sustainable-supplier-missing-3",
+          "title": "Partial match missing condition 3",
+          "passages": [
+            "Packaging Supplier. Verified evidence: ISO 27001 certification.",
+            "Packaging Supplier. Verified evidence: 80 percent recycled materials."
+          ]
+        },
+        {
+          "id": "cross-passage-sustainable-supplier-violates-exclusion",
+          "title": "Topical match with forbidden condition",
+          "passages": [
+            "Packaging Supplier. Verified evidence: ISO 27001 certification.",
+            "Packaging Supplier. Verified evidence: 80 percent recycled materials.",
+            "Packaging Supplier. Verified evidence: delivery under 14 days.",
+            "Packaging Supplier. Verified evidence: minimum order."
+          ]
+        },
+        {
+          "id": "cross-passage-sustainable-supplier-topical-decoy",
+          "title": "High-topic low-constraint decoy",
+          "passages": [
+            "Comparison guide for the packaging supplier. This packaging supplier review discusses features, pricing, deployment, compliance, and support for packaging supplier buyers."
+          ]
+        }
+      ],
+      "complete_document_ids": [
+        "cross-passage-sustainable-supplier-complete-literal",
+        "cross-passage-sustainable-supplier-complete-paraphrase"
+      ],
+      "partial_document_ids": [
+        "cross-passage-sustainable-supplier-missing-1",
+        "cross-passage-sustainable-supplier-missing-2",
+        "cross-passage-sustainable-supplier-missing-3",
+        "cross-passage-sustainable-supplier-violates-exclusion",
+        "cross-passage-sustainable-supplier-topical-decoy"
+      ]
+    },
+    {
+      "id": "cross-passage-accessible-hotel",
+      "family": "cross-passage",
+      "query": "Find a downtown hotel with wheelchair accessible rooms, pet friendly policy, electric vehicle charging, without resort fee.",
+      "required": [
+        {
+          "id": "c1",
+          "text": "wheelchair accessible rooms",
+          "aliases": [
+            "ADA mobility rooms"
+          ]
+        },
+        {
+          "id": "c2",
+          "text": "pet friendly policy",
+          "aliases": [
+            "dogs and cats are welcome"
+          ]
+        },
+        {
+          "id": "c3",
+          "text": "electric vehicle charging",
+          "aliases": [
+            "EV chargers in the garage"
+          ]
+        }
+      ],
+      "excluded": [
+        {
+          "id": "x1",
+          "text": "resort fee",
+          "aliases": [
+            "mandatory destination charge"
+          ]
+        }
+      ],
+      "documents": [
+        {
+          "id": "cross-passage-accessible-hotel-complete-literal",
+          "title": "Complete literal match",
+          "passages": [
+            "Downtown Hotel. Verified evidence: wheelchair accessible rooms.",
+            "Downtown Hotel. Verified evidence: pet friendly policy.",
+            "Downtown Hotel. Verified evidence: electric vehicle charging."
+          ]
+        },
+        {
+          "id": "cross-passage-accessible-hotel-complete-paraphrase",
+          "title": "Complete paraphrased match",
+          "passages": [
+            "Downtown Hotel. Verified evidence: ADA mobility rooms.",
+            "Downtown Hotel. Verified evidence: dogs and cats are welcome.",
+            "Downtown Hotel. Verified evidence: EV chargers in the garage."
+          ]
+        },
+        {
+          "id": "cross-passage-accessible-hotel-missing-1",
+          "title": "Partial match missing condition 1",
+          "passages": [
+            "Downtown Hotel. Verified evidence: pet friendly policy.",
+            "Downtown Hotel. Verified evidence: electric vehicle charging."
+          ]
+        },
+        {
+          "id": "cross-passage-accessible-hotel-missing-2",
+          "title": "Partial match missing condition 2",
+          "passages": [
+            "Downtown Hotel. Verified evidence: wheelchair accessible rooms.",
+            "Downtown Hotel. Verified evidence: electric vehicle charging."
+          ]
+        },
+        {
+          "id": "cross-passage-accessible-hotel-missing-3",
+          "title": "Partial match missing condition 3",
+          "passages": [
+            "Downtown Hotel. Verified evidence: wheelchair accessible rooms.",
+            "Downtown Hotel. Verified evidence: pet friendly policy."
+          ]
+        },
+        {
+          "id": "cross-passage-accessible-hotel-violates-exclusion",
+          "title": "Topical match with forbidden condition",
+          "passages": [
+            "Downtown Hotel. Verified evidence: wheelchair accessible rooms.",
+            "Downtown Hotel. Verified evidence: pet friendly policy.",
+            "Downtown Hotel. Verified evidence: electric vehicle charging.",
+            "Downtown Hotel. Verified evidence: resort fee."
+          ]
+        },
+        {
+          "id": "cross-passage-accessible-hotel-topical-decoy",
+          "title": "High-topic low-constraint decoy",
+          "passages": [
+            "Comparison guide for the downtown hotel. This downtown hotel review discusses features, pricing, deployment, compliance, and support for downtown hotel buyers."
+          ]
+        }
+      ],
+      "complete_document_ids": [
+        "cross-passage-accessible-hotel-complete-literal",
+        "cross-passage-accessible-hotel-complete-paraphrase"
+      ],
+      "partial_document_ids": [
+        "cross-passage-accessible-hotel-missing-1",
+        "cross-passage-accessible-hotel-missing-2",
+        "cross-passage-accessible-hotel-missing-3",
+        "cross-passage-accessible-hotel-violates-exclusion",
+        "cross-passage-accessible-hotel-topical-decoy"
+      ]
+    },
+    {
+      "id": "cross-passage-engineering-role",
+      "family": "cross-passage",
+      "query": "Find a machine learning engineering role with remote within the United States, salary above 150000 dollars, visa transfer support, without on call rotation.",
+      "required": [
+        {
+          "id": "c1",
+          "text": "remote within the United States",
+          "aliases": [
+            "work from anywhere in the US"
+          ]
+        },
+        {
+          "id": "c2",
+          "text": "salary above 150000 dollars",
+          "aliases": [
+            "base pay exceeds $150k"
+          ]
+        },
+        {
+          "id": "c3",
+          "text": "visa transfer support",
+          "aliases": [
+            "employer transfers work authorization"
+          ]
+        }
+      ],
+      "excluded": [
+        {
+          "id": "x1",
+          "text": "on call rotation",
+          "aliases": [
+            "after-hours pager duty"
+          ]
+        }
+      ],
+      "documents": [
+        {
+          "id": "cross-passage-engineering-role-complete-literal",
+          "title": "Complete literal match",
+          "passages": [
+            "Machine Learning Engineering Role. Verified evidence: remote within the United States.",
+            "Machine Learning Engineering Role. Verified evidence: salary above 150000 dollars.",
+            "Machine Learning Engineering Role. Verified evidence: visa transfer support."
+          ]
+        },
+        {
+          "id": "cross-passage-engineering-role-complete-paraphrase",
+          "title": "Complete paraphrased match",
+          "passages": [
+            "Machine Learning Engineering Role. Verified evidence: work from anywhere in the US.",
+            "Machine Learning Engineering Role. Verified evidence: base pay exceeds $150k.",
+            "Machine Learning Engineering Role. Verified evidence: employer transfers work authorization."
+          ]
+        },
+        {
+          "id": "cross-passage-engineering-role-missing-1",
+          "title": "Partial match missing condition 1",
+          "passages": [
+            "Machine Learning Engineering Role. Verified evidence: salary above 150000 dollars.",
+            "Machine Learning Engineering Role. Verified evidence: visa transfer support."
+          ]
+        },
+        {
+          "id": "cross-passage-engineering-role-missing-2",
+          "title": "Partial match missing condition 2",
+          "passages": [
+            "Machine Learning Engineering Role. Verified evidence: remote within the United States.",
+            "Machine Learning Engineering Role. Verified evidence: visa transfer support."
+          ]
+        },
+        {
+          "id": "cross-passage-engineering-role-missing-3",
+          "title": "Partial match missing condition 3",
+          "passages": [
+            "Machine Learning Engineering Role. Verified evidence: remote within the United States.",
+            "Machine Learning Engineering Role. Verified evidence: salary above 150000 dollars."
+          ]
+        },
+        {
+          "id": "cross-passage-engineering-role-violates-exclusion",
+          "title": "Topical match with forbidden condition",
+          "passages": [
+            "Machine Learning Engineering Role. Verified evidence: remote within the United States.",
+            "Machine Learning Engineering Role. Verified evidence: salary above 150000 dollars.",
+            "Machine Learning Engineering Role. Verified evidence: visa transfer support.",
+            "Machine Learning Engineering Role. Verified evidence: on call rotation."
+          ]
+        },
+        {
+          "id": "cross-passage-engineering-role-topical-decoy",
+          "title": "High-topic low-constraint decoy",
+          "passages": [
+            "Comparison guide for the machine learning engineering role. This machine learning engineering role review discusses features, pricing, deployment, compliance, and support for machine learning engineering role buyers."
+          ]
+        }
+      ],
+      "complete_document_ids": [
+        "cross-passage-engineering-role-complete-literal",
+        "cross-passage-engineering-role-complete-paraphrase"
+      ],
+      "partial_document_ids": [
+        "cross-passage-engineering-role-missing-1",
+        "cross-passage-engineering-role-missing-2",
+        "cross-passage-engineering-role-missing-3",
+        "cross-passage-engineering-role-violates-exclusion",
+        "cross-passage-engineering-role-topical-decoy"
+      ]
+    },
+    {
+      "id": "cross-passage-climate-grant",
+      "family": "cross-passage",
+      "query": "Find a climate adaptation grant with nonprofit organizations eligible, community flood resilience, September 30 deadline, without matching funds required.",
+      "required": [
+        {
+          "id": "c1",
+          "text": "nonprofit organizations eligible",
+          "aliases": [
+            "open to charitable organizations"
+          ]
+        },
+        {
+          "id": "c2",
+          "text": "community flood resilience",
+          "aliases": [
+            "local adaptation to flooding"
+          ]
+        },
+        {
+          "id": "c3",
+          "text": "September 30 deadline",
+          "aliases": [
+            "applications close on 30 September"
+          ]
+        }
+      ],
+      "excluded": [
+        {
+          "id": "x1",
+          "text": "matching funds required",
+          "aliases": [
+            "recipient must provide a cost share"
+          ]
+        }
+      ],
+      "documents": [
+        {
+          "id": "cross-passage-climate-grant-complete-literal",
+          "title": "Complete literal match",
+          "passages": [
+            "Climate Adaptation Grant. Verified evidence: nonprofit organizations eligible.",
+            "Climate Adaptation Grant. Verified evidence: community flood resilience.",
+            "Climate Adaptation Grant. Verified evidence: September 30 deadline."
+          ]
+        },
+        {
+          "id": "cross-passage-climate-grant-complete-paraphrase",
+          "title": "Complete paraphrased match",
+          "passages": [
+            "Climate Adaptation Grant. Verified evidence: open to charitable organizations.",
+            "Climate Adaptation Grant. Verified evidence: local adaptation to flooding.",
+            "Climate Adaptation Grant. Verified evidence: applications close on 30 September."
+          ]
+        },
+        {
+          "id": "cross-passage-climate-grant-missing-1",
+          "title": "Partial match missing condition 1",
+          "passages": [
+            "Climate Adaptation Grant. Verified evidence: community flood resilience.",
+            "Climate Adaptation Grant. Verified evidence: September 30 deadline."
+          ]
+        },
+        {
+          "id": "cross-passage-climate-grant-missing-2",
+          "title": "Partial match missing condition 2",
+          "passages": [
+            "Climate Adaptation Grant. Verified evidence: nonprofit organizations eligible.",
+            "Climate Adaptation Grant. Verified evidence: September 30 deadline."
+          ]
+        },
+        {
+          "id": "cross-passage-climate-grant-missing-3",
+          "title": "Partial match missing condition 3",
+          "passages": [
+            "Climate Adaptation Grant. Verified evidence: nonprofit organizations eligible.",
+            "Climate Adaptation Grant. Verified evidence: community flood resilience."
+          ]
+        },
+        {
+          "id": "cross-passage-climate-grant-violates-exclusion",
+          "title": "Topical match with forbidden condition",
+          "passages": [
+            "Climate Adaptation Grant. Verified evidence: nonprofit organizations eligible.",
+            "Climate Adaptation Grant. Verified evidence: community flood resilience.",
+            "Climate Adaptation Grant. Verified evidence: September 30 deadline.",
+            "Climate Adaptation Grant. Verified evidence: matching funds required."
+          ]
+        },
+        {
+          "id": "cross-passage-climate-grant-topical-decoy",
+          "title": "High-topic low-constraint decoy",
+          "passages": [
+            "Comparison guide for the climate adaptation grant. This climate adaptation grant review discusses features, pricing, deployment, compliance, and support for climate adaptation grant buyers."
+          ]
+        }
+      ],
+      "complete_document_ids": [
+        "cross-passage-climate-grant-complete-literal",
+        "cross-passage-climate-grant-complete-paraphrase"
+      ],
+      "partial_document_ids": [
+        "cross-passage-climate-grant-missing-1",
+        "cross-passage-climate-grant-missing-2",
+        "cross-passage-climate-grant-missing-3",
+        "cross-passage-climate-grant-violates-exclusion",
+        "cross-passage-climate-grant-topical-decoy"
+      ]
+    },
+    {
+      "id": "cross-passage-linux-laptop",
+      "family": "cross-passage",
+      "query": "Find a developer laptop with 32 gigabytes of memory, Linux hardware certification, weight under 1.5 kilograms, without soldered storage.",
+      "required": [
+        {
+          "id": "c1",
+          "text": "32 gigabytes of memory",
+          "aliases": [
+            "32GB RAM"
+          ]
+        },
+        {
+          "id": "c2",
+          "text": "Linux hardware certification",
+          "aliases": [
+            "officially certified for Linux"
+          ]
+        },
+        {
+          "id": "c3",
+          "text": "weight under 1.5 kilograms",
+          "aliases": [
+            "lighter than one and a half kilograms"
+          ]
+        }
+      ],
+      "excluded": [
+        {
+          "id": "x1",
+          "text": "soldered storage",
+          "aliases": [
+            "non-replaceable SSD"
+          ]
+        }
+      ],
+      "documents": [
+        {
+          "id": "cross-passage-linux-laptop-complete-literal",
+          "title": "Complete literal match",
+          "passages": [
+            "Developer Laptop. Verified evidence: 32 gigabytes of memory.",
+            "Developer Laptop. Verified evidence: Linux hardware certification.",
+            "Developer Laptop. Verified evidence: weight under 1.5 kilograms."
+          ]
+        },
+        {
+          "id": "cross-passage-linux-laptop-complete-paraphrase",
+          "title": "Complete paraphrased match",
+          "passages": [
+            "Developer Laptop. Verified evidence: 32GB RAM.",
+            "Developer Laptop. Verified evidence: officially certified for Linux.",
+            "Developer Laptop. Verified evidence: lighter than one and a half kilograms."
+          ]
+        },
+        {
+          "id": "cross-passage-linux-laptop-missing-1",
+          "title": "Partial match missing condition 1",
+          "passages": [
+            "Developer Laptop. Verified evidence: Linux hardware certification.",
+            "Developer Laptop. Verified evidence: weight under 1.5 kilograms."
+          ]
+        },
+        {
+          "id": "cross-passage-linux-laptop-missing-2",
+          "title": "Partial match missing condition 2",
+          "passages": [
+            "Developer Laptop. Verified evidence: 32 gigabytes of memory.",
+            "Developer Laptop. Verified evidence: weight under 1.5 kilograms."
+          ]
+        },
+        {
+          "id": "cross-passage-linux-laptop-missing-3",
+          "title": "Partial match missing condition 3",
+          "passages": [
+            "Developer Laptop. Verified evidence: 32 gigabytes of memory.",
+            "Developer Laptop. Verified evidence: Linux hardware certification."
+          ]
+        },
+        {
+          "id": "cross-passage-linux-laptop-violates-exclusion",
+          "title": "Topical match with forbidden condition",
+          "passages": [
+            "Developer Laptop. Verified evidence: 32 gigabytes of memory.",
+            "Developer Laptop. Verified evidence: Linux hardware certification.",
+            "Developer Laptop. Verified evidence: weight under 1.5 kilograms.",
+            "Developer Laptop. Verified evidence: soldered storage."
+          ]
+        },
+        {
+          "id": "cross-passage-linux-laptop-topical-decoy",
+          "title": "High-topic low-constraint decoy",
+          "passages": [
+            "Comparison guide for the developer laptop. This developer laptop review discusses features, pricing, deployment, compliance, and support for developer laptop buyers."
+          ]
+        }
+      ],
+      "complete_document_ids": [
+        "cross-passage-linux-laptop-complete-literal",
+        "cross-passage-linux-laptop-complete-paraphrase"
+      ],
+      "partial_document_ids": [
+        "cross-passage-linux-laptop-missing-1",
+        "cross-passage-linux-laptop-missing-2",
+        "cross-passage-linux-laptop-missing-3",
+        "cross-passage-linux-laptop-violates-exclusion",
+        "cross-passage-linux-laptop-topical-decoy"
+      ]
+    }
+  ]
+}

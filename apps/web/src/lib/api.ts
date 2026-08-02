@@ -1,5 +1,13 @@
 import { FALLBACK_COMPARISON, FALLBACK_EVALUATION, FALLBACK_TRACES } from "./demo";
-import type { ActiveCorpus, ComparisonResult, EvaluationResult, TraceEvent } from "./types";
+import type {
+  ActiveCorpus,
+  ComparisonResult,
+  EvaluationResult,
+  PhaseZeroProbe,
+  PhaseZeroReport,
+  PhaseZeroSource,
+  TraceEvent,
+} from "./types";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -79,4 +87,46 @@ export async function runEvaluation(): Promise<EvaluationResult> {
     await new Promise((resolve) => setTimeout(resolve, 900));
     return FALLBACK_EVALUATION;
   }
+}
+
+export async function loadPhaseZeroReport(
+  suite: PhaseZeroSource,
+  rerun = false,
+): Promise<{ report: PhaseZeroReport; mode: "live" | "artifact" }> {
+  try {
+    const response = await fetch(`${API_URL}/api/v1/research/phase-zero?suite=${suite}`, {
+      method: rerun ? "POST" : "GET",
+      signal: AbortSignal.timeout(45000),
+    });
+    if (!response.ok) throw new Error(`API returned ${response.status}`);
+    return { report: (await response.json()) as PhaseZeroReport, mode: "live" };
+  } catch {
+    const artifactName = suite === "external"
+      ? "multiconir-task2-structured-9884fb3e.json"
+      : "phase0-diagnostic-v1.json";
+    const artifact = await fetch(`/benchmarks/${artifactName}`, { cache: "no-store" });
+    if (!artifact.ok) throw new Error("Phase 0 report is unavailable. Start the API or rebuild the artifact.");
+    return { report: (await artifact.json()) as PhaseZeroReport, mode: "artifact" };
+  }
+}
+
+export async function runPhaseZeroProbe(
+  suite: PhaseZeroSource,
+  caseId: string,
+  activeRequiredIds: string[],
+  activeExcludedIds: string[],
+): Promise<PhaseZeroProbe> {
+  const response = await fetch(`${API_URL}/api/v1/research/phase-zero/probe`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      case_id: caseId,
+      suite,
+      active_required_ids: activeRequiredIds,
+      active_excluded_ids: activeExcludedIds,
+    }),
+    signal: AbortSignal.timeout(10000),
+  });
+  if (!response.ok) throw new Error(`Interactive probe failed (${response.status})`);
+  return (await response.json()) as PhaseZeroProbe;
 }

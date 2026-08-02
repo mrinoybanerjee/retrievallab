@@ -1,0 +1,4036 @@
+{
+  "suite": "phase0-diagnostic-v1",
+  "classification": "synthetic_diagnostic",
+  "description": "Deterministic complete-versus-partial fixtures for implementation falsification. These cases are not evidence of generalization or publication readiness.",
+  "case_count": 16,
+  "family_count": 2,
+  "headline_methods": [
+    "dense",
+    "hybrid",
+    "coverage_first"
+  ],
+  "reports": {
+    "dense": {
+      "label": "Naive dense",
+      "family": "monolithic",
+      "status": "control",
+      "complete_before_partial_at_10": 0.0,
+      "recall_at_10": 1.0,
+      "logical_violation_at_1": 1.0,
+      "pairwise_complete_over_partial": 0.4271,
+      "mean_first_complete_rank": 2.0,
+      "p50_latency_ms": 0.2027,
+      "p95_latency_ms": 0.2334,
+      "mean_postings_touched": 0,
+      "mean_score_updates": 0,
+      "mean_documents_scored": 7.5,
+      "cpu_ms_per_success": null
+    },
+    "bm25": {
+      "label": "Monolithic BM25",
+      "family": "monolithic",
+      "status": "control",
+      "complete_before_partial_at_10": 0.0,
+      "recall_at_10": 1.0,
+      "logical_violation_at_1": 1.0,
+      "pairwise_complete_over_partial": 0.4667,
+      "mean_first_complete_rank": 2.0,
+      "p50_latency_ms": 0.0412,
+      "p95_latency_ms": 0.054,
+      "mean_postings_touched": 73.88,
+      "mean_score_updates": 73.88,
+      "mean_documents_scored": 7.5,
+      "cpu_ms_per_success": null
+    },
+    "hybrid": {
+      "label": "Hybrid RRF",
+      "family": "production",
+      "status": "control",
+      "complete_before_partial_at_10": 0.0,
+      "recall_at_10": 1.0,
+      "logical_violation_at_1": 1.0,
+      "pairwise_complete_over_partial": 0.4667,
+      "mean_first_complete_rank": 2.0,
+      "p50_latency_ms": 0.2371,
+      "p95_latency_ms": 0.2668,
+      "mean_postings_touched": 73.88,
+      "mean_score_updates": 73.88,
+      "mean_documents_scored": 7.5,
+      "cpu_ms_per_success": null
+    },
+    "bm25_and": {
+      "label": "BM25 AND",
+      "family": "Boolean",
+      "status": "control",
+      "complete_before_partial_at_10": 1.0,
+      "recall_at_10": 1.0,
+      "logical_violation_at_1": 0.0,
+      "pairwise_complete_over_partial": 0.9635,
+      "mean_first_complete_rank": 1.0,
+      "p50_latency_ms": 0.1504,
+      "p95_latency_ms": 0.1933,
+      "mean_postings_touched": 149.06,
+      "mean_score_updates": 149.06,
+      "mean_documents_scored": 7.5,
+      "cpu_ms_per_success": 0.1504
+    },
+    "additive": {
+      "label": "Condition additive",
+      "family": "algebraic",
+      "status": "control",
+      "complete_before_partial_at_10": 1.0,
+      "recall_at_10": 1.0,
+      "logical_violation_at_1": 0.0,
+      "pairwise_complete_over_partial": 1.0,
+      "mean_first_complete_rank": 1.0,
+      "p50_latency_ms": 0.1419,
+      "p95_latency_ms": 0.1837,
+      "mean_postings_touched": 149.06,
+      "mean_score_updates": 149.06,
+      "mean_documents_scored": 7.5,
+      "cpu_ms_per_success": 0.1419
+    },
+    "minimum": {
+      "label": "Condition minimum",
+      "family": "algebraic",
+      "status": "control",
+      "complete_before_partial_at_10": 1.0,
+      "recall_at_10": 1.0,
+      "logical_violation_at_1": 0.0,
+      "pairwise_complete_over_partial": 1.0,
+      "mean_first_complete_rank": 1.0,
+      "p50_latency_ms": 0.1467,
+      "p95_latency_ms": 0.1853,
+      "mean_postings_touched": 149.06,
+      "mean_score_updates": 149.06,
+      "mean_documents_scored": 7.5,
+      "cpu_ms_per_success": 0.1467
+    },
+    "product": {
+      "label": "Condition product",
+      "family": "algebraic",
+      "status": "control",
+      "complete_before_partial_at_10": 1.0,
+      "recall_at_10": 1.0,
+      "logical_violation_at_1": 0.0,
+      "pairwise_complete_over_partial": 1.0,
+      "mean_first_complete_rank": 1.0,
+      "p50_latency_ms": 0.1443,
+      "p95_latency_ms": 0.189,
+      "mean_postings_touched": 149.06,
+      "mean_score_updates": 149.06,
+      "mean_documents_scored": 7.5,
+      "cpu_ms_per_success": 0.1443
+    },
+    "harmonic": {
+      "label": "Condition harmonic",
+      "family": "algebraic",
+      "status": "control",
+      "complete_before_partial_at_10": 1.0,
+      "recall_at_10": 1.0,
+      "logical_violation_at_1": 0.0,
+      "pairwise_complete_over_partial": 1.0,
+      "mean_first_complete_rank": 1.0,
+      "p50_latency_ms": 0.1477,
+      "p95_latency_ms": 0.1857,
+      "mean_postings_touched": 149.06,
+      "mean_score_updates": 149.06,
+      "mean_documents_scored": 7.5,
+      "cpu_ms_per_success": 0.1477
+    },
+    "distinct_support": {
+      "label": "Distinct-passage support",
+      "family": "assignment",
+      "status": "control",
+      "complete_before_partial_at_10": 1.0,
+      "recall_at_10": 1.0,
+      "logical_violation_at_1": 0.0,
+      "pairwise_complete_over_partial": 1.0,
+      "mean_first_complete_rank": 1.0,
+      "p50_latency_ms": 0.2509,
+      "p95_latency_ms": 0.3242,
+      "mean_postings_touched": 225,
+      "mean_score_updates": 225,
+      "mean_documents_scored": 7.5,
+      "cpu_ms_per_success": 0.2509
+    },
+    "coverage_first": {
+      "label": "Coverage-first sparse",
+      "family": "experimental",
+      "status": "unvalidated candidate",
+      "complete_before_partial_at_10": 1.0,
+      "recall_at_10": 1.0,
+      "logical_violation_at_1": 0.0,
+      "pairwise_complete_over_partial": 0.8958,
+      "mean_first_complete_rank": 1.0,
+      "p50_latency_ms": 0.1462,
+      "p95_latency_ms": 0.1805,
+      "mean_postings_touched": 149.06,
+      "mean_score_updates": 149.06,
+      "mean_documents_scored": 1.62,
+      "cpu_ms_per_success": 0.1462
+    }
+  },
+  "comparison": {
+    "candidate": "coverage_first",
+    "strongest_control": "additive",
+    "delta": 0.0,
+    "ci95_low": 0.0,
+    "ci95_high": 0.0,
+    "bootstrap_samples": 2000,
+    "raw_sign_test_p": 1.0,
+    "holm_adjusted_p": 1.0
+  },
+  "multiple_comparisons": {
+    "dense": {
+      "raw_sign_test_p": 3.1e-05,
+      "holm_adjusted_p": 0.000275
+    },
+    "bm25": {
+      "raw_sign_test_p": 3.1e-05,
+      "holm_adjusted_p": 0.000275
+    },
+    "hybrid": {
+      "raw_sign_test_p": 3.1e-05,
+      "holm_adjusted_p": 0.000275
+    },
+    "bm25_and": {
+      "raw_sign_test_p": 1.0,
+      "holm_adjusted_p": 1.0
+    },
+    "additive": {
+      "raw_sign_test_p": 1.0,
+      "holm_adjusted_p": 1.0
+    },
+    "minimum": {
+      "raw_sign_test_p": 1.0,
+      "holm_adjusted_p": 1.0
+    },
+    "product": {
+      "raw_sign_test_p": 1.0,
+      "holm_adjusted_p": 1.0
+    },
+    "harmonic": {
+      "raw_sign_test_p": 1.0,
+      "holm_adjusted_p": 1.0
+    },
+    "distinct_support": {
+      "raw_sign_test_p": 1.0,
+      "holm_adjusted_p": 1.0
+    }
+  },
+  "perturbations": {
+    "oracle": {
+      "complete_before_partial_at_10": 1.0,
+      "delta_from_oracle": 0.0
+    },
+    "reordered": {
+      "complete_before_partial_at_10": 1.0,
+      "delta_from_oracle": 0.0
+    },
+    "duplicated": {
+      "complete_before_partial_at_10": 1.0,
+      "delta_from_oracle": 0.0
+    },
+    "removed": {
+      "complete_before_partial_at_10": 1.0,
+      "delta_from_oracle": 0.0
+    },
+    "parser_noise": {
+      "complete_before_partial_at_10": 0.9375,
+      "delta_from_oracle": -0.0625
+    }
+  },
+  "gate": {
+    "status": "not_evaluable",
+    "diagnostic_decision": "simple_control_matches_candidate",
+    "reason": "Synthetic fixtures can falsify implementation ideas but cannot satisfy the preregistered publication gate. This artifact does not count as external validation; see the pinned MultiConIR report for the current out-of-fixture evidence.",
+    "criteria": [
+      {
+        "id": "two_external_families",
+        "status": "pending"
+      },
+      {
+        "id": "five_point_gain_vs_strongest_control",
+        "status": "diagnostic_only"
+      },
+      {
+        "id": "parser_and_order_robustness",
+        "status": "diagnostic_only"
+      },
+      {
+        "id": "beir_regression_under_one_point",
+        "status": "pending"
+      },
+      {
+        "id": "latency_or_cost_pareto_gain",
+        "status": "pending_scale_test"
+      },
+      {
+        "id": "paired_statistics_and_multiplicity",
+        "status": "implemented_diagnostic"
+      }
+    ]
+  },
+  "economics": {
+    "reference_method": "additive",
+    "documents_scored_reduction": 0.784,
+    "postings_touched_ratio": 1.0,
+    "p50_latency_ratio": 1.030303,
+    "cpu_ms_per_success_ratio": 1.030303,
+    "pareto_improvement_observed": false
+  },
+  "systems": {
+    "index_build_p50_ms": 0.7653,
+    "index_build_p95_ms": 1.0665,
+    "mean_vocabulary_terms": 44.19,
+    "mean_posting_entries": 116.12,
+    "mean_estimated_index_bytes": 1387.19
+  },
+  "required_baselines": {
+    "implemented": [
+      "dense",
+      "bm25",
+      "hybrid",
+      "bm25_and",
+      "additive",
+      "minimum",
+      "product",
+      "harmonic",
+      "distinct_support",
+      "coverage_first"
+    ],
+    "pending_external": [
+      "SPLADE",
+      "Set-Comp LSR",
+      "current dense retriever",
+      "cross-encoder reranker",
+      "NSFL",
+      "CoveR"
+    ]
+  },
+  "provenance": {
+    "generated_at": "2026-08-02T19:28:42+00:00",
+    "source_fixture": "phase0-diagnostic-v1.json",
+    "source_bytes": 67326,
+    "source_sha256": "5acd65f3029909e273cef78886e085e408d29676bdd25de62b1b8307d593729e",
+    "source": {},
+    "seed": 1729,
+    "repeats_per_case": 5,
+    "bootstrap_samples": 2000,
+    "case_payload_limit": null,
+    "case_payload_count": 16,
+    "python": "3.13.5",
+    "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+    "latency_scope": "warm in-process CPU wall time; machine-specific and informational",
+    "labels_used_in_scoring": false,
+    "claims_allowed": "implementation validation and synthetic diagnostic behavior only",
+    "claims_not_allowed": "state of the art, scientific validation, publication readiness, or production economics"
+  },
+  "cases": [
+    {
+      "id": "catalog-security-platform",
+      "family": "catalog",
+      "query": "Find a cloud security platform with SOC 2 Type II certified, European Union data residency, self hosted deployment, under 500 dollars monthly, without setup fee.",
+      "required": [
+        {
+          "id": "c1",
+          "text": "SOC 2 Type II certified",
+          "aliases": [
+            "independent SOC2 type 2 attestation"
+          ]
+        },
+        {
+          "id": "c2",
+          "text": "European Union data residency",
+          "aliases": [
+            "customer data remains in EU regions"
+          ]
+        },
+        {
+          "id": "c3",
+          "text": "self hosted deployment",
+          "aliases": [
+            "runs inside the customer network"
+          ]
+        },
+        {
+          "id": "c4",
+          "text": "under 500 dollars monthly",
+          "aliases": [
+            "monthly price below $500"
+          ]
+        }
+      ],
+      "excluded": [
+        {
+          "id": "x1",
+          "text": "setup fee",
+          "aliases": [
+            "one-time onboarding charge"
+          ]
+        }
+      ],
+      "complete_document_ids": [
+        "catalog-security-platform-complete-literal",
+        "catalog-security-platform-complete-paraphrase"
+      ],
+      "documents": [
+        {
+          "id": "catalog-security-platform-complete-literal",
+          "title": "Complete literal match",
+          "passages": [
+            "Cloud Security Platform. Verified evidence: SOC 2 Type II certified; European Union data residency; self hosted deployment; under 500 dollars monthly."
+          ],
+          "truth": "complete",
+          "ranks": {
+            "dense": 2,
+            "hybrid": 2,
+            "coverage_first": 3
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.384157,
+            "c2": 0.235293,
+            "c3": 0.177968,
+            "c4": 0.420204
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "catalog-security-platform-complete-paraphrase",
+          "title": "Complete paraphrased match",
+          "passages": [
+            "Cloud Security Platform. Verified evidence: independent SOC2 type 2 attestation; customer data remains in EU regions; runs inside the customer network; monthly price below $500."
+          ],
+          "truth": "complete",
+          "ranks": {
+            "dense": 8,
+            "hybrid": 7,
+            "coverage_first": 1
+          },
+          "candidate_score": 5.11,
+          "condition_scores": {
+            "c1": 1.0,
+            "c2": 1.0,
+            "c3": 1.0,
+            "c4": 1.0
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "catalog-security-platform-missing-1",
+          "title": "Partial match missing condition 1",
+          "passages": [
+            "Cloud Security Platform. Verified evidence: European Union data residency; self hosted deployment; under 500 dollars monthly."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 5,
+            "hybrid": 5,
+            "coverage_first": 7
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.0,
+            "c2": 0.264272,
+            "c3": 0.199887,
+            "c4": 0.471957
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "catalog-security-platform-missing-2",
+          "title": "Partial match missing condition 2",
+          "passages": [
+            "Cloud Security Platform. Verified evidence: SOC 2 Type II certified; self hosted deployment; under 500 dollars monthly."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 6,
+            "hybrid": 6,
+            "coverage_first": 6
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.421097,
+            "c2": 0.0,
+            "c3": 0.195082,
+            "c4": 0.460611
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "catalog-security-platform-missing-3",
+          "title": "Partial match missing condition 3",
+          "passages": [
+            "Cloud Security Platform. Verified evidence: SOC 2 Type II certified; European Union data residency; under 500 dollars monthly."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 4,
+            "hybrid": 3,
+            "coverage_first": 4
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.411212,
+            "c2": 0.251864,
+            "c3": 0.0,
+            "c4": 0.449798
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "catalog-security-platform-missing-4",
+          "title": "Partial match missing condition 4",
+          "passages": [
+            "Cloud Security Platform. Verified evidence: SOC 2 Type II certified; European Union data residency; self hosted deployment."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 3,
+            "hybrid": 4,
+            "coverage_first": 5
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.421097,
+            "c2": 0.257919,
+            "c3": 0.195082,
+            "c4": 0.0
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "catalog-security-platform-violates-exclusion",
+          "title": "Topical match with forbidden condition",
+          "passages": [
+            "Cloud Security Platform. Verified evidence: SOC 2 Type II certified; European Union data residency; self hosted deployment; under 500 dollars monthly; setup fee."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 1,
+            "hybrid": 1,
+            "coverage_first": 2
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.368015,
+            "c2": 0.225406,
+            "c3": 0.17049,
+            "c4": 0.402548
+          },
+          "violation_scores": {
+            "x1": 1.0
+          }
+        },
+        {
+          "id": "catalog-security-platform-topical-decoy",
+          "title": "High-topic low-constraint decoy",
+          "passages": [
+            "Comparison guide for the cloud security platform. This cloud security platform review discusses features, pricing, deployment, compliance, and support for cloud security platform buyers."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 7,
+            "hybrid": 8,
+            "coverage_first": 8
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.0,
+            "c2": 0.0,
+            "c3": 0.041469,
+            "c4": 0.0
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        }
+      ],
+      "candidate_trace": {
+        "evidence_threshold": 0.35,
+        "condition_count": 4,
+        "excluded_condition_count": 1,
+        "labels_used_in_scoring": false,
+        "execution": "rarest_condition_first",
+        "anchor_condition": "c2",
+        "anchor_candidates": 1,
+        "ranking": "lexicographic_complete_then_coverage_then_weakest",
+        "documents_scored_definition": "condition tuples assembled after anchor traversal"
+      }
+    },
+    {
+      "id": "catalog-clinical-database",
+      "family": "catalog",
+      "query": "Find a managed clinical database with point in time recovery, HIPAA business associate agreement, Virginia cloud region, pay as you go pricing, without annual contract.",
+      "required": [
+        {
+          "id": "c1",
+          "text": "point in time recovery",
+          "aliases": [
+            "restore to any second"
+          ]
+        },
+        {
+          "id": "c2",
+          "text": "HIPAA business associate agreement",
+          "aliases": [
+            "signed healthcare BAA"
+          ]
+        },
+        {
+          "id": "c3",
+          "text": "Virginia cloud region",
+          "aliases": [
+            "data center in Virginia"
+          ]
+        },
+        {
+          "id": "c4",
+          "text": "pay as you go pricing",
+          "aliases": [
+            "usage based monthly billing"
+          ]
+        }
+      ],
+      "excluded": [
+        {
+          "id": "x1",
+          "text": "annual contract",
+          "aliases": [
+            "twelve month commitment"
+          ]
+        }
+      ],
+      "complete_document_ids": [
+        "catalog-clinical-database-complete-literal",
+        "catalog-clinical-database-complete-paraphrase"
+      ],
+      "documents": [
+        {
+          "id": "catalog-clinical-database-complete-literal",
+          "title": "Complete literal match",
+          "passages": [
+            "Managed Clinical Database. Verified evidence: point in time recovery; HIPAA business associate agreement; Virginia cloud region; pay as you go pricing."
+          ],
+          "truth": "complete",
+          "ranks": {
+            "dense": 2,
+            "hybrid": 2,
+            "coverage_first": 3
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.268726,
+            "c2": 0.358301,
+            "c3": 0.327748,
+            "c4": 0.245937
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "catalog-clinical-database-complete-paraphrase",
+          "title": "Complete paraphrased match",
+          "passages": [
+            "Managed Clinical Database. Verified evidence: restore to any second; signed healthcare BAA; data center in Virginia; usage based monthly billing."
+          ],
+          "truth": "complete",
+          "ranks": {
+            "dense": 8,
+            "hybrid": 8,
+            "coverage_first": 1
+          },
+          "candidate_score": 5.11,
+          "condition_scores": {
+            "c1": 1.0,
+            "c2": 1.0,
+            "c3": 1.0,
+            "c4": 1.0
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "catalog-clinical-database-missing-1",
+          "title": "Partial match missing condition 1",
+          "passages": [
+            "Managed Clinical Database. Verified evidence: HIPAA business associate agreement; Virginia cloud region; pay as you go pricing."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 4,
+            "hybrid": 4,
+            "coverage_first": 5
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.0,
+            "c2": 0.3934,
+            "c3": 0.359854,
+            "c4": 0.270029
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "catalog-clinical-database-missing-2",
+          "title": "Partial match missing condition 2",
+          "passages": [
+            "Managed Clinical Database. Verified evidence: point in time recovery; Virginia cloud region; pay as you go pricing."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 5,
+            "hybrid": 5,
+            "coverage_first": 7
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.29505,
+            "c2": 0.0,
+            "c3": 0.359854,
+            "c4": 0.270029
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "catalog-clinical-database-missing-3",
+          "title": "Partial match missing condition 3",
+          "passages": [
+            "Managed Clinical Database. Verified evidence: point in time recovery; HIPAA business associate agreement; pay as you go pricing."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 3,
+            "hybrid": 3,
+            "coverage_first": 4
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.287997,
+            "c2": 0.383996,
+            "c3": 0.0,
+            "c4": 0.263574
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "catalog-clinical-database-missing-4",
+          "title": "Partial match missing condition 4",
+          "passages": [
+            "Managed Clinical Database. Verified evidence: point in time recovery; HIPAA business associate agreement; Virginia cloud region."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 6,
+            "hybrid": 6,
+            "coverage_first": 6
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.302457,
+            "c2": 0.403276,
+            "c3": 0.368888,
+            "c4": 0.0
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "catalog-clinical-database-violates-exclusion",
+          "title": "Topical match with forbidden condition",
+          "passages": [
+            "Managed Clinical Database. Verified evidence: point in time recovery; HIPAA business associate agreement; Virginia cloud region; pay as you go pricing; annual contract."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 1,
+            "hybrid": 1,
+            "coverage_first": 2
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.25725,
+            "c2": 0.343,
+            "c3": 0.313752,
+            "c4": 0.235434
+          },
+          "violation_scores": {
+            "x1": 1.0
+          }
+        },
+        {
+          "id": "catalog-clinical-database-topical-decoy",
+          "title": "High-topic low-constraint decoy",
+          "passages": [
+            "Comparison guide for the managed clinical database. This managed clinical database review discusses features, pricing, deployment, compliance, and support for managed clinical database buyers."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 7,
+            "hybrid": 7,
+            "coverage_first": 8
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.0,
+            "c2": 0.0,
+            "c3": 0.0,
+            "c4": 0.041608
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        }
+      ],
+      "candidate_trace": {
+        "evidence_threshold": 0.35,
+        "condition_count": 4,
+        "excluded_condition_count": 1,
+        "labels_used_in_scoring": false,
+        "execution": "rarest_condition_first",
+        "anchor_condition": "c1",
+        "anchor_candidates": 1,
+        "ranking": "lexicographic_complete_then_coverage_then_weakest",
+        "documents_scored_definition": "condition tuples assembled after anchor traversal"
+      }
+    },
+    {
+      "id": "catalog-support-suite",
+      "family": "catalog",
+      "query": "Find a customer support suite with single sign on, immutable audit logs, 30 day data retention, Slack integration, without seat minimum.",
+      "required": [
+        {
+          "id": "c1",
+          "text": "single sign on",
+          "aliases": [
+            "SAML SSO"
+          ]
+        },
+        {
+          "id": "c2",
+          "text": "immutable audit logs",
+          "aliases": [
+            "tamper resistant activity history"
+          ]
+        },
+        {
+          "id": "c3",
+          "text": "30 day data retention",
+          "aliases": [
+            "records deleted after one month"
+          ]
+        },
+        {
+          "id": "c4",
+          "text": "Slack integration",
+          "aliases": [
+            "native Slack connector"
+          ]
+        }
+      ],
+      "excluded": [
+        {
+          "id": "x1",
+          "text": "seat minimum",
+          "aliases": [
+            "minimum agent license count"
+          ]
+        }
+      ],
+      "complete_document_ids": [
+        "catalog-support-suite-complete-literal",
+        "catalog-support-suite-complete-paraphrase"
+      ],
+      "documents": [
+        {
+          "id": "catalog-support-suite-complete-literal",
+          "title": "Complete literal match",
+          "passages": [
+            "Customer Support Suite. Verified evidence: single sign on; immutable audit logs; 30 day data retention; Slack integration."
+          ],
+          "truth": "complete",
+          "ranks": {
+            "dense": 2,
+            "hybrid": 2,
+            "coverage_first": 3
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.289467,
+            "c2": 0.2171,
+            "c3": 0.231573,
+            "c4": 0.22036
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "catalog-support-suite-complete-paraphrase",
+          "title": "Complete paraphrased match",
+          "passages": [
+            "Customer Support Suite. Verified evidence: SAML SSO; tamper resistant activity history; records deleted after one month; native Slack connector."
+          ],
+          "truth": "complete",
+          "ranks": {
+            "dense": 8,
+            "hybrid": 7,
+            "coverage_first": 1
+          },
+          "candidate_score": 5.11,
+          "condition_scores": {
+            "c1": 1.0,
+            "c2": 1.0,
+            "c3": 1.0,
+            "c4": 1.0
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "catalog-support-suite-missing-1",
+          "title": "Partial match missing condition 1",
+          "passages": [
+            "Customer Support Suite. Verified evidence: immutable audit logs; 30 day data retention; Slack integration."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 4,
+            "hybrid": 4,
+            "coverage_first": 5
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.0,
+            "c2": 0.23591,
+            "c3": 0.251637,
+            "c4": 0.239453
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "catalog-support-suite-missing-2",
+          "title": "Partial match missing condition 2",
+          "passages": [
+            "Customer Support Suite. Verified evidence: single sign on; 30 day data retention; Slack integration."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 5,
+            "hybrid": 5,
+            "coverage_first": 6
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.314547,
+            "c2": 0.0,
+            "c3": 0.251637,
+            "c4": 0.239453
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "catalog-support-suite-missing-3",
+          "title": "Partial match missing condition 3",
+          "passages": [
+            "Customer Support Suite. Verified evidence: single sign on; immutable audit logs; Slack integration."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 6,
+            "hybrid": 6,
+            "coverage_first": 7
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.323901,
+            "c2": 0.242926,
+            "c3": 0.0,
+            "c4": 0.246574
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "catalog-support-suite-missing-4",
+          "title": "Partial match missing condition 4",
+          "passages": [
+            "Customer Support Suite. Verified evidence: single sign on; immutable audit logs; 30 day data retention."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 3,
+            "hybrid": 3,
+            "coverage_first": 4
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.305717,
+            "c2": 0.229288,
+            "c3": 0.244574,
+            "c4": 0.0
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "catalog-support-suite-violates-exclusion",
+          "title": "Topical match with forbidden condition",
+          "passages": [
+            "Customer Support Suite. Verified evidence: single sign on; immutable audit logs; 30 day data retention; Slack integration; seat minimum."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 1,
+            "hybrid": 1,
+            "coverage_first": 2
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.274856,
+            "c2": 0.206142,
+            "c3": 0.219885,
+            "c4": 0.209238
+          },
+          "violation_scores": {
+            "x1": 1.0
+          }
+        },
+        {
+          "id": "catalog-support-suite-topical-decoy",
+          "title": "High-topic low-constraint decoy",
+          "passages": [
+            "Comparison guide for the customer support suite. This customer support suite review discusses features, pricing, deployment, compliance, and support for customer support suite buyers."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 7,
+            "hybrid": 8,
+            "coverage_first": 8
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.0,
+            "c2": 0.0,
+            "c3": 0.0,
+            "c4": 0.0
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        }
+      ],
+      "candidate_trace": {
+        "evidence_threshold": 0.35,
+        "condition_count": 4,
+        "excluded_condition_count": 1,
+        "labels_used_in_scoring": false,
+        "execution": "rarest_condition_first",
+        "anchor_condition": "c1",
+        "anchor_candidates": 1,
+        "ranking": "lexicographic_complete_then_coverage_then_weakest",
+        "documents_scored_definition": "condition tuples assembled after anchor traversal"
+      }
+    },
+    {
+      "id": "catalog-observability-stack",
+      "family": "catalog",
+      "query": "Find a observability stack with OpenTelemetry ingestion, on premise deployment, PII redaction, under 1000 dollars monthly, without egress charge.",
+      "required": [
+        {
+          "id": "c1",
+          "text": "OpenTelemetry ingestion",
+          "aliases": [
+            "accepts OTEL traces"
+          ]
+        },
+        {
+          "id": "c2",
+          "text": "on premise deployment",
+          "aliases": [
+            "installed in a private data center"
+          ]
+        },
+        {
+          "id": "c3",
+          "text": "PII redaction",
+          "aliases": [
+            "removes personal information"
+          ]
+        },
+        {
+          "id": "c4",
+          "text": "under 1000 dollars monthly",
+          "aliases": [
+            "monthly price below $1,000"
+          ]
+        }
+      ],
+      "excluded": [
+        {
+          "id": "x1",
+          "text": "egress charge",
+          "aliases": [
+            "fee for exporting data"
+          ]
+        }
+      ],
+      "complete_document_ids": [
+        "catalog-observability-stack-complete-literal",
+        "catalog-observability-stack-complete-paraphrase"
+      ],
+      "documents": [
+        {
+          "id": "catalog-observability-stack-complete-literal",
+          "title": "Complete literal match",
+          "passages": [
+            "Observability Stack. Verified evidence: OpenTelemetry ingestion; on premise deployment; PII redaction; under 1000 dollars monthly."
+          ],
+          "truth": "complete",
+          "ranks": {
+            "dense": 2,
+            "hybrid": 2,
+            "coverage_first": 3
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.215773,
+            "c2": 0.134382,
+            "c3": 0.215773,
+            "c4": 0.283347
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "catalog-observability-stack-complete-paraphrase",
+          "title": "Complete paraphrased match",
+          "passages": [
+            "Observability Stack. Verified evidence: accepts OTEL traces; installed in a private data center; removes personal information; monthly price below $1,000."
+          ],
+          "truth": "complete",
+          "ranks": {
+            "dense": 8,
+            "hybrid": 8,
+            "coverage_first": 1
+          },
+          "candidate_score": 1.11,
+          "condition_scores": {
+            "c1": 1.0,
+            "c2": 1.0,
+            "c3": 1.0,
+            "c4": 1.0
+          },
+          "violation_scores": {
+            "x1": 0.449738
+          }
+        },
+        {
+          "id": "catalog-observability-stack-missing-1",
+          "title": "Partial match missing condition 1",
+          "passages": [
+            "Observability Stack. Verified evidence: on premise deployment; PII redaction; under 1000 dollars monthly."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 3,
+            "hybrid": 3,
+            "coverage_first": 5
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.0,
+            "c2": 0.142836,
+            "c3": 0.229347,
+            "c4": 0.301172
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "catalog-observability-stack-missing-2",
+          "title": "Partial match missing condition 2",
+          "passages": [
+            "Observability Stack. Verified evidence: OpenTelemetry ingestion; PII redaction; under 1000 dollars monthly."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 6,
+            "hybrid": 4,
+            "coverage_first": 4
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.236796,
+            "c2": 0.0,
+            "c3": 0.236796,
+            "c4": 0.310953
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "catalog-observability-stack-missing-3",
+          "title": "Partial match missing condition 3",
+          "passages": [
+            "Observability Stack. Verified evidence: OpenTelemetry ingestion; on premise deployment; under 1000 dollars monthly."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 4,
+            "hybrid": 5,
+            "coverage_first": 6
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.229347,
+            "c2": 0.142836,
+            "c3": 0.0,
+            "c4": 0.301172
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "catalog-observability-stack-missing-4",
+          "title": "Partial match missing condition 4",
+          "passages": [
+            "Observability Stack. Verified evidence: OpenTelemetry ingestion; on premise deployment; PII redaction."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 5,
+            "hybrid": 6,
+            "coverage_first": 7
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.244744,
+            "c2": 0.152425,
+            "c3": 0.244744,
+            "c4": 0.0
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "catalog-observability-stack-violates-exclusion",
+          "title": "Topical match with forbidden condition",
+          "passages": [
+            "Observability Stack. Verified evidence: OpenTelemetry ingestion; on premise deployment; PII redaction; under 1000 dollars monthly; egress charge."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 1,
+            "hybrid": 1,
+            "coverage_first": 2
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.203716,
+            "c2": 0.126873,
+            "c3": 0.203716,
+            "c4": 0.267514
+          },
+          "violation_scores": {
+            "x1": 1.0
+          }
+        },
+        {
+          "id": "catalog-observability-stack-topical-decoy",
+          "title": "High-topic low-constraint decoy",
+          "passages": [
+            "Comparison guide for the observability stack. This observability stack review discusses features, pricing, deployment, compliance, and support for observability stack buyers."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 7,
+            "hybrid": 7,
+            "coverage_first": 8
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.0,
+            "c2": 0.045405,
+            "c3": 0.0,
+            "c4": 0.0
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        }
+      ],
+      "candidate_trace": {
+        "evidence_threshold": 0.35,
+        "condition_count": 4,
+        "excluded_condition_count": 1,
+        "labels_used_in_scoring": false,
+        "execution": "rarest_condition_first",
+        "anchor_condition": "c1",
+        "anchor_candidates": 1,
+        "ranking": "lexicographic_complete_then_coverage_then_weakest",
+        "documents_scored_definition": "condition tuples assembled after anchor traversal"
+      }
+    },
+    {
+      "id": "catalog-translation-sdk",
+      "family": "catalog",
+      "query": "Find a translation SDK with offline mode, at least 30 languages, mobile software development kit, custom glossary, without per character billing.",
+      "required": [
+        {
+          "id": "c1",
+          "text": "offline mode",
+          "aliases": [
+            "works without an internet connection"
+          ]
+        },
+        {
+          "id": "c2",
+          "text": "at least 30 languages",
+          "aliases": [
+            "supports thirty or more languages"
+          ]
+        },
+        {
+          "id": "c3",
+          "text": "mobile software development kit",
+          "aliases": [
+            "native iOS and Android SDK"
+          ]
+        },
+        {
+          "id": "c4",
+          "text": "custom glossary",
+          "aliases": [
+            "customer terminology dictionary"
+          ]
+        }
+      ],
+      "excluded": [
+        {
+          "id": "x1",
+          "text": "per character billing",
+          "aliases": [
+            "charge for every translated character"
+          ]
+        }
+      ],
+      "complete_document_ids": [
+        "catalog-translation-sdk-complete-literal",
+        "catalog-translation-sdk-complete-paraphrase"
+      ],
+      "documents": [
+        {
+          "id": "catalog-translation-sdk-complete-literal",
+          "title": "Complete literal match",
+          "passages": [
+            "Translation Sdk. Verified evidence: offline mode; at least 30 languages; mobile software development kit; custom glossary."
+          ],
+          "truth": "complete",
+          "ranks": {
+            "dense": 2,
+            "hybrid": 2,
+            "coverage_first": 3
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.160422,
+            "c2": 0.268321,
+            "c3": 0.421132,
+            "c4": 0.213895
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "catalog-translation-sdk-complete-paraphrase",
+          "title": "Complete paraphrased match",
+          "passages": [
+            "Translation Sdk. Verified evidence: works without an internet connection; supports thirty or more languages; native iOS and Android SDK; customer terminology dictionary."
+          ],
+          "truth": "complete",
+          "ranks": {
+            "dense": 8,
+            "hybrid": 7,
+            "coverage_first": 1
+          },
+          "candidate_score": 5.11,
+          "condition_scores": {
+            "c1": 1.0,
+            "c2": 1.0,
+            "c3": 1.0,
+            "c4": 1.0
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "catalog-translation-sdk-missing-1",
+          "title": "Partial match missing condition 1",
+          "passages": [
+            "Translation Sdk. Verified evidence: at least 30 languages; mobile software development kit; custom glossary."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 4,
+            "hybrid": 3,
+            "coverage_first": 4
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.0,
+            "c2": 0.284169,
+            "c3": 0.446006,
+            "c4": 0.226529
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "catalog-translation-sdk-missing-2",
+          "title": "Partial match missing condition 2",
+          "passages": [
+            "Translation Sdk. Verified evidence: offline mode; mobile software development kit; custom glossary."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 5,
+            "hybrid": 5,
+            "coverage_first": 6
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.180562,
+            "c2": 0.0,
+            "c3": 0.474003,
+            "c4": 0.240749
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "catalog-translation-sdk-missing-3",
+          "title": "Partial match missing condition 3",
+          "passages": [
+            "Translation Sdk. Verified evidence: offline mode; at least 30 languages; custom glossary."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 6,
+            "hybrid": 6,
+            "coverage_first": 7
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.180562,
+            "c2": 0.302007,
+            "c3": 0.013754,
+            "c4": 0.240749
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "catalog-translation-sdk-missing-4",
+          "title": "Partial match missing condition 4",
+          "passages": [
+            "Translation Sdk. Verified evidence: offline mode; at least 30 languages; mobile software development kit."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 3,
+            "hybrid": 4,
+            "coverage_first": 5
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.169897,
+            "c2": 0.284169,
+            "c3": 0.446006,
+            "c4": 0.0
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "catalog-translation-sdk-violates-exclusion",
+          "title": "Topical match with forbidden condition",
+          "passages": [
+            "Translation Sdk. Verified evidence: offline mode; at least 30 languages; mobile software development kit; custom glossary; per character billing."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 1,
+            "hybrid": 1,
+            "coverage_first": 2
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.148037,
+            "c2": 0.247607,
+            "c3": 0.388622,
+            "c4": 0.197383
+          },
+          "violation_scores": {
+            "x1": 1.0
+          }
+        },
+        {
+          "id": "catalog-translation-sdk-topical-decoy",
+          "title": "High-topic low-constraint decoy",
+          "passages": [
+            "Comparison guide for the translation SDK. This translation SDK review discusses features, pricing, deployment, compliance, and support for translation SDK buyers."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 7,
+            "hybrid": 8,
+            "coverage_first": 8
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.0,
+            "c2": 0.0,
+            "c3": 0.018848,
+            "c4": 0.0
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        }
+      ],
+      "candidate_trace": {
+        "evidence_threshold": 0.35,
+        "condition_count": 4,
+        "excluded_condition_count": 1,
+        "labels_used_in_scoring": false,
+        "execution": "rarest_condition_first",
+        "anchor_condition": "c1",
+        "anchor_candidates": 1,
+        "ranking": "lexicographic_complete_then_coverage_then_weakest",
+        "documents_scored_definition": "condition tuples assembled after anchor traversal"
+      }
+    },
+    {
+      "id": "catalog-vector-database",
+      "family": "catalog",
+      "query": "Find a vector database with hybrid lexical semantic search, metadata filters, automatic backups, ARM processor support, without GPU requirement.",
+      "required": [
+        {
+          "id": "c1",
+          "text": "hybrid lexical semantic search",
+          "aliases": [
+            "combined BM25 and vector retrieval"
+          ]
+        },
+        {
+          "id": "c2",
+          "text": "metadata filters",
+          "aliases": [
+            "structured attribute constraints"
+          ]
+        },
+        {
+          "id": "c3",
+          "text": "automatic backups",
+          "aliases": [
+            "scheduled snapshots"
+          ]
+        },
+        {
+          "id": "c4",
+          "text": "ARM processor support",
+          "aliases": [
+            "runs on arm64 servers"
+          ]
+        }
+      ],
+      "excluded": [
+        {
+          "id": "x1",
+          "text": "GPU requirement",
+          "aliases": [
+            "dedicated accelerator required"
+          ]
+        }
+      ],
+      "complete_document_ids": [
+        "catalog-vector-database-complete-literal",
+        "catalog-vector-database-complete-paraphrase"
+      ],
+      "documents": [
+        {
+          "id": "catalog-vector-database-complete-literal",
+          "title": "Complete literal match",
+          "passages": [
+            "Vector Database. Verified evidence: hybrid lexical semantic search; metadata filters; automatic backups; ARM processor support."
+          ],
+          "truth": "complete",
+          "ranks": {
+            "dense": 2,
+            "hybrid": 2,
+            "coverage_first": 3
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.393338,
+            "c2": 0.199729,
+            "c3": 0.299593,
+            "c4": 0.265718
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "catalog-vector-database-complete-paraphrase",
+          "title": "Complete paraphrased match",
+          "passages": [
+            "Vector Database. Verified evidence: combined BM25 and vector retrieval; structured attribute constraints; scheduled snapshots; runs on arm64 servers."
+          ],
+          "truth": "complete",
+          "ranks": {
+            "dense": 8,
+            "hybrid": 8,
+            "coverage_first": 1
+          },
+          "candidate_score": 5.11,
+          "condition_scores": {
+            "c1": 1.0,
+            "c2": 1.0,
+            "c3": 1.0,
+            "c4": 1.0
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "catalog-vector-database-missing-1",
+          "title": "Partial match missing condition 1",
+          "passages": [
+            "Vector Database. Verified evidence: metadata filters; automatic backups; ARM processor support."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 6,
+            "hybrid": 6,
+            "coverage_first": 7
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.012969,
+            "c2": 0.226965,
+            "c3": 0.340447,
+            "c4": 0.301952
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "catalog-vector-database-missing-2",
+          "title": "Partial match missing condition 2",
+          "passages": [
+            "Vector Database. Verified evidence: hybrid lexical semantic search; automatic backups; ARM processor support."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 3,
+            "hybrid": 3,
+            "coverage_first": 4
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.418445,
+            "c2": 0.0,
+            "c3": 0.318716,
+            "c4": 0.282679
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "catalog-vector-database-missing-3",
+          "title": "Partial match missing condition 3",
+          "passages": [
+            "Vector Database. Verified evidence: hybrid lexical semantic search; metadata filters; ARM processor support."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 4,
+            "hybrid": 4,
+            "coverage_first": 5
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.418445,
+            "c2": 0.212478,
+            "c3": 0.0,
+            "c4": 0.282679
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "catalog-vector-database-missing-4",
+          "title": "Partial match missing condition 4",
+          "passages": [
+            "Vector Database. Verified evidence: hybrid lexical semantic search; metadata filters; automatic backups."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 5,
+            "hybrid": 5,
+            "coverage_first": 6
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.43224,
+            "c2": 0.219482,
+            "c3": 0.329224,
+            "c4": 0.0
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "catalog-vector-database-violates-exclusion",
+          "title": "Topical match with forbidden condition",
+          "passages": [
+            "Vector Database. Verified evidence: hybrid lexical semantic search; metadata filters; automatic backups; ARM processor support; GPU requirement."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 1,
+            "hybrid": 1,
+            "coverage_first": 2
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.371074,
+            "c2": 0.188424,
+            "c3": 0.282635,
+            "c4": 0.250678
+          },
+          "violation_scores": {
+            "x1": 1.0
+          }
+        },
+        {
+          "id": "catalog-vector-database-topical-decoy",
+          "title": "High-topic low-constraint decoy",
+          "passages": [
+            "Comparison guide for the vector database. This vector database review discusses features, pricing, deployment, compliance, and support for vector database buyers."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 7,
+            "hybrid": 7,
+            "coverage_first": 8
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.017292,
+            "c2": 0.0,
+            "c3": 0.0,
+            "c4": 0.055923
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        }
+      ],
+      "candidate_trace": {
+        "evidence_threshold": 0.35,
+        "condition_count": 4,
+        "excluded_condition_count": 1,
+        "labels_used_in_scoring": false,
+        "execution": "rarest_condition_first",
+        "anchor_condition": "c2",
+        "anchor_candidates": 1,
+        "ranking": "lexicographic_complete_then_coverage_then_weakest",
+        "documents_scored_definition": "condition tuples assembled after anchor traversal"
+      }
+    },
+    {
+      "id": "catalog-contact-center",
+      "family": "catalog",
+      "query": "Find a contact center platform with SIP trunking, real time transcription, PCI redaction, 99.99 percent SLA, without long term contract.",
+      "required": [
+        {
+          "id": "c1",
+          "text": "SIP trunking",
+          "aliases": [
+            "bring your own carrier over SIP"
+          ]
+        },
+        {
+          "id": "c2",
+          "text": "real time transcription",
+          "aliases": [
+            "live speech to text"
+          ]
+        },
+        {
+          "id": "c3",
+          "text": "PCI redaction",
+          "aliases": [
+            "payment card details are masked"
+          ]
+        },
+        {
+          "id": "c4",
+          "text": "99.99 percent SLA",
+          "aliases": [
+            "four nines uptime guarantee"
+          ]
+        }
+      ],
+      "excluded": [
+        {
+          "id": "x1",
+          "text": "long term contract",
+          "aliases": [
+            "multi-year commitment"
+          ]
+        }
+      ],
+      "complete_document_ids": [
+        "catalog-contact-center-complete-literal",
+        "catalog-contact-center-complete-paraphrase"
+      ],
+      "documents": [
+        {
+          "id": "catalog-contact-center-complete-literal",
+          "title": "Complete literal match",
+          "passages": [
+            "Contact Center Platform. Verified evidence: SIP trunking; real time transcription; PCI redaction; 99.99 percent SLA."
+          ],
+          "truth": "complete",
+          "ranks": {
+            "dense": 2,
+            "hybrid": 2,
+            "coverage_first": 3
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.107258,
+            "c2": 0.334644,
+            "c3": 0.167322,
+            "c4": 0.285916
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "catalog-contact-center-complete-paraphrase",
+          "title": "Complete paraphrased match",
+          "passages": [
+            "Contact Center Platform. Verified evidence: bring your own carrier over SIP; live speech to text; payment card details are masked; four nines uptime guarantee."
+          ],
+          "truth": "complete",
+          "ranks": {
+            "dense": 8,
+            "hybrid": 7,
+            "coverage_first": 1
+          },
+          "candidate_score": 5.11,
+          "condition_scores": {
+            "c1": 1.0,
+            "c2": 1.0,
+            "c3": 1.0,
+            "c4": 1.0
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "catalog-contact-center-missing-1",
+          "title": "Partial match missing condition 1",
+          "passages": [
+            "Contact Center Platform. Verified evidence: real time transcription; PCI redaction; 99.99 percent SLA."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 3,
+            "hybrid": 3,
+            "coverage_first": 4
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.0,
+            "c2": 0.353889,
+            "c3": 0.176944,
+            "c4": 0.300293
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "catalog-contact-center-missing-2",
+          "title": "Partial match missing condition 2",
+          "passages": [
+            "Contact Center Platform. Verified evidence: SIP trunking; PCI redaction; 99.99 percent SLA."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 5,
+            "hybrid": 5,
+            "coverage_first": 6
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.116785,
+            "c2": 0.0,
+            "c3": 0.182183,
+            "c4": 0.308054
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "catalog-contact-center-missing-3",
+          "title": "Partial match missing condition 3",
+          "passages": [
+            "Contact Center Platform. Verified evidence: SIP trunking; real time transcription; 99.99 percent SLA."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 4,
+            "hybrid": 4,
+            "coverage_first": 5
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.113427,
+            "c2": 0.353889,
+            "c3": 0.0,
+            "c4": 0.300293
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "catalog-contact-center-missing-4",
+          "title": "Partial match missing condition 4",
+          "passages": [
+            "Contact Center Platform. Verified evidence: SIP trunking; real time transcription; PCI redaction."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 6,
+            "hybrid": 6,
+            "coverage_first": 7
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.120348,
+            "c2": 0.375482,
+            "c3": 0.187741,
+            "c4": 0.0
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "catalog-contact-center-violates-exclusion",
+          "title": "Topical match with forbidden condition",
+          "passages": [
+            "Contact Center Platform. Verified evidence: SIP trunking; real time transcription; PCI redaction; 99.99 percent SLA; long term contract."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 1,
+            "hybrid": 1,
+            "coverage_first": 2
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.099169,
+            "c2": 0.309405,
+            "c3": 0.154703,
+            "c4": 0.266815
+          },
+          "violation_scores": {
+            "x1": 1.0
+          }
+        },
+        {
+          "id": "catalog-contact-center-topical-decoy",
+          "title": "High-topic low-constraint decoy",
+          "passages": [
+            "Comparison guide for the contact center platform. This contact center platform review discusses features, pricing, deployment, compliance, and support for contact center platform buyers."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 7,
+            "hybrid": 8,
+            "coverage_first": 8
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.0,
+            "c2": 0.0,
+            "c3": 0.0,
+            "c4": 0.0
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        }
+      ],
+      "candidate_trace": {
+        "evidence_threshold": 0.35,
+        "condition_count": 4,
+        "excluded_condition_count": 1,
+        "labels_used_in_scoring": false,
+        "execution": "rarest_condition_first",
+        "anchor_condition": "c1",
+        "anchor_candidates": 1,
+        "ranking": "lexicographic_complete_then_coverage_then_weakest",
+        "documents_scored_definition": "condition tuples assembled after anchor traversal"
+      }
+    },
+    {
+      "id": "catalog-document-ai",
+      "family": "catalog",
+      "query": "Find a document AI service with table extraction, handwritten form recognition, private cloud deployment, field confidence scores, without page minimum.",
+      "required": [
+        {
+          "id": "c1",
+          "text": "table extraction",
+          "aliases": [
+            "parses rows and columns"
+          ]
+        },
+        {
+          "id": "c2",
+          "text": "handwritten form recognition",
+          "aliases": [
+            "reads cursive forms"
+          ]
+        },
+        {
+          "id": "c3",
+          "text": "private cloud deployment",
+          "aliases": [
+            "isolated customer cloud"
+          ]
+        },
+        {
+          "id": "c4",
+          "text": "field confidence scores",
+          "aliases": [
+            "probability for each extracted value"
+          ]
+        }
+      ],
+      "excluded": [
+        {
+          "id": "x1",
+          "text": "page minimum",
+          "aliases": [
+            "minimum document volume"
+          ]
+        }
+      ],
+      "complete_document_ids": [
+        "catalog-document-ai-complete-literal",
+        "catalog-document-ai-complete-paraphrase"
+      ],
+      "documents": [
+        {
+          "id": "catalog-document-ai-complete-literal",
+          "title": "Complete literal match",
+          "passages": [
+            "Document Ai Service. Verified evidence: table extraction; handwritten form recognition; private cloud deployment; field confidence scores."
+          ],
+          "truth": "complete",
+          "ranks": {
+            "dense": 2,
+            "hybrid": 2,
+            "coverage_first": 3
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.203589,
+            "c2": 0.305384,
+            "c3": 0.324975,
+            "c4": 0.229038
+          },
+          "violation_scores": {
+            "x1": 0.016572
+          }
+        },
+        {
+          "id": "catalog-document-ai-complete-paraphrase",
+          "title": "Complete paraphrased match",
+          "passages": [
+            "Document Ai Service. Verified evidence: parses rows and columns; reads cursive forms; isolated customer cloud; probability for each extracted value."
+          ],
+          "truth": "complete",
+          "ranks": {
+            "dense": 8,
+            "hybrid": 8,
+            "coverage_first": 1
+          },
+          "candidate_score": 5.11,
+          "condition_scores": {
+            "c1": 1.0,
+            "c2": 1.0,
+            "c3": 1.0,
+            "c4": 1.0
+          },
+          "violation_scores": {
+            "x1": 0.014915
+          }
+        },
+        {
+          "id": "catalog-document-ai-missing-1",
+          "title": "Partial match missing condition 1",
+          "passages": [
+            "Document Ai Service. Verified evidence: handwritten form recognition; private cloud deployment; field confidence scores."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 3,
+            "hybrid": 3,
+            "coverage_first": 4
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.0,
+            "c2": 0.323341,
+            "c3": 0.344083,
+            "c4": 0.242505
+          },
+          "violation_scores": {
+            "x1": 0.017546
+          }
+        },
+        {
+          "id": "catalog-document-ai-missing-2",
+          "title": "Partial match missing condition 2",
+          "passages": [
+            "Document Ai Service. Verified evidence: table extraction; private cloud deployment; field confidence scores."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 5,
+            "hybrid": 6,
+            "coverage_first": 6
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.22209,
+            "c2": 0.0,
+            "c3": 0.354506,
+            "c4": 0.249851
+          },
+          "violation_scores": {
+            "x1": 0.018078
+          }
+        },
+        {
+          "id": "catalog-document-ai-missing-3",
+          "title": "Partial match missing condition 3",
+          "passages": [
+            "Document Ai Service. Verified evidence: table extraction; handwritten form recognition; field confidence scores."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 6,
+            "hybrid": 4,
+            "coverage_first": 5
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.22209,
+            "c2": 0.333135,
+            "c3": 0.0,
+            "c4": 0.249851
+          },
+          "violation_scores": {
+            "x1": 0.018078
+          }
+        },
+        {
+          "id": "catalog-document-ai-missing-4",
+          "title": "Partial match missing condition 4",
+          "passages": [
+            "Document Ai Service. Verified evidence: table extraction; handwritten form recognition; private cloud deployment."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 4,
+            "hybrid": 5,
+            "coverage_first": 7
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.22209,
+            "c2": 0.333135,
+            "c3": 0.354506,
+            "c4": 0.0
+          },
+          "violation_scores": {
+            "x1": 0.018078
+          }
+        },
+        {
+          "id": "catalog-document-ai-violates-exclusion",
+          "title": "Topical match with forbidden condition",
+          "passages": [
+            "Document Ai Service. Verified evidence: table extraction; handwritten form recognition; private cloud deployment; field confidence scores; page minimum."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 1,
+            "hybrid": 1,
+            "coverage_first": 2
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.192878,
+            "c2": 0.289317,
+            "c3": 0.307877,
+            "c4": 0.216988
+          },
+          "violation_scores": {
+            "x1": 1.0
+          }
+        },
+        {
+          "id": "catalog-document-ai-topical-decoy",
+          "title": "High-topic low-constraint decoy",
+          "passages": [
+            "Comparison guide for the document AI service. This document AI service review discusses features, pricing, deployment, compliance, and support for document AI service buyers."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 7,
+            "hybrid": 7,
+            "coverage_first": 8
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.0,
+            "c2": 0.0,
+            "c3": 0.075685,
+            "c4": 0.0
+          },
+          "violation_scores": {
+            "x1": 0.024485
+          }
+        }
+      ],
+      "candidate_trace": {
+        "evidence_threshold": 0.35,
+        "condition_count": 4,
+        "excluded_condition_count": 1,
+        "labels_used_in_scoring": false,
+        "execution": "rarest_condition_first",
+        "anchor_condition": "c1",
+        "anchor_candidates": 1,
+        "ranking": "lexicographic_complete_then_coverage_then_weakest",
+        "documents_scored_definition": "condition tuples assembled after anchor traversal"
+      }
+    },
+    {
+      "id": "cross-passage-municipal-plan",
+      "family": "cross-passage",
+      "query": "Find a municipal climate plan with 40 percent emissions reduction, dedicated public transit funding, 2030 completion deadline, without highway expansion.",
+      "required": [
+        {
+          "id": "c1",
+          "text": "40 percent emissions reduction",
+          "aliases": [
+            "cuts emissions by forty percent"
+          ]
+        },
+        {
+          "id": "c2",
+          "text": "dedicated public transit funding",
+          "aliases": [
+            "ring-fenced budget for buses and rail"
+          ]
+        },
+        {
+          "id": "c3",
+          "text": "2030 completion deadline",
+          "aliases": [
+            "must finish by the year 2030"
+          ]
+        }
+      ],
+      "excluded": [
+        {
+          "id": "x1",
+          "text": "highway expansion",
+          "aliases": [
+            "adds new freeway lanes"
+          ]
+        }
+      ],
+      "complete_document_ids": [
+        "cross-passage-municipal-plan-complete-literal",
+        "cross-passage-municipal-plan-complete-paraphrase"
+      ],
+      "documents": [
+        {
+          "id": "cross-passage-municipal-plan-complete-literal",
+          "title": "Complete literal match",
+          "passages": [
+            "Municipal Climate Plan. Verified evidence: 40 percent emissions reduction.",
+            "Municipal Climate Plan. Verified evidence: dedicated public transit funding.",
+            "Municipal Climate Plan. Verified evidence: 2030 completion deadline."
+          ],
+          "truth": "complete",
+          "ranks": {
+            "dense": 2,
+            "hybrid": 2,
+            "coverage_first": 5
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.514188,
+            "c2": 0.381099,
+            "c3": 0.313409
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "cross-passage-municipal-plan-complete-paraphrase",
+          "title": "Complete paraphrased match",
+          "passages": [
+            "Municipal Climate Plan. Verified evidence: cuts emissions by forty percent.",
+            "Municipal Climate Plan. Verified evidence: ring-fenced budget for buses and rail.",
+            "Municipal Climate Plan. Verified evidence: must finish by the year 2030."
+          ],
+          "truth": "complete",
+          "ranks": {
+            "dense": 7,
+            "hybrid": 6,
+            "coverage_first": 1
+          },
+          "candidate_score": 5.11,
+          "condition_scores": {
+            "c1": 1.0,
+            "c2": 1.0,
+            "c3": 1.0
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "cross-passage-municipal-plan-missing-1",
+          "title": "Partial match missing condition 1",
+          "passages": [
+            "Municipal Climate Plan. Verified evidence: dedicated public transit funding.",
+            "Municipal Climate Plan. Verified evidence: 2030 completion deadline."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 5,
+            "hybrid": 5,
+            "coverage_first": 3
+          },
+          "candidate_score": 0.66943308,
+          "condition_scores": {
+            "c1": 0.0,
+            "c2": 0.455405,
+            "c3": 0.374518
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "cross-passage-municipal-plan-missing-2",
+          "title": "Partial match missing condition 2",
+          "passages": [
+            "Municipal Climate Plan. Verified evidence: 40 percent emissions reduction.",
+            "Municipal Climate Plan. Verified evidence: 2030 completion deadline."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 3,
+            "hybrid": 4,
+            "coverage_first": 2
+          },
+          "candidate_score": 0.66996321,
+          "condition_scores": {
+            "c1": 0.614444,
+            "c2": 0.0,
+            "c3": 0.374518
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "cross-passage-municipal-plan-missing-3",
+          "title": "Partial match missing condition 3",
+          "passages": [
+            "Municipal Climate Plan. Verified evidence: 40 percent emissions reduction.",
+            "Municipal Climate Plan. Verified evidence: dedicated public transit funding."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 4,
+            "hybrid": 3,
+            "coverage_first": 6
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.601415,
+            "c2": 0.445748,
+            "c3": 0.0
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "cross-passage-municipal-plan-violates-exclusion",
+          "title": "Topical match with forbidden condition",
+          "passages": [
+            "Municipal Climate Plan. Verified evidence: 40 percent emissions reduction.",
+            "Municipal Climate Plan. Verified evidence: dedicated public transit funding.",
+            "Municipal Climate Plan. Verified evidence: 2030 completion deadline.",
+            "Municipal Climate Plan. Verified evidence: highway expansion."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 1,
+            "hybrid": 1,
+            "coverage_first": 4
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.456283,
+            "c2": 0.338181,
+            "c3": 0.278115
+          },
+          "violation_scores": {
+            "x1": 1.0
+          }
+        },
+        {
+          "id": "cross-passage-municipal-plan-topical-decoy",
+          "title": "High-topic low-constraint decoy",
+          "passages": [
+            "Comparison guide for the municipal climate plan. This municipal climate plan review discusses features, pricing, deployment, compliance, and support for municipal climate plan buyers."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 6,
+            "hybrid": 7,
+            "coverage_first": 7
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.0,
+            "c2": 0.0,
+            "c3": 0.0
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        }
+      ],
+      "candidate_trace": {
+        "evidence_threshold": 0.35,
+        "condition_count": 3,
+        "excluded_condition_count": 1,
+        "labels_used_in_scoring": false,
+        "execution": "rarest_condition_first",
+        "anchor_condition": "c3",
+        "anchor_candidates": 3,
+        "ranking": "lexicographic_complete_then_coverage_then_weakest",
+        "documents_scored_definition": "condition tuples assembled after anchor traversal"
+      }
+    },
+    {
+      "id": "cross-passage-clinical-trial",
+      "family": "cross-passage",
+      "query": "Find a oncology clinical trial with adults age 18 to 65, prior treatment failure, two hospital locations, without pregnant participants.",
+      "required": [
+        {
+          "id": "c1",
+          "text": "adults age 18 to 65",
+          "aliases": [
+            "participants between eighteen and sixty-five"
+          ]
+        },
+        {
+          "id": "c2",
+          "text": "prior treatment failure",
+          "aliases": [
+            "previous therapy was unsuccessful"
+          ]
+        },
+        {
+          "id": "c3",
+          "text": "two hospital locations",
+          "aliases": [
+            "recruiting at two medical centers"
+          ]
+        }
+      ],
+      "excluded": [
+        {
+          "id": "x1",
+          "text": "pregnant participants",
+          "aliases": [
+            "enrollment during pregnancy"
+          ]
+        }
+      ],
+      "complete_document_ids": [
+        "cross-passage-clinical-trial-complete-literal",
+        "cross-passage-clinical-trial-complete-paraphrase"
+      ],
+      "documents": [
+        {
+          "id": "cross-passage-clinical-trial-complete-literal",
+          "title": "Complete literal match",
+          "passages": [
+            "Oncology Clinical Trial. Verified evidence: adults age 18 to 65.",
+            "Oncology Clinical Trial. Verified evidence: prior treatment failure.",
+            "Oncology Clinical Trial. Verified evidence: two hospital locations."
+          ],
+          "truth": "complete",
+          "ranks": {
+            "dense": 2,
+            "hybrid": 2,
+            "coverage_first": 3
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.39253,
+            "c2": 0.271938,
+            "c3": 0.298183
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "cross-passage-clinical-trial-complete-paraphrase",
+          "title": "Complete paraphrased match",
+          "passages": [
+            "Oncology Clinical Trial. Verified evidence: participants between eighteen and sixty-five.",
+            "Oncology Clinical Trial. Verified evidence: previous therapy was unsuccessful.",
+            "Oncology Clinical Trial. Verified evidence: recruiting at two medical centers."
+          ],
+          "truth": "complete",
+          "ranks": {
+            "dense": 7,
+            "hybrid": 6,
+            "coverage_first": 1
+          },
+          "candidate_score": 1.11,
+          "condition_scores": {
+            "c1": 1.0,
+            "c2": 1.0,
+            "c3": 1.0
+          },
+          "violation_scores": {
+            "x1": 0.438428
+          }
+        },
+        {
+          "id": "cross-passage-clinical-trial-missing-1",
+          "title": "Partial match missing condition 1",
+          "passages": [
+            "Oncology Clinical Trial. Verified evidence: prior treatment failure.",
+            "Oncology Clinical Trial. Verified evidence: two hospital locations."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 5,
+            "hybrid": 5,
+            "coverage_first": 6
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.0,
+            "c2": 0.332863,
+            "c3": 0.364988
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "cross-passage-clinical-trial-missing-2",
+          "title": "Partial match missing condition 2",
+          "passages": [
+            "Oncology Clinical Trial. Verified evidence: adults age 18 to 65.",
+            "Oncology Clinical Trial. Verified evidence: two hospital locations."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 4,
+            "hybrid": 4,
+            "coverage_first": 5
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.459867,
+            "c2": 0.0,
+            "c3": 0.349335
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "cross-passage-clinical-trial-missing-3",
+          "title": "Partial match missing condition 3",
+          "passages": [
+            "Oncology Clinical Trial. Verified evidence: adults age 18 to 65.",
+            "Oncology Clinical Trial. Verified evidence: prior treatment failure."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 3,
+            "hybrid": 3,
+            "coverage_first": 4
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.459867,
+            "c2": 0.318588,
+            "c3": 0.0
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "cross-passage-clinical-trial-violates-exclusion",
+          "title": "Topical match with forbidden condition",
+          "passages": [
+            "Oncology Clinical Trial. Verified evidence: adults age 18 to 65.",
+            "Oncology Clinical Trial. Verified evidence: prior treatment failure.",
+            "Oncology Clinical Trial. Verified evidence: two hospital locations.",
+            "Oncology Clinical Trial. Verified evidence: pregnant participants."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 1,
+            "hybrid": 1,
+            "coverage_first": 2
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.34795,
+            "c2": 0.241054,
+            "c3": 0.264318
+          },
+          "violation_scores": {
+            "x1": 1.0
+          }
+        },
+        {
+          "id": "cross-passage-clinical-trial-topical-decoy",
+          "title": "High-topic low-constraint decoy",
+          "passages": [
+            "Comparison guide for the oncology clinical trial. This oncology clinical trial review discusses features, pricing, deployment, compliance, and support for oncology clinical trial buyers."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 6,
+            "hybrid": 7,
+            "coverage_first": 7
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.0,
+            "c2": 0.0,
+            "c3": 0.0
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        }
+      ],
+      "candidate_trace": {
+        "evidence_threshold": 0.35,
+        "condition_count": 3,
+        "excluded_condition_count": 1,
+        "labels_used_in_scoring": false,
+        "execution": "rarest_condition_first",
+        "anchor_condition": "c2",
+        "anchor_candidates": 1,
+        "ranking": "lexicographic_complete_then_coverage_then_weakest",
+        "documents_scored_definition": "condition tuples assembled after anchor traversal"
+      }
+    },
+    {
+      "id": "cross-passage-retrieval-paper",
+      "family": "cross-passage",
+      "query": "Find a retrieval research paper with public source code, evaluation on natural queries, CPU latency measurements, without proprietary dataset only.",
+      "required": [
+        {
+          "id": "c1",
+          "text": "public source code",
+          "aliases": [
+            "open implementation repository"
+          ]
+        },
+        {
+          "id": "c2",
+          "text": "evaluation on natural queries",
+          "aliases": [
+            "tested with human authored searches"
+          ]
+        },
+        {
+          "id": "c3",
+          "text": "CPU latency measurements",
+          "aliases": [
+            "reports processor-only response time"
+          ]
+        }
+      ],
+      "excluded": [
+        {
+          "id": "x1",
+          "text": "proprietary dataset only",
+          "aliases": [
+            "results use closed data exclusively"
+          ]
+        }
+      ],
+      "complete_document_ids": [
+        "cross-passage-retrieval-paper-complete-literal",
+        "cross-passage-retrieval-paper-complete-paraphrase"
+      ],
+      "documents": [
+        {
+          "id": "cross-passage-retrieval-paper-complete-literal",
+          "title": "Complete literal match",
+          "passages": [
+            "Retrieval Research Paper. Verified evidence: public source code.",
+            "Retrieval Research Paper. Verified evidence: evaluation on natural queries.",
+            "Retrieval Research Paper. Verified evidence: CPU latency measurements."
+          ],
+          "truth": "complete",
+          "ranks": {
+            "dense": 2,
+            "hybrid": 2,
+            "coverage_first": 3
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.35674,
+            "c2": 0.267555,
+            "c3": 0.267555
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "cross-passage-retrieval-paper-complete-paraphrase",
+          "title": "Complete paraphrased match",
+          "passages": [
+            "Retrieval Research Paper. Verified evidence: open implementation repository.",
+            "Retrieval Research Paper. Verified evidence: tested with human authored searches.",
+            "Retrieval Research Paper. Verified evidence: reports processor-only response time."
+          ],
+          "truth": "complete",
+          "ranks": {
+            "dense": 7,
+            "hybrid": 7,
+            "coverage_first": 1
+          },
+          "candidate_score": 5.11,
+          "condition_scores": {
+            "c1": 1.0,
+            "c2": 1.0,
+            "c3": 1.0
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "cross-passage-retrieval-paper-missing-1",
+          "title": "Partial match missing condition 1",
+          "passages": [
+            "Retrieval Research Paper. Verified evidence: evaluation on natural queries.",
+            "Retrieval Research Paper. Verified evidence: CPU latency measurements."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 3,
+            "hybrid": 3,
+            "coverage_first": 5
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.0,
+            "c2": 0.315373,
+            "c3": 0.315373
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "cross-passage-retrieval-paper-missing-2",
+          "title": "Partial match missing condition 2",
+          "passages": [
+            "Retrieval Research Paper. Verified evidence: public source code.",
+            "Retrieval Research Paper. Verified evidence: CPU latency measurements."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 5,
+            "hybrid": 4,
+            "coverage_first": 4
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.430106,
+            "c2": 0.0,
+            "c3": 0.32258
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "cross-passage-retrieval-paper-missing-3",
+          "title": "Partial match missing condition 3",
+          "passages": [
+            "Retrieval Research Paper. Verified evidence: public source code.",
+            "Retrieval Research Paper. Verified evidence: evaluation on natural queries."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 4,
+            "hybrid": 5,
+            "coverage_first": 6
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.420498,
+            "c2": 0.315373,
+            "c3": 0.0
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "cross-passage-retrieval-paper-violates-exclusion",
+          "title": "Topical match with forbidden condition",
+          "passages": [
+            "Retrieval Research Paper. Verified evidence: public source code.",
+            "Retrieval Research Paper. Verified evidence: evaluation on natural queries.",
+            "Retrieval Research Paper. Verified evidence: CPU latency measurements.",
+            "Retrieval Research Paper. Verified evidence: proprietary dataset only."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 1,
+            "hybrid": 1,
+            "coverage_first": 2
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.309771,
+            "c2": 0.232328,
+            "c3": 0.232328
+          },
+          "violation_scores": {
+            "x1": 1.0
+          }
+        },
+        {
+          "id": "cross-passage-retrieval-paper-topical-decoy",
+          "title": "High-topic low-constraint decoy",
+          "passages": [
+            "Comparison guide for the retrieval research paper. This retrieval research paper review discusses features, pricing, deployment, compliance, and support for retrieval research paper buyers."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 6,
+            "hybrid": 6,
+            "coverage_first": 7
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.0,
+            "c2": 0.0,
+            "c3": 0.0
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        }
+      ],
+      "candidate_trace": {
+        "evidence_threshold": 0.35,
+        "condition_count": 3,
+        "excluded_condition_count": 1,
+        "labels_used_in_scoring": false,
+        "execution": "rarest_condition_first",
+        "anchor_condition": "c2",
+        "anchor_candidates": 1,
+        "ranking": "lexicographic_complete_then_coverage_then_weakest",
+        "documents_scored_definition": "condition tuples assembled after anchor traversal"
+      }
+    },
+    {
+      "id": "cross-passage-sustainable-supplier",
+      "family": "cross-passage",
+      "query": "Find a packaging supplier with ISO 27001 certification, 80 percent recycled materials, delivery under 14 days, without minimum order.",
+      "required": [
+        {
+          "id": "c1",
+          "text": "ISO 27001 certification",
+          "aliases": [
+            "certified information security system"
+          ]
+        },
+        {
+          "id": "c2",
+          "text": "80 percent recycled materials",
+          "aliases": [
+            "four fifths recycled content"
+          ]
+        },
+        {
+          "id": "c3",
+          "text": "delivery under 14 days",
+          "aliases": [
+            "ships within two weeks"
+          ]
+        }
+      ],
+      "excluded": [
+        {
+          "id": "x1",
+          "text": "minimum order",
+          "aliases": [
+            "mandatory purchase quantity"
+          ]
+        }
+      ],
+      "complete_document_ids": [
+        "cross-passage-sustainable-supplier-complete-literal",
+        "cross-passage-sustainable-supplier-complete-paraphrase"
+      ],
+      "documents": [
+        {
+          "id": "cross-passage-sustainable-supplier-complete-literal",
+          "title": "Complete literal match",
+          "passages": [
+            "Packaging Supplier. Verified evidence: ISO 27001 certification.",
+            "Packaging Supplier. Verified evidence: 80 percent recycled materials.",
+            "Packaging Supplier. Verified evidence: delivery under 14 days."
+          ],
+          "truth": "complete",
+          "ranks": {
+            "dense": 2,
+            "hybrid": 2,
+            "coverage_first": 3
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.263157,
+            "c2": 0.397393,
+            "c3": 0.350876
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "cross-passage-sustainable-supplier-complete-paraphrase",
+          "title": "Complete paraphrased match",
+          "passages": [
+            "Packaging Supplier. Verified evidence: certified information security system.",
+            "Packaging Supplier. Verified evidence: four fifths recycled content.",
+            "Packaging Supplier. Verified evidence: ships within two weeks."
+          ],
+          "truth": "complete",
+          "ranks": {
+            "dense": 7,
+            "hybrid": 6,
+            "coverage_first": 1
+          },
+          "candidate_score": 5.11,
+          "condition_scores": {
+            "c1": 1.0,
+            "c2": 1.0,
+            "c3": 1.0
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "cross-passage-sustainable-supplier-missing-1",
+          "title": "Partial match missing condition 1",
+          "passages": [
+            "Packaging Supplier. Verified evidence: 80 percent recycled materials.",
+            "Packaging Supplier. Verified evidence: delivery under 14 days."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 4,
+            "hybrid": 3,
+            "coverage_first": 4
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.0,
+            "c2": 0.465293,
+            "c3": 0.410829
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "cross-passage-sustainable-supplier-missing-2",
+          "title": "Partial match missing condition 2",
+          "passages": [
+            "Packaging Supplier. Verified evidence: ISO 27001 certification.",
+            "Packaging Supplier. Verified evidence: delivery under 14 days."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 5,
+            "hybrid": 5,
+            "coverage_first": 5
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.315831,
+            "c2": 0.0,
+            "c3": 0.421107
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "cross-passage-sustainable-supplier-missing-3",
+          "title": "Partial match missing condition 3",
+          "passages": [
+            "Packaging Supplier. Verified evidence: ISO 27001 certification.",
+            "Packaging Supplier. Verified evidence: 80 percent recycled materials."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 3,
+            "hybrid": 4,
+            "coverage_first": 6
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.315831,
+            "c2": 0.476935,
+            "c3": 0.0
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "cross-passage-sustainable-supplier-violates-exclusion",
+          "title": "Topical match with forbidden condition",
+          "passages": [
+            "Packaging Supplier. Verified evidence: ISO 27001 certification.",
+            "Packaging Supplier. Verified evidence: 80 percent recycled materials.",
+            "Packaging Supplier. Verified evidence: delivery under 14 days.",
+            "Packaging Supplier. Verified evidence: minimum order."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 1,
+            "hybrid": 1,
+            "coverage_first": 2
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.2339,
+            "c2": 0.353212,
+            "c3": 0.311867
+          },
+          "violation_scores": {
+            "x1": 1.0
+          }
+        },
+        {
+          "id": "cross-passage-sustainable-supplier-topical-decoy",
+          "title": "High-topic low-constraint decoy",
+          "passages": [
+            "Comparison guide for the packaging supplier. This packaging supplier review discusses features, pricing, deployment, compliance, and support for packaging supplier buyers."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 6,
+            "hybrid": 7,
+            "coverage_first": 7
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.0,
+            "c2": 0.0,
+            "c3": 0.0
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        }
+      ],
+      "candidate_trace": {
+        "evidence_threshold": 0.35,
+        "condition_count": 3,
+        "excluded_condition_count": 1,
+        "labels_used_in_scoring": false,
+        "execution": "rarest_condition_first",
+        "anchor_condition": "c1",
+        "anchor_candidates": 1,
+        "ranking": "lexicographic_complete_then_coverage_then_weakest",
+        "documents_scored_definition": "condition tuples assembled after anchor traversal"
+      }
+    },
+    {
+      "id": "cross-passage-accessible-hotel",
+      "family": "cross-passage",
+      "query": "Find a downtown hotel with wheelchair accessible rooms, pet friendly policy, electric vehicle charging, without resort fee.",
+      "required": [
+        {
+          "id": "c1",
+          "text": "wheelchair accessible rooms",
+          "aliases": [
+            "ADA mobility rooms"
+          ]
+        },
+        {
+          "id": "c2",
+          "text": "pet friendly policy",
+          "aliases": [
+            "dogs and cats are welcome"
+          ]
+        },
+        {
+          "id": "c3",
+          "text": "electric vehicle charging",
+          "aliases": [
+            "EV chargers in the garage"
+          ]
+        }
+      ],
+      "excluded": [
+        {
+          "id": "x1",
+          "text": "resort fee",
+          "aliases": [
+            "mandatory destination charge"
+          ]
+        }
+      ],
+      "complete_document_ids": [
+        "cross-passage-accessible-hotel-complete-literal",
+        "cross-passage-accessible-hotel-complete-paraphrase"
+      ],
+      "documents": [
+        {
+          "id": "cross-passage-accessible-hotel-complete-literal",
+          "title": "Complete literal match",
+          "passages": [
+            "Downtown Hotel. Verified evidence: wheelchair accessible rooms.",
+            "Downtown Hotel. Verified evidence: pet friendly policy.",
+            "Downtown Hotel. Verified evidence: electric vehicle charging."
+          ],
+          "truth": "complete",
+          "ranks": {
+            "dense": 2,
+            "hybrid": 2,
+            "coverage_first": 2
+          },
+          "candidate_score": 5.04142789,
+          "condition_scores": {
+            "c1": 0.446399,
+            "c2": 0.374437,
+            "c3": 0.374437
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "cross-passage-accessible-hotel-complete-paraphrase",
+          "title": "Complete paraphrased match",
+          "passages": [
+            "Downtown Hotel. Verified evidence: ADA mobility rooms.",
+            "Downtown Hotel. Verified evidence: dogs and cats are welcome.",
+            "Downtown Hotel. Verified evidence: EV chargers in the garage."
+          ],
+          "truth": "complete",
+          "ranks": {
+            "dense": 6,
+            "hybrid": 6,
+            "coverage_first": 1
+          },
+          "candidate_score": 5.11,
+          "condition_scores": {
+            "c1": 1.0,
+            "c2": 1.0,
+            "c3": 1.0
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "cross-passage-accessible-hotel-missing-1",
+          "title": "Partial match missing condition 1",
+          "passages": [
+            "Downtown Hotel. Verified evidence: pet friendly policy.",
+            "Downtown Hotel. Verified evidence: electric vehicle charging."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 4,
+            "hybrid": 3,
+            "coverage_first": 4
+          },
+          "candidate_score": 0.66962584,
+          "condition_scores": {
+            "c1": 0.0,
+            "c2": 0.443876,
+            "c3": 0.443876
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "cross-passage-accessible-hotel-missing-2",
+          "title": "Partial match missing condition 2",
+          "passages": [
+            "Downtown Hotel. Verified evidence: wheelchair accessible rooms.",
+            "Downtown Hotel. Verified evidence: electric vehicle charging."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 5,
+            "hybrid": 5,
+            "coverage_first": 6
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.529183,
+            "c2": 0.0,
+            "c3": 0.443876
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "cross-passage-accessible-hotel-missing-3",
+          "title": "Partial match missing condition 3",
+          "passages": [
+            "Downtown Hotel. Verified evidence: wheelchair accessible rooms.",
+            "Downtown Hotel. Verified evidence: pet friendly policy."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 3,
+            "hybrid": 4,
+            "coverage_first": 3
+          },
+          "candidate_score": 0.6699102,
+          "condition_scores": {
+            "c1": 0.529183,
+            "c2": 0.443876,
+            "c3": 0.0
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "cross-passage-accessible-hotel-violates-exclusion",
+          "title": "Topical match with forbidden condition",
+          "passages": [
+            "Downtown Hotel. Verified evidence: wheelchair accessible rooms.",
+            "Downtown Hotel. Verified evidence: pet friendly policy.",
+            "Downtown Hotel. Verified evidence: electric vehicle charging.",
+            "Downtown Hotel. Verified evidence: resort fee."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 1,
+            "hybrid": 1,
+            "coverage_first": 5
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.393618,
+            "c2": 0.330165,
+            "c3": 0.330165
+          },
+          "violation_scores": {
+            "x1": 1.0
+          }
+        },
+        {
+          "id": "cross-passage-accessible-hotel-topical-decoy",
+          "title": "High-topic low-constraint decoy",
+          "passages": [
+            "Comparison guide for the downtown hotel. This downtown hotel review discusses features, pricing, deployment, compliance, and support for downtown hotel buyers."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 7,
+            "hybrid": 7,
+            "coverage_first": 7
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.0,
+            "c2": 0.0,
+            "c3": 0.0
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        }
+      ],
+      "candidate_trace": {
+        "evidence_threshold": 0.35,
+        "condition_count": 3,
+        "excluded_condition_count": 1,
+        "labels_used_in_scoring": false,
+        "execution": "rarest_condition_first",
+        "anchor_condition": "c2",
+        "anchor_candidates": 4,
+        "ranking": "lexicographic_complete_then_coverage_then_weakest",
+        "documents_scored_definition": "condition tuples assembled after anchor traversal"
+      }
+    },
+    {
+      "id": "cross-passage-engineering-role",
+      "family": "cross-passage",
+      "query": "Find a machine learning engineering role with remote within the United States, salary above 150000 dollars, visa transfer support, without on call rotation.",
+      "required": [
+        {
+          "id": "c1",
+          "text": "remote within the United States",
+          "aliases": [
+            "work from anywhere in the US"
+          ]
+        },
+        {
+          "id": "c2",
+          "text": "salary above 150000 dollars",
+          "aliases": [
+            "base pay exceeds $150k"
+          ]
+        },
+        {
+          "id": "c3",
+          "text": "visa transfer support",
+          "aliases": [
+            "employer transfers work authorization"
+          ]
+        }
+      ],
+      "excluded": [
+        {
+          "id": "x1",
+          "text": "on call rotation",
+          "aliases": [
+            "after-hours pager duty"
+          ]
+        }
+      ],
+      "complete_document_ids": [
+        "cross-passage-engineering-role-complete-literal",
+        "cross-passage-engineering-role-complete-paraphrase"
+      ],
+      "documents": [
+        {
+          "id": "cross-passage-engineering-role-complete-literal",
+          "title": "Complete literal match",
+          "passages": [
+            "Machine Learning Engineering Role. Verified evidence: remote within the United States.",
+            "Machine Learning Engineering Role. Verified evidence: salary above 150000 dollars.",
+            "Machine Learning Engineering Role. Verified evidence: visa transfer support."
+          ],
+          "truth": "complete",
+          "ranks": {
+            "dense": 2,
+            "hybrid": 2,
+            "coverage_first": 3
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.409801,
+            "c2": 0.354653,
+            "c3": 0.210741
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "cross-passage-engineering-role-complete-paraphrase",
+          "title": "Complete paraphrased match",
+          "passages": [
+            "Machine Learning Engineering Role. Verified evidence: work from anywhere in the US.",
+            "Machine Learning Engineering Role. Verified evidence: base pay exceeds $150k.",
+            "Machine Learning Engineering Role. Verified evidence: employer transfers work authorization."
+          ],
+          "truth": "complete",
+          "ranks": {
+            "dense": 7,
+            "hybrid": 7,
+            "coverage_first": 1
+          },
+          "candidate_score": 5.11,
+          "condition_scores": {
+            "c1": 1.0,
+            "c2": 1.0,
+            "c3": 1.0
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "cross-passage-engineering-role-missing-1",
+          "title": "Partial match missing condition 1",
+          "passages": [
+            "Machine Learning Engineering Role. Verified evidence: salary above 150000 dollars.",
+            "Machine Learning Engineering Role. Verified evidence: visa transfer support."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 3,
+            "hybrid": 3,
+            "coverage_first": 5
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.0,
+            "c2": 0.429928,
+            "c3": 0.255471
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "cross-passage-engineering-role-missing-2",
+          "title": "Partial match missing condition 2",
+          "passages": [
+            "Machine Learning Engineering Role. Verified evidence: remote within the United States.",
+            "Machine Learning Engineering Role. Verified evidence: visa transfer support."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 4,
+            "hybrid": 5,
+            "coverage_first": 6
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.487378,
+            "c2": 0.0,
+            "c3": 0.250635
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "cross-passage-engineering-role-missing-3",
+          "title": "Partial match missing condition 3",
+          "passages": [
+            "Machine Learning Engineering Role. Verified evidence: remote within the United States.",
+            "Machine Learning Engineering Role. Verified evidence: salary above 150000 dollars."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 5,
+            "hybrid": 4,
+            "coverage_first": 4
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.478323,
+            "c2": 0.413953,
+            "c3": 0.0
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "cross-passage-engineering-role-violates-exclusion",
+          "title": "Topical match with forbidden condition",
+          "passages": [
+            "Machine Learning Engineering Role. Verified evidence: remote within the United States.",
+            "Machine Learning Engineering Role. Verified evidence: salary above 150000 dollars.",
+            "Machine Learning Engineering Role. Verified evidence: visa transfer support.",
+            "Machine Learning Engineering Role. Verified evidence: on call rotation."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 1,
+            "hybrid": 1,
+            "coverage_first": 2
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.358452,
+            "c2": 0.310213,
+            "c3": 0.184335
+          },
+          "violation_scores": {
+            "x1": 1.0
+          }
+        },
+        {
+          "id": "cross-passage-engineering-role-topical-decoy",
+          "title": "High-topic low-constraint decoy",
+          "passages": [
+            "Comparison guide for the machine learning engineering role. This machine learning engineering role review discusses features, pricing, deployment, compliance, and support for machine learning engineering role buyers."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 6,
+            "hybrid": 6,
+            "coverage_first": 7
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.0,
+            "c2": 0.0,
+            "c3": 0.054361
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        }
+      ],
+      "candidate_trace": {
+        "evidence_threshold": 0.35,
+        "condition_count": 3,
+        "excluded_condition_count": 1,
+        "labels_used_in_scoring": false,
+        "execution": "rarest_condition_first",
+        "anchor_condition": "c3",
+        "anchor_candidates": 1,
+        "ranking": "lexicographic_complete_then_coverage_then_weakest",
+        "documents_scored_definition": "condition tuples assembled after anchor traversal"
+      }
+    },
+    {
+      "id": "cross-passage-climate-grant",
+      "family": "cross-passage",
+      "query": "Find a climate adaptation grant with nonprofit organizations eligible, community flood resilience, September 30 deadline, without matching funds required.",
+      "required": [
+        {
+          "id": "c1",
+          "text": "nonprofit organizations eligible",
+          "aliases": [
+            "open to charitable organizations"
+          ]
+        },
+        {
+          "id": "c2",
+          "text": "community flood resilience",
+          "aliases": [
+            "local adaptation to flooding"
+          ]
+        },
+        {
+          "id": "c3",
+          "text": "September 30 deadline",
+          "aliases": [
+            "applications close on 30 September"
+          ]
+        }
+      ],
+      "excluded": [
+        {
+          "id": "x1",
+          "text": "matching funds required",
+          "aliases": [
+            "recipient must provide a cost share"
+          ]
+        }
+      ],
+      "complete_document_ids": [
+        "cross-passage-climate-grant-complete-literal",
+        "cross-passage-climate-grant-complete-paraphrase"
+      ],
+      "documents": [
+        {
+          "id": "cross-passage-climate-grant-complete-literal",
+          "title": "Complete literal match",
+          "passages": [
+            "Climate Adaptation Grant. Verified evidence: nonprofit organizations eligible.",
+            "Climate Adaptation Grant. Verified evidence: community flood resilience.",
+            "Climate Adaptation Grant. Verified evidence: September 30 deadline."
+          ],
+          "truth": "complete",
+          "ranks": {
+            "dense": 2,
+            "hybrid": 2,
+            "coverage_first": 5
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.441757,
+            "c2": 0.535909,
+            "c3": 0.34856
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "cross-passage-climate-grant-complete-paraphrase",
+          "title": "Complete paraphrased match",
+          "passages": [
+            "Climate Adaptation Grant. Verified evidence: open to charitable organizations.",
+            "Climate Adaptation Grant. Verified evidence: local adaptation to flooding.",
+            "Climate Adaptation Grant. Verified evidence: applications close on 30 September."
+          ],
+          "truth": "complete",
+          "ranks": {
+            "dense": 6,
+            "hybrid": 6,
+            "coverage_first": 1
+          },
+          "candidate_score": 5.11,
+          "condition_scores": {
+            "c1": 1.0,
+            "c2": 1.0,
+            "c3": 1.0
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "cross-passage-climate-grant-missing-1",
+          "title": "Partial match missing condition 1",
+          "passages": [
+            "Climate Adaptation Grant. Verified evidence: community flood resilience.",
+            "Climate Adaptation Grant. Verified evidence: September 30 deadline."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 3,
+            "hybrid": 3,
+            "coverage_first": 3
+          },
+          "candidate_score": 0.67016039,
+          "condition_scores": {
+            "c1": 0.0,
+            "c2": 0.635064,
+            "c3": 0.413052
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "cross-passage-climate-grant-missing-2",
+          "title": "Partial match missing condition 2",
+          "passages": [
+            "Climate Adaptation Grant. Verified evidence: nonprofit organizations eligible.",
+            "Climate Adaptation Grant. Verified evidence: September 30 deadline."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 4,
+            "hybrid": 5,
+            "coverage_first": 2
+          },
+          "candidate_score": 0.67315391,
+          "condition_scores": {
+            "c1": 0.523492,
+            "c2": 0.032569,
+            "c3": 0.413052
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "cross-passage-climate-grant-missing-3",
+          "title": "Partial match missing condition 3",
+          "passages": [
+            "Climate Adaptation Grant. Verified evidence: nonprofit organizations eligible.",
+            "Climate Adaptation Grant. Verified evidence: community flood resilience."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 5,
+            "hybrid": 4,
+            "coverage_first": 6
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.523492,
+            "c2": 0.635064,
+            "c3": 0.0
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "cross-passage-climate-grant-violates-exclusion",
+          "title": "Topical match with forbidden condition",
+          "passages": [
+            "Climate Adaptation Grant. Verified evidence: nonprofit organizations eligible.",
+            "Climate Adaptation Grant. Verified evidence: community flood resilience.",
+            "Climate Adaptation Grant. Verified evidence: September 30 deadline.",
+            "Climate Adaptation Grant. Verified evidence: matching funds required."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 1,
+            "hybrid": 1,
+            "coverage_first": 4
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.382099,
+            "c2": 0.463535,
+            "c3": 0.301488
+          },
+          "violation_scores": {
+            "x1": 1.0
+          }
+        },
+        {
+          "id": "cross-passage-climate-grant-topical-decoy",
+          "title": "High-topic low-constraint decoy",
+          "passages": [
+            "Comparison guide for the climate adaptation grant. This climate adaptation grant review discusses features, pricing, deployment, compliance, and support for climate adaptation grant buyers."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 7,
+            "hybrid": 7,
+            "coverage_first": 7
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.0,
+            "c2": 0.0339,
+            "c3": 0.0
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        }
+      ],
+      "candidate_trace": {
+        "evidence_threshold": 0.35,
+        "condition_count": 3,
+        "excluded_condition_count": 1,
+        "labels_used_in_scoring": false,
+        "execution": "rarest_condition_first",
+        "anchor_condition": "c3",
+        "anchor_candidates": 3,
+        "ranking": "lexicographic_complete_then_coverage_then_weakest",
+        "documents_scored_definition": "condition tuples assembled after anchor traversal"
+      }
+    },
+    {
+      "id": "cross-passage-linux-laptop",
+      "family": "cross-passage",
+      "query": "Find a developer laptop with 32 gigabytes of memory, Linux hardware certification, weight under 1.5 kilograms, without soldered storage.",
+      "required": [
+        {
+          "id": "c1",
+          "text": "32 gigabytes of memory",
+          "aliases": [
+            "32GB RAM"
+          ]
+        },
+        {
+          "id": "c2",
+          "text": "Linux hardware certification",
+          "aliases": [
+            "officially certified for Linux"
+          ]
+        },
+        {
+          "id": "c3",
+          "text": "weight under 1.5 kilograms",
+          "aliases": [
+            "lighter than one and a half kilograms"
+          ]
+        }
+      ],
+      "excluded": [
+        {
+          "id": "x1",
+          "text": "soldered storage",
+          "aliases": [
+            "non-replaceable SSD"
+          ]
+        }
+      ],
+      "complete_document_ids": [
+        "cross-passage-linux-laptop-complete-literal",
+        "cross-passage-linux-laptop-complete-paraphrase"
+      ],
+      "documents": [
+        {
+          "id": "cross-passage-linux-laptop-complete-literal",
+          "title": "Complete literal match",
+          "passages": [
+            "Developer Laptop. Verified evidence: 32 gigabytes of memory.",
+            "Developer Laptop. Verified evidence: Linux hardware certification.",
+            "Developer Laptop. Verified evidence: weight under 1.5 kilograms."
+          ],
+          "truth": "complete",
+          "ranks": {
+            "dense": 2,
+            "hybrid": 2,
+            "coverage_first": 2
+          },
+          "candidate_score": 5.04304166,
+          "condition_scores": {
+            "c1": 0.525911,
+            "c2": 0.41799,
+            "c3": 0.386084
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "cross-passage-linux-laptop-complete-paraphrase",
+          "title": "Complete paraphrased match",
+          "passages": [
+            "Developer Laptop. Verified evidence: 32GB RAM.",
+            "Developer Laptop. Verified evidence: officially certified for Linux.",
+            "Developer Laptop. Verified evidence: lighter than one and a half kilograms."
+          ],
+          "truth": "complete",
+          "ranks": {
+            "dense": 6,
+            "hybrid": 6,
+            "coverage_first": 1
+          },
+          "candidate_score": 5.11,
+          "condition_scores": {
+            "c1": 1.0,
+            "c2": 1.0,
+            "c3": 1.0
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "cross-passage-linux-laptop-missing-1",
+          "title": "Partial match missing condition 1",
+          "passages": [
+            "Developer Laptop. Verified evidence: Linux hardware certification.",
+            "Developer Laptop. Verified evidence: weight under 1.5 kilograms."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 4,
+            "hybrid": 4,
+            "coverage_first": 4
+          },
+          "candidate_score": 0.66985937,
+          "condition_scores": {
+            "c1": 0.0,
+            "c2": 0.497909,
+            "c3": 0.459903
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "cross-passage-linux-laptop-missing-2",
+          "title": "Partial match missing condition 2",
+          "passages": [
+            "Developer Laptop. Verified evidence: 32 gigabytes of memory.",
+            "Developer Laptop. Verified evidence: weight under 1.5 kilograms."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 3,
+            "hybrid": 3,
+            "coverage_first": 3
+          },
+          "candidate_score": 0.67020336,
+          "condition_scores": {
+            "c1": 0.611841,
+            "c2": 0.0,
+            "c3": 0.449167
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "cross-passage-linux-laptop-missing-3",
+          "title": "Partial match missing condition 3",
+          "passages": [
+            "Developer Laptop. Verified evidence: 32 gigabytes of memory.",
+            "Developer Laptop. Verified evidence: Linux hardware certification."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 5,
+            "hybrid": 5,
+            "coverage_first": 6
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.641803,
+            "c2": 0.5101,
+            "c3": 0.0
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        },
+        {
+          "id": "cross-passage-linux-laptop-violates-exclusion",
+          "title": "Topical match with forbidden condition",
+          "passages": [
+            "Developer Laptop. Verified evidence: 32 gigabytes of memory.",
+            "Developer Laptop. Verified evidence: Linux hardware certification.",
+            "Developer Laptop. Verified evidence: weight under 1.5 kilograms.",
+            "Developer Laptop. Verified evidence: soldered storage."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 1,
+            "hybrid": 1,
+            "coverage_first": 5
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.469403,
+            "c2": 0.373078,
+            "c3": 0.3446
+          },
+          "violation_scores": {
+            "x1": 1.0
+          }
+        },
+        {
+          "id": "cross-passage-linux-laptop-topical-decoy",
+          "title": "High-topic low-constraint decoy",
+          "passages": [
+            "Comparison guide for the developer laptop. This developer laptop review discusses features, pricing, deployment, compliance, and support for developer laptop buyers."
+          ],
+          "truth": "partial",
+          "ranks": {
+            "dense": 7,
+            "hybrid": 7,
+            "coverage_first": 7
+          },
+          "candidate_score": 0.0,
+          "condition_scores": {
+            "c1": 0.0,
+            "c2": 0.0,
+            "c3": 0.0
+          },
+          "violation_scores": {
+            "x1": 0.0
+          }
+        }
+      ],
+      "candidate_trace": {
+        "evidence_threshold": 0.35,
+        "condition_count": 3,
+        "excluded_condition_count": 1,
+        "labels_used_in_scoring": false,
+        "execution": "rarest_condition_first",
+        "anchor_condition": "c3",
+        "anchor_candidates": 4,
+        "ranking": "lexicographic_complete_then_coverage_then_weakest",
+        "documents_scored_definition": "condition tuples assembled after anchor traversal"
+      }
+    }
+  ]
+}

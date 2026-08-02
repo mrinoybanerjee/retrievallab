@@ -6,15 +6,17 @@ import { CorpusView } from "@/components/corpus-view";
 import { EvaluationStudio } from "@/components/evaluation-studio";
 import { EvidenceDrawer } from "@/components/evidence-drawer";
 import { ExperimentPanel } from "@/components/experiment-panel";
+import { FrontierLab } from "@/components/frontier-lab";
 import { Icon } from "@/components/icon";
-import { runComparison, runEvaluation } from "@/lib/api";
+import { loadPhaseZeroReport, runComparison, runEvaluation } from "@/lib/api";
 import { DEMO, FALLBACK_COMPARISON, FALLBACK_EVALUATION } from "@/lib/demo";
-import type { ActiveCorpus, ComparisonResult, EvaluationResult, TraceEvent } from "@/lib/types";
+import type { ActiveCorpus, ComparisonResult, EvaluationResult, PhaseZeroReport, PhaseZeroSource, TraceEvent } from "@/lib/types";
 
-type View = "experiment" | "evaluation" | "corpus";
+type View = "experiment" | "frontier" | "evaluation" | "corpus";
 
 const NAVIGATION: { id: View; label: string; icon: "spark" | "chart" | "book" }[] = [
   { id: "experiment", label: "Experiment", icon: "spark" },
+  { id: "frontier", label: "Frontier lab", icon: "chart" },
   { id: "evaluation", label: "Evaluation studio", icon: "chart" },
   { id: "corpus", label: "Corpus lab", icon: "book" },
 ];
@@ -31,6 +33,11 @@ export default function Home() {
   const [evaluation, setEvaluation] = useState<EvaluationResult | null>(FALLBACK_EVALUATION);
   const [evaluationRunning, setEvaluationRunning] = useState(false);
   const [advancedOpen, setAdvancedOpen] = useState(false);
+  const [phaseZero, setPhaseZero] = useState<PhaseZeroReport | null>(null);
+  const [phaseZeroSource, setPhaseZeroSource] = useState<PhaseZeroSource>("external");
+  const [phaseZeroMode, setPhaseZeroMode] = useState<"live" | "artifact">("artifact");
+  const [phaseZeroRunning, setPhaseZeroRunning] = useState(false);
+  const [phaseZeroError, setPhaseZeroError] = useState("");
   const [activeCorpus, setActiveCorpus] = useState<ActiveCorpus>({ id: "demo", name: "RAG field guide", pages: 12, chunks: DEMO.corpus.chunks });
   const abortRef = useRef<AbortController | null>(null);
 
@@ -41,6 +48,20 @@ export default function Home() {
       .then((response) => setConnection(response.ok ? "live" : "replay"))
       .catch(() => setConnection("replay"));
   }, []);
+
+  useEffect(() => {
+    if (view !== "frontier" || phaseZero) return;
+    let active = true;
+    void loadPhaseZeroReport(phaseZeroSource).then((result) => {
+      if (!active) return;
+      setPhaseZero(result.report);
+      setPhaseZeroMode(result.mode);
+      if (result.mode === "live") setConnection("live");
+    }).catch((error: unknown) => {
+      if (active) setPhaseZeroError(error instanceof Error ? error.message : "Phase 0 report is unavailable.");
+    });
+    return () => { active = false; };
+  }, [view, phaseZero, phaseZeroSource]);
 
   const visibleTraces = useMemo(
     () => traces.filter((trace, index, all) => all.findIndex((item) => item.pipeline === trace.pipeline && item.stage === trace.stage) === index),
@@ -76,6 +97,28 @@ export default function Home() {
     }
   }
 
+  async function handlePhaseZero(rerun: boolean, suite = phaseZeroSource) {
+    setPhaseZeroRunning(true);
+    setPhaseZeroError("");
+    try {
+      const result = await loadPhaseZeroReport(suite, rerun);
+      setPhaseZero(result.report);
+      setPhaseZeroMode(result.mode);
+      if (result.mode === "live") setConnection("live");
+    } catch (error) {
+      setPhaseZeroError(error instanceof Error ? error.message : "Phase 0 report is unavailable.");
+    } finally {
+      setPhaseZeroRunning(false);
+    }
+  }
+
+  function selectPhaseZeroSource(source: PhaseZeroSource) {
+    if (source === phaseZeroSource || phaseZeroRunning) return;
+    setPhaseZeroSource(source);
+    setPhaseZero(null);
+    setPhaseZeroError("");
+  }
+
   function openCitation(id: number) {
     setSelectedCitation(id);
     setDrawerOpen(true);
@@ -88,10 +131,10 @@ export default function Home() {
         <button className="brand" onClick={() => setView("experiment")} aria-label="RetrievalLab home">
           <span className="brand-mark"><span /></span>
           <span className="brand-name">RetrievalLab</span>
-          <span className="version">v0.1</span>
+          <span className="version">v0.2</span>
         </button>
         <div className="topbar-center" aria-label="Current workspace">
-          <span className="workspace-title">Observable RAG workbench</span>
+          <span className="workspace-title">Observable retrieval research</span>
           <span className="keyboard-hint"><kbd>⌘</kbd><kbd>K</kbd></span>
         </div>
         <div className={`connection-pill ${connection}`} title={connection === "live" ? "Connected to the local retrieval API" : "Using the bundled offline trace replay"}>
@@ -192,6 +235,25 @@ export default function Home() {
 
         {view === "evaluation" && (
           <EvaluationStudio report={evaluation} running={evaluationRunning} onRun={() => void handleEvaluation()} />
+        )}
+        {view === "frontier" && phaseZero && (
+          <FrontierLab
+            key={phaseZero.suite}
+            report={phaseZero}
+            source={phaseZeroSource}
+            mode={phaseZeroMode}
+            running={phaseZeroRunning}
+            onRerun={() => void handlePhaseZero(true)}
+            onSourceChange={selectPhaseZeroSource}
+          />
+        )}
+        {view === "frontier" && !phaseZero && (
+          <section className="frontier-loading" aria-live="polite">
+            <span className="spinner" />
+            <h1>{phaseZeroError ? "Research artifact unavailable" : "Loading the measurement receipt"}</h1>
+            <p>{phaseZeroError || "Reading the committed Phase 0 run and its provenance."}</p>
+            {phaseZeroError && <button className="run-button" onClick={() => void handlePhaseZero(false, phaseZeroSource)}>Retry</button>}
+          </section>
         )}
         {view === "corpus" && <CorpusView activeCorpus={activeCorpus} onCorpusReady={setActiveCorpus} onAsk={(nextQuestion) => { setQuestion(nextQuestion); setView("experiment"); }} />}
       </main>

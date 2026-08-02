@@ -1,7 +1,7 @@
 [project]
 name = "retrievallab"
-version = "0.1.0"
-description = "An observable, local-first workbench for evaluating RAG retrieval quality."
+version = "0.2.0"
+description = "An observable, local-first workbench and falsification harness for retrieval research."
 readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "MIT" }

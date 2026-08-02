@@ -19,7 +19,11 @@ jobs:
           enable-cache: true
       - run: uv sync --extra dev
       - run: uv run python scripts/build_demo_pdf.py
+      - run: uv run python scripts/build_phase0_fixture.py
+      - run: git diff --exit-code -- data/research/phase0-diagnostic-v1.json
       - run: uv run ruff check .
+      - run: uv run mypy packages/retrieval/src services/api/app scripts/verify_phase0_artifacts.py
+      - run: uv run python scripts/verify_phase0_artifacts.py
       - run: uv run pytest --cov=retrievallab --cov-report=term-missing
 
   web:

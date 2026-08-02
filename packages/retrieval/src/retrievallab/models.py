@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 from enum import StrEnum
-from typing import Any
+from typing import Any, Literal
 
 from pydantic import BaseModel, Field
 
@@ -31,6 +31,13 @@ class QueryAccepted(BaseModel):
     query_id: str
     status: JobStatus = JobStatus.QUEUED
     events_url: str
+
+
+class PhaseZeroProbeRequest(BaseModel):
+    case_id: str = Field(min_length=1, max_length=120)
+    suite: Literal["synthetic", "external"] = "synthetic"
+    active_required_ids: list[str] | None = None
+    active_excluded_ids: list[str] | None = None
 
 
 class TraceEvent(BaseModel):

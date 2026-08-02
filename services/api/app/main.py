@@ -6,18 +6,22 @@ import os
 import uuid
 from collections.abc import AsyncIterator
 from pathlib import Path
-from typing import Any
+from typing import Any, Literal, cast
 
 from fastapi import FastAPI, File, Form, HTTPException, Request, UploadFile, status
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, StreamingResponse
 from retrievallab.evaluation import EvalCase, aggregate, ndcg_at_k, reciprocal_rank
 from retrievallab.ingestion import IngestionError, ingest_pdf
-from retrievallab.models import JobStatus, QueryAccepted, QueryRequest, TraceEvent
+from retrievallab.models import JobStatus, PhaseZeroProbeRequest, QueryAccepted, QueryRequest, TraceEvent
+from retrievallab.phase0 import run_artifact_case_probe, run_case_probe, run_phase_zero
 from retrievallab.pipeline import RetrievalEngine
 
 ROOT = Path(__file__).resolve().parents[3]
 DATA = ROOT / "data" / "demo"
+RESEARCH_DATA = ROOT / "data" / "research" / "phase0-diagnostic-v1.json"
+PHASE_ZERO_ARTIFACT = ROOT / "data" / "benchmarks" / "phase0-diagnostic-v1.json"
+MULTICONIR_ARTIFACT = ROOT / "data" / "benchmarks" / "multiconir-task2-structured-9884fb3e.json"
 ENGINE = RetrievalEngine(DATA / "corpus.json")
 ENGINES: dict[str, RetrievalEngine] = {"demo": ENGINE}
 CORPORA: dict[str, dict[str, Any]] = {
@@ -30,13 +34,17 @@ QUERY_SEMAPHORE = asyncio.Semaphore(MAX_ACTIVE_QUERIES)
 
 app = FastAPI(
     title="RetrievalLab API",
-    version="0.1.0",
+    version="0.2.0",
     description="Observable baseline-versus-advanced retrieval experiments.",
 )
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        origin.strip() for origin in os.getenv("RETRIEVALLAB_CORS_ORIGINS", "http://localhost:3000").split(",")
+        origin.strip()
+        for origin in os.getenv(
+            "RETRIEVALLAB_CORS_ORIGINS",
+            "http://localhost:3000,http://127.0.0.1:3000",
+        ).split(",")
     ],
     allow_credentials=False,
     allow_methods=["GET", "POST", "DELETE"],
@@ -83,7 +91,7 @@ async def execute_query(query_id: str, request: QueryRequest) -> None:
 
 @app.get("/healthz")
 def health() -> dict[str, str]:
-    return {"status": "ok", "version": "0.1.0"}
+    return {"status": "ok", "version": "0.2.0"}
 
 
 @app.get("/readyz")
@@ -255,13 +263,50 @@ def run_evaluation() -> dict[str, Any]:
     return {"suite": "demo-v1", "case_count": len(cases), "reports": reports}
 
 
+@app.get("/api/v1/research/phase-zero")
+def get_phase_zero(suite: Literal["synthetic", "external"] = "external") -> dict[str, Any]:
+    artifact = MULTICONIR_ARTIFACT if suite == "external" else PHASE_ZERO_ARTIFACT
+    if artifact.exists():
+        return cast(dict[str, Any], json.loads(artifact.read_text(encoding="utf-8")))
+    if suite == "external":
+        raise HTTPException(status_code=503, detail="The pinned external benchmark artifact is unavailable.")
+    return run_phase_zero(RESEARCH_DATA, repeats=1, bootstrap_samples=500)
+
+
+@app.post("/api/v1/research/phase-zero")
+def rerun_phase_zero(suite: Literal["synthetic", "external"] = "synthetic") -> dict[str, Any]:
+    if suite == "external":
+        raise HTTPException(
+            status_code=409,
+            detail="The external run requires a pinned MultiConIR checkout; use scripts/prepare_multiconir.py.",
+        )
+    return run_phase_zero(RESEARCH_DATA, repeats=5, bootstrap_samples=2_000)
+
+
+@app.post("/api/v1/research/phase-zero/probe")
+def phase_zero_probe(request: PhaseZeroProbeRequest) -> dict[str, Any]:
+    try:
+        runner = run_artifact_case_probe if request.suite == "external" else run_case_probe
+        path = MULTICONIR_ARTIFACT if request.suite == "external" else RESEARCH_DATA
+        return runner(
+            path,
+            request.case_id,
+            active_required_ids=set(request.active_required_ids) if request.active_required_ids is not None else None,
+            active_excluded_ids=set(request.active_excluded_ids) if request.active_excluded_ids is not None else None,
+        )
+    except KeyError as error:
+        raise HTTPException(status_code=404, detail="Unknown Phase 0 case id.") from error
+    except ValueError as error:
+        raise HTTPException(status_code=422, detail=str(error)) from error
+
+
 @app.get("/api/v1/documents/demo/pages/{page}")
 def document_page(page: int) -> dict[str, Any]:
     corpus = json.loads((DATA / "corpus.json").read_text(encoding="utf-8"))
     match = next((item for item in corpus["pages"] if item["page"] == page), None)
     if match is None:
         raise HTTPException(status_code=404, detail="Page not found.")
-    return match
+    return cast(dict[str, Any], match)
 
 
 @app.get("/api/v1/documents/demo.pdf")

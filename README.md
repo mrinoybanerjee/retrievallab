@@ -2,7 +2,7 @@
 
 # RetrievalLab
 
-**One question. Two RAG pipelines. Every retrieval decision exposed.**
+**Inspect retrieval. Falsify research ideas. Keep the measurement receipt.**
 
 [![CI](https://github.com/mrinoybanerjee/retrievallab/actions/workflows/ci.yml/badge.svg)](https://github.com/mrinoybanerjee/retrievallab/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-c9f36a.svg)](LICENSE)
@@ -11,23 +11,37 @@
 
 </div>
 
-![RetrievalLab experiment dashboard](docs/assets/dashboard.png)
+![RetrievalLab Frontier Lab dashboard](docs/assets/dashboard.png)
 
-RetrievalLab is a local-first workbench for understanding and evaluating retrieval-augmented generation. Upload a PDF or use the included corpus, ask a question, then watch a naive dense baseline and an advanced hybrid pipeline execute side by side.
+RetrievalLab is a local-first retrieval workbench and research harness. It combines a polished, interactive RAG debugger with a preregistered experiment on **complete-before-partial retrieval**: queries where every condition matters and a strong topical partial match is still wrong.
 
-This is not a chat UI wrapped around a vector database. It makes query rewriting, dense and sparse retrieval, rank fusion, reranking, token-level late interaction, grounding, abstention, caching, latency, and page citations inspectable.
+The dashboard exposes three systems side by side, lets you edit atomic conditions, reruns ranking against the local API, and shows evidence cells, ranks, postings, latency, confidence intervals, source revisions, and research gates. No API key is required.
+
+## The result, including the failure
+
+The initial coverage-first sparse candidate looked perfect on a 16-case synthetic diagnostic. On the pinned external MultiConIR Task 2 subset, it lost clearly to ordinary BM25. RetrievalLab commits both artifacts and labels the candidate **rejected**.
+
+| Pinned MultiConIR subset | Complete before partial @10 | p50 CPU | Mean postings |
+|---|---:|---:|---:|
+| Feature-hash dense | 36.93% | 0.379 ms | — |
+| Dense + BM25 RRF | 44.19% | 0.503 ms | 346.61 |
+| **Monolithic BM25** | **68.81%** | **0.150 ms** | **346.61** |
+| Coverage-first sparse candidate | 60.46% | 0.390 ms | 770.07 |
+
+Candidate delta versus the strongest control: **−8.35 points**, paired bootstrap 95% CI **[−9.83, −6.83]**, 5,000 resamples. It assembled only 1.93 condition tuples per query after anchoring, but touched 2.22× as many postings and took 2.60× the p50 time of BM25. That is not a quality, latency, or cost Pareto win.
+
+This negative result is useful: it kills an attractive scoring idea before model training and localizes the remaining opportunity to **safe sparse traversal and pruning**, not another aggregation formula. See the [research protocol](docs/FRONTIER_RETRIEVAL_RESEARCH_PLAN.md), [dated literature audit](docs/FINAL_RESEARCH_AUDIT_2026-08-02.md), and [evaluation contract](docs/EVALUATION.md).
 
 ## What you can explore
 
-- Page-aware PDF extraction and citations with coordinate metadata.
-- Dense + BM25 hybrid search with reciprocal-rank fusion.
-- A real optional SentenceTransformers bi-encoder and CrossEncoder path.
-- Zero-download deterministic models for a fast, reproducible demo.
-- Query rewriting, bounded expansion, and hard metadata filters.
-- Parent-page retrieval and token-level MaxSim late interaction.
-- Citation grounding, confidence policy, adversarial abstention, and query-only web fallback.
-- Sixty golden cases with hit rate, MRR, NDCG@10, abstention accuracy, and latency.
-- A live SSE pipeline trace and evidence drawer built for explanation, not decoration.
+- External and synthetic research suites with an explicit evidence-source toggle.
+- Ten retrieval controls: BM25, BM25-AND, dense, hybrid RRF, additive, min, product, harmonic, distinct support, and the experimental candidate.
+- Live atomic-condition editing and a per-document evidence matrix.
+- Paired bootstrap confidence intervals, exact paired sign tests, and Holm correction.
+- Postings touched, score updates, tuples assembled, index bytes, latency, and CPU time per successful retrieval.
+- Page-aware PDF ingestion, citations, query rewriting, dense + BM25 fusion, reranking, MaxSim, grounding, and abstention.
+- Sixty ordinary RAG golden cases with hit rate, MRR, NDCG@10, abstention accuracy, and failures.
+- SSE execution traces and an evidence drawer designed for explanation rather than decoration.
 
 ## Quick start
 
@@ -39,7 +53,7 @@ cd retrievallab
 docker compose up --build
 ```
 
-Open [http://localhost:3000](http://localhost:3000). The API and OpenAPI docs run at [http://localhost:8000/docs](http://localhost:8000/docs).
+Open [http://localhost:3000](http://localhost:3000). API docs are at [http://localhost:8000/docs](http://localhost:8000/docs).
 
 ### Native development
 
@@ -57,81 +71,80 @@ pnpm install --ignore-scripts
 pnpm dev
 ```
 
-No API key is required. If the API is not running, the interface clearly switches to a bundled trace replay rather than pretending to execute a live query.
+If the API is absent, read-only committed artifacts and the bundled RAG trace remain available. Live query execution and condition editing are clearly identified as local-API measurements.
 
-## Turn on neural models
+## Reproduce the research artifacts
 
-The default preset uses an inspectable 384-dimensional feature-hash encoder and cross-feature reranker so interviewers can run it immediately. The neural path is implemented but lazy-loaded:
-
-```bash
-uv sync --extra models
-export RETRIEVALLAB_DENSE_MODEL=sentence-transformers/all-MiniLM-L6-v2
-export RETRIEVALLAB_RERANKER_MODEL=cross-encoder/ms-marco-MiniLM-L-6-v2
-```
-
-The first run downloads model weights. RetrievalLab exposes the active model name in trace payloads so benchmark reports cannot confuse local and neural presets.
-
-## Pipeline
-
-```text
-question
-  ├─ baseline: dense top-12 ───────────────────────────┐
-  └─ advanced: rewrite → dense + BM25 → RRF → rerank  │
-                    → MaxSim → parent context ─────────┤
-                                                       ↓
-                                    grounding → answer or abstain
-                                                       ↓
-                                           page-level citations
-```
-
-Read the [architecture](docs/ARCHITECTURE.md), [implementation contract](docs/IMPLEMENTATION_SPEC.md), and [evaluation protocol](docs/EVALUATION.md).
-
-## Honest benchmark
-
-`demo-v1` is small enough to run on every pull request and difficult enough to expose retrieval and abstention failures. It contains 48 answerable variants and 12 unsupported questions. Run it through the dashboard or API:
+The synthetic diagnostic is self-contained:
 
 ```bash
-curl -X POST http://localhost:8000/api/v1/evaluations | jq
-uv run python scripts/run_benchmark.py
+make phase0
+make verify-research
 ```
 
-The repository includes generated benchmark output under `data/benchmarks/`. Latency from shared CI runners is informational; correctness metrics are the regression gate.
+The external artifact is derived from the official Apache-2.0 MultiConIR repository at commit `9884fb3e1e5c06c9e026aa0042a679412dad1425`. Raw source data is intentionally not vendored.
 
-| Metric | Naive dense | Advanced | Delta |
+```bash
+git clone https://github.com/EIT-NLP/MultiConIR.git /tmp/MultiConIR
+git -C /tmp/MultiConIR checkout 9884fb3e1e5c06c9e026aa0042a679412dad1425
+make multiconir MULTICONIR_SOURCE=/tmp/MultiConIR
+```
+
+The adapter uses the benchmark-provided structured `Query10` conditions as oracle structure, not a production natural-language parser. It processes 2,299 of 2,307 rows; the eight unparseable source rows, SHA-256 input receipt, license, query format, and exact revision are recorded in the report. Only aggregate results, ten attributed case examples, and eight bounded parser-error excerpts are committed. See [third-party notices](THIRD_PARTY_NOTICES.md).
+
+## Ordinary RAG benchmark
+
+The separate `demo-v1` regression suite contains 48 answerable questions and 12 unsupported questions.
+
+| Metric | Naive local baseline | Advanced pipeline | Delta |
 |---|---:|---:|---:|
 | Hit rate @5 | 88.3% | **96.7%** | +8.3 pts |
 | MRR | 73.9% | **94.3%** | +20.4 pts |
 | NDCG @10 | 78.0% | **94.9%** | +16.9 pts |
 | Abstention accuracy | 90.0% | **98.3%** | +8.3 pts |
-| Local p50 latency | 2.94 ms | 4.75 ms | +1.81 ms |
 
-These results are from the committed deterministic local preset and 12-page demo corpus. They demonstrate the evaluation machinery, not a general claim about every RAG workload. Two advanced cases remain in the failure report for inspection.
+These deterministic demo-corpus results validate the workbench, not general RAG superiority. Shared-runner latency is informational.
 
-## Engineering choices worth discussing in an interview
+## Architecture
 
-1. **Why RRF instead of score normalization?** Dense cosine and BM25 scores are not naturally comparable; rank fusion stays stable without corpus-specific calibration.
-2. **Why a deterministic default?** Reproducibility and five-minute setup are more useful for reviewers than silently downloading a model. The neural upgrade remains a first-class implementation.
-3. **Why SSE instead of WebSockets?** Query progress is server-to-client, ordered, and short-lived. SSE provides the necessary semantics through ordinary HTTP infrastructure.
-4. **Why abstain?** A RAG system that always answers turns retrieval misses into plausible hallucinations. Twelve adversarial cases measure the refusal boundary explicitly.
-5. **Why no vector database?** The demo corpus does not need one. The project keeps the algorithm visible and adds infrastructure only when scale measurements justify it.
+```text
+question
+  ├─ baseline: local dense top-k ─────────────────────┐
+  └─ advanced: rewrite → dense + BM25 → RRF → rerank │
+                    → MaxSim → parent context ────────┤
+                                                      ↓
+                                   grounding → answer or abstain
+
+atomic conditions → sparse index → 9 controls + candidate
+                                  → paired metrics + work counters
+                                  → external/synthetic evidence dashboard
+```
+
+The default uses an inspectable 384-dimensional feature-hash encoder so a reviewer can run everything in minutes. Optional SentenceTransformers and CrossEncoder models are lazy-loaded; see [architecture](docs/ARCHITECTURE.md).
 
 ## Project layout
 
 ```text
-apps/web/                    Next.js dashboard
-services/api/                FastAPI job and SSE boundary
-packages/retrieval/          retrieval, grounding, ingestion, evaluation
-data/demo/                   original corpus and 60 golden cases
-docs/                        architecture and methodology
+apps/web/                    Next.js research dashboard
+services/api/                FastAPI, SSE, and interactive probes
+packages/retrieval/          retrieval engine, sparse experiment, statistics
+data/benchmarks/             committed measurement artifacts
+data/research/               deterministic synthetic diagnostic
+scripts/                     fixture, adapter, and benchmark entrypoints
+docs/                        architecture, protocol, audit, evaluation
 tests/                       unit and API integration tests
 ```
 
+## Research claims policy
+
+Committed evidence may support statements about the exact pinned artifacts only. It does **not** support state-of-the-art, publication-readiness, production-economics, first-ever, or breakthrough claims. A future method must pass two external benchmark families, parser robustness, ordinary-retrieval regression, matched statistics, and a scale cost/latency gate before promotion.
+
 ## Privacy
 
-Local PDF text stays in process memory. Remote providers are off by default. When web fallback is explicitly enabled, only the rewritten query is sent to Wikipedia; uploaded text and retrieved passages are never included. See [SECURITY.md](SECURITY.md) for limits and reporting.
+Uploaded PDF text stays in process memory. Remote providers are off by default. If query-only web fallback is explicitly enabled, uploaded text and retrieved passages are not sent with the request. See [SECURITY.md](SECURITY.md).
 
 ## Contributing
 
-Issues and focused pull requests are welcome. Start with [CONTRIBUTING.md](CONTRIBUTING.md) and the labelled good-first-issue ideas. Retrieval changes should include a golden case or explain why evaluation is unaffected.
+Issues and focused pull requests are welcome. Start with [CONTRIBUTING.md](CONTRIBUTING.md). Retrieval changes must add evidence, preserve negative results, and state whether a result is measured, estimated, diagnostic, or unavailable.
 
-Built by [Mrinoy Banerjee](https://github.com/mrinoybanerjee) as an open, inspectable study of retrieval quality.
+Built by [Mrinoy Banerjee](https://github.com/mrinoybanerjee) as an open, inspectable study of retrieval quality and research discipline.

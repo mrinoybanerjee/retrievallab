@@ -19,3 +19,5 @@ playwright-report/
 test-results/
 .retrievallab/
 .playwright-cli/
+data/external/
+.gstack/
