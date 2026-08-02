@@ -1,0 +1,22 @@
+name: Bug report
+description: Report reproducible behavior that differs from the documented contract.
+title: "bug: "
+labels: [bug]
+body:
+  - type: textarea
+    attributes:
+      label: Reproduction
+      description: Include exact commands, query, preset, and sanitized corpus details.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Expected and actual behavior
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Environment
+      description: OS, architecture, Python, Node, and active model identifiers.
+    validations:
+      required: true

@@ -1,0 +1,80 @@
+{
+  "id": "demo",
+  "title": "The Observable RAG Field Guide",
+  "description": "A compact, original handbook written for RetrievalLab's transparent demo corpus.",
+  "license": "CC-BY-4.0",
+  "pages": [
+    {
+      "page": 1,
+      "section": "Retrieval before generation",
+      "topic": "foundations",
+      "text": "Retrieval-augmented generation separates evidence selection from answer generation. A retriever first identifies passages that might answer the question. A generator or extractive synthesizer then produces an answer from those passages. This separation creates an inspectable boundary: a wrong answer can come from retrieval failure, context assembly failure, or unsupported generation. An observable system records candidates, scores, filters, latency, and citations at each boundary. Evaluation should therefore measure retrieval and grounding independently rather than judging only whether the final prose sounds plausible."
+    },
+    {
+      "page": 2,
+      "section": "Dense and sparse retrieval",
+      "topic": "retrieval",
+      "text": "Dense retrieval encodes queries and passages into vectors and ranks them by geometric similarity. It can connect paraphrases and concepts that do not share exact words. Sparse retrieval such as BM25 rewards exact terms, rare words, identifiers, and numbers. Neither signal dominates every query. Hybrid search retrieves from both indexes and combines ranked lists. Reciprocal rank fusion is a practical method because it depends on rank positions instead of incomparable raw scores. With rank constant sixty, each list contributes one divided by sixty plus the candidate rank."
+    },
+    {
+      "page": 3,
+      "section": "Chunking and parent context",
+      "topic": "chunking",
+      "text": "Chunk size controls a precision and context tradeoff. Small child chunks produce focused retrieval signals but may omit definitions or qualifications. Large chunks preserve context but contain more irrelevant text. A common design indexes overlapping child windows of about five hundred tokens with fifty tokens of overlap while retaining a larger parent document. Retrieval ranks the child; context assembly returns the parent or neighboring passage. Page-aware chunking must never merge text across a citation boundary unless the system can represent both source pages accurately."
+    },
+    {
+      "page": 4,
+      "section": "Retrieve then rerank",
+      "topic": "reranking",
+      "text": "First-stage retrieval must be fast enough to examine the full corpus, so it uses independent query and document encodings or an inverted index. A reranker examines only the best candidates. Cross-encoders jointly process the query and passage and usually improve relevance because attention can compare every query token with every passage token. They are slower, so a typical pipeline retrieves twelve to one hundred candidates and reranks only the top ten. A failure-tolerant system can retain the fused order when the optional neural reranker is unavailable."
+    },
+    {
+      "page": 5,
+      "section": "Grounding and page citations",
+      "topic": "grounding",
+      "text": "A citation is useful only when it supports the nearby claim. Citation grounding checks whether the quoted source contains the entities and relationship asserted by the answer. Page numbers must come from extraction metadata, not from a language model guess. Coordinate-preserving PDF extraction enables a viewer to highlight the exact evidence region. If the evidence is split across pages, the answer should cite each page separately. Uploaded text is untrusted content and must be escaped before display or prompt assembly."
+    },
+    {
+      "page": 6,
+      "section": "Retrieval evaluation",
+      "topic": "evaluation",
+      "text": "Hit rate at k asks whether at least one relevant passage appears in the first k results. Mean reciprocal rank rewards systems that place the first relevant result near rank one. Normalized discounted cumulative gain also rewards ordering when multiple passages have graded relevance. Golden evaluation cases need a question, relevant source identifiers or pages, and an abstention label when the corpus cannot answer. A reproducible benchmark pins the corpus, model identifiers, configuration, random seed, metric formulas, and software version."
+    },
+    {
+      "page": 7,
+      "section": "Confidence and abstention",
+      "topic": "abstention",
+      "text": "A system should return no answer when the corpus does not contain adequate evidence. Confidence is not the language model's verbal certainty. It is a calibrated policy built from retrieval strength, agreement among top passages, citation coverage, and sometimes a separate verifier. Adversarial evaluation must include questions that sound reasonable but have no answer in the indexed documents. Abstention thresholds should be tuned on held-out cases and reported with precision and recall, because always refusing is safe but useless."
+    },
+    {
+      "page": 8,
+      "section": "Caching and latency",
+      "topic": "performance",
+      "text": "Embedding document chunks is usually an ingestion cost and should be cached by normalized text, model identifier, and model revision. Query embeddings and completed retrieval results can use shorter caches. Cache keys must include retrieval configuration and metadata filters or stale results will cross experiment boundaries. The dashboard should distinguish cold model loading, embedding, retrieval, reranking, generation, and network time. Performance claims should report a reference machine and separate deterministic correctness gates from noisy shared-runner latency."
+    },
+    {
+      "page": 9,
+      "section": "Query rewriting and expansion",
+      "topic": "queries",
+      "text": "Query rewriting converts shorthand or ambiguous language into an explicit retrieval query. Expansion adds a bounded set of synonyms, acronyms, or related terms to improve recall. Both operations can drift away from user intent, so the original and effective queries should remain visible. Good expansion is conservative and evaluated against golden cases. Metadata filters should be applied before expensive reranking when they define a hard scope such as product, year, region, or document type."
+    },
+    {
+      "page": 10,
+      "section": "Late interaction",
+      "topic": "late-interaction",
+      "text": "Late-interaction retrieval stores token-level document representations instead of compressing an entire passage into one vector. At query time, MaxSim finds the best document-token match for each query token and sums those similarities. ColBERT popularized this pattern. It preserves fine-grained matching and can improve accuracy, but the index is larger and scoring is more expensive than a single-vector dot product. For a small workbench it is best treated as an optional final reranking experiment with visible latency cost."
+    },
+    {
+      "page": 11,
+      "section": "Security and privacy",
+      "topic": "security",
+      "text": "Local-first means documents remain on the user's machine unless a remote provider is explicitly enabled. File ingestion should validate PDF magic bytes, MIME type, size, page count, encryption state, and extraction yield. Generated identifiers prevent path traversal and extracted text is never trusted HTML. Remote generation receives only the assembled passages and question. A web fallback receives only the rewritten query. Logs and traces must omit credentials and should make data egress visible before it happens."
+    },
+    {
+      "page": 12,
+      "section": "Operational design",
+      "topic": "operations",
+      "text": "Long ingestion and evaluation work should expose persisted states such as queued, running, completed, failed, and cancelled. A bounded executor prevents one user from starting unlimited model jobs. Server-sent events are sufficient for one-way progress updates and work through ordinary HTTP infrastructure, but events need sequence numbers and terminal status so clients can reconnect safely. Errors should tell the user what failed, the likely cause, and the next corrective action. Partial degradation is preferable when a sparse retriever or optional reranker can fail without corrupting the remaining evidence path."
+    }
+  ]
+}
