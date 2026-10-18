@@ -107,14 +107,28 @@ The adapter uses the benchmark-provided structured `Query10` conditions as oracl
 
 The separate `demo-v1` regression suite contains 48 answerable questions and 12 unsupported questions.
 
-| Metric | Naive local baseline | Advanced pipeline | Delta |
-|---|---:|---:|---:|
-| Hit rate @5 | 88.3% | **96.7%** | +8.3 pts |
-| MRR | 73.9% | **94.3%** | +20.4 pts |
-| NDCG @10 | 78.0% | **94.9%** | +16.9 pts |
-| Abstention accuracy | 90.0% | **98.3%** | +8.3 pts |
+The offline [cohort report](data/benchmarks/demo-v1-cohorts.json) separates
+retrieval on answerable questions from refusal on unsupported questions:
 
-These deterministic demo-corpus results validate the workbench, not general RAG superiority. Shared-runner latency is informational.
+| Metric | Naive local baseline | Advanced pipeline |
+|---|---:|---:|
+| Hit rate @5 — 48 answerable cases | 85.42% | **95.83%** |
+| MRR — 48 answerable cases | 67.43% | **92.88%** |
+| NDCG @10 — 48 answerable cases | 72.53% | **93.61%** |
+| False abstentions — 48 answerable cases | 6 | **1** |
+| Correct abstentions — 12 unsupported cases | 12/12 | 12/12 |
+
+Reproduce without API keys or model downloads:
+
+```bash
+uv run python scripts/run_demo_cohorts.py --output /tmp/demo-v1-cohorts.json
+```
+
+The original `demo-v1.json` regression artifact remains unchanged. Its headline
+scores combine all 60 cases and credit correct abstentions as 1 in hit rate, MRR,
+and NDCG. They are mixed suite scores, not answerable-only retrieval metrics.
+These deterministic demo-corpus results do not establish general RAG superiority,
+answer quality, or real-user impact. Shared-runner latency is informational.
 
 ## Architecture
 
