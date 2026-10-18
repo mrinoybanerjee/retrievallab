@@ -105,10 +105,18 @@ The adapter uses the benchmark-provided structured `Query10` conditions as oracl
 
 ## Ordinary RAG benchmark
 
-The separate `demo-v1` regression suite contains 48 answerable questions and 12 unsupported questions.
+The separate `demo-v1` regression suite is a fixed, small synthetic corpus with
+48 answerable questions and 12 unsupported questions (60 cases total).
 
 The offline [cohort report](data/benchmarks/demo-v1-cohorts.json) separates
-retrieval on answerable questions from refusal on unsupported questions:
+retrieval on answerable questions from refusal on unsupported questions.
+
+- **Naive local baseline:** dense-only ranking with the 384-dimensional feature-hash encoder.
+- **Advanced pipeline:** query rewrite and expansion → feature-hash dense + BM25 →
+  reciprocal-rank fusion (RRF) → local cross-feature reranking → token-level MaxSim.
+
+Both use extractive grounding and an abstention policy. These demo pipelines are
+separate from the external complete-before-partial controls and coverage-first candidate.
 
 | Metric | Naive local baseline | Advanced pipeline |
 |---|---:|---:|
@@ -136,7 +144,7 @@ answer quality, or real-user impact. Shared-runner latency is informational.
 question
   ├─ baseline: local dense top-k ─────────────────────┐
   └─ advanced: rewrite → dense + BM25 → RRF → rerank │
-                    → MaxSim → parent context ────────┤
+                    → MaxSim ─────────────────────────┤
                                                       ↓
                                    grounding → answer or abstain
 

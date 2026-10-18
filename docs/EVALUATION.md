@@ -4,12 +4,25 @@ RetrievalLab has two separate evaluation contracts. `demo-v1` guards the product
 workbench. Phase 0 tests a research hypothesis. Their metrics and claims must not be
 mixed.
 
-The `demo-v1` suite contains exactly 60 versioned cases:
+The `demo-v1` suite is a fixed, small synthetic regression suite with exactly
+60 versioned cases. It does not measure production outcomes:
 
 - 48 answerable questions, four for each source page.
 - 12 plausible but unsupported questions that should abstain.
 
 The corpus, configurations, metric code, and cases are committed to the repository. The local preset is deterministic and uses no random seed. Optional neural presets must record the full model identifier and revision in exported reports.
+
+## Demo pipeline definitions
+
+- **Naive dense / naive local baseline:** dense-only ranking with the
+  384-dimensional feature-hash encoder.
+- **Advanced:** query rewrite and expansion, feature-hash dense + BM25,
+  reciprocal-rank fusion, local cross-feature reranking, and token-level MaxSim.
+
+Both use extractive grounding and an abstention policy. The current pipeline does
+not expand retrieved chunks into parent context; `parent_id` is chunk metadata.
+These demo pipelines are separate from the external complete-before-partial
+controls and coverage-first candidate described below.
 
 ## Metrics
 
