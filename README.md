@@ -1,21 +1,61 @@
-<div align="center">
-
 # RetrievalLab
 
-**Inspect retrieval. Falsify research ideas. Keep the measurement receipt.**
+A local retrieval workbench for comparing ranking methods, inspecting evidence, and
+reproducing evaluation results. Explore a RAG pipeline with page citations and traces,
+or test whether documents satisfying every condition rank ahead of partial matches.
 
-[![CI](https://github.com/mrinoybanerjee/retrievallab/actions/workflows/ci.yml/badge.svg)](https://github.com/mrinoybanerjee/retrievallab/actions/workflows/ci.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-c9f36a.svg)](LICENSE)
-[![Python](https://img.shields.io/badge/Python-3.11%2B-11120f.svg)](pyproject.toml)
-[![Next.js](https://img.shields.io/badge/Next.js-16-11120f.svg)](apps/web)
+The default uses a deterministic feature-hash encoder and requires no API key or
+neural-model download. Optional neural models are configured separately.
 
-</div>
+**Evidence status:** the coverage-first candidate is rejected on the pinned MultiConIR
+subset. BM25 performs better. The synthetic diagnostic and ordinary RAG demo do not
+override that result.
+
+[Try locally](#quick-start) · [External result](#the-result-including-the-failure) · [Reproduce](#reproduce-the-research-artifacts) · [Limits](#research-claims-policy)
 
 ![RetrievalLab Frontier Lab dashboard](docs/assets/dashboard.png)
 
-RetrievalLab is a local-first retrieval workbench and research harness. It combines a polished, interactive RAG debugger with a preregistered experiment on **complete-before-partial retrieval**: queries where every condition matters and a strong topical partial match is still wrong.
+*Existing repository screenshot. Without the local API, the dashboard shows committed
+artifacts and a bundled replay; live ranking and condition editing require the API.*
 
-The dashboard exposes three systems side by side, lets you edit atomic conditions, reruns ranking against the local API, and shows evidence cells, ranks, postings, latency, confidence intervals, source revisions, and research gates. No API key is required.
+## Quick start
+
+### Docker
+
+Requires Docker with Docker Compose. Run from a new checkout:
+
+```bash
+git clone https://github.com/mrinoybanerjee/retrievallab.git
+cd retrievallab
+docker compose up --build
+```
+
+Open [http://localhost:3000](http://localhost:3000). API docs are at [http://localhost:8000/docs](http://localhost:8000/docs).
+
+### Native development
+
+From the repository root, with Python 3.11+, uv, Node.js 24, and pnpm 11.9 available
+(the CI workflow uses Python 3.13, Node.js 24, and pnpm 11.9.0):
+
+```bash
+uv sync --extra dev
+uv run python scripts/build_demo_pdf.py
+uv run uvicorn services.api.app.main:app --reload
+```
+
+In a second terminal:
+
+```bash
+cd apps/web
+pnpm install --ignore-scripts
+pnpm dev
+```
+
+The API has no authentication and is intended for local development. Do not expose
+port 8000 publicly. Docker Compose publishes ports 3000 and 8000 using the default
+host bindings; these are not restricted to loopback in the supplied configuration.
+
+If the API is absent, read-only committed artifacts and the bundled RAG trace remain available. Live query execution and condition editing are clearly identified as local-API measurements.
 
 ## The result, including the failure
 
@@ -43,39 +83,10 @@ This negative result is useful: it kills an attractive scoring idea before model
 - Sixty ordinary RAG golden cases with hit rate, MRR, NDCG@10, abstention accuracy, and failures.
 - SSE execution traces and an evidence drawer designed for explanation rather than decoration.
 
-## Quick start
-
-### Docker
-
-```bash
-git clone https://github.com/mrinoybanerjee/retrievallab.git
-cd retrievallab
-docker compose up --build
-```
-
-Open [http://localhost:3000](http://localhost:3000). API docs are at [http://localhost:8000/docs](http://localhost:8000/docs).
-
-### Native development
-
-```bash
-uv sync --extra dev
-uv run python scripts/build_demo_pdf.py
-uv run uvicorn services.api.app.main:app --reload
-```
-
-In a second terminal:
-
-```bash
-cd apps/web
-pnpm install --ignore-scripts
-pnpm dev
-```
-
-If the API is absent, read-only committed artifacts and the bundled RAG trace remain available. Live query execution and condition editing are clearly identified as local-API measurements.
-
 ## Reproduce the research artifacts
 
-The synthetic diagnostic is self-contained:
+These commands use `make` and the native Python environment above. The synthetic
+diagnostic is self-contained:
 
 ```bash
 make phase0
@@ -120,7 +131,7 @@ atomic conditions → sparse index → 9 controls + candidate
                                   → external/synthetic evidence dashboard
 ```
 
-The default uses an inspectable 384-dimensional feature-hash encoder so a reviewer can run everything in minutes. Optional SentenceTransformers and CrossEncoder models are lazy-loaded; see [architecture](docs/ARCHITECTURE.md).
+The default uses an inspectable 384-dimensional feature-hash encoder. Optional SentenceTransformers and CrossEncoder models are lazy-loaded; see [architecture](docs/ARCHITECTURE.md).
 
 ## Project layout
 
@@ -142,6 +153,13 @@ Committed evidence may support statements about the exact pinned artifacts only.
 ## Privacy
 
 Uploaded PDF text stays in process memory. Remote providers are off by default. If query-only web fallback is explicitly enabled, uploaded text and retrieved passages are not sent with the request. See [SECURITY.md](SECURITY.md).
+
+## License and provenance
+
+RetrievalLab's original code is MIT licensed; see [LICENSE](LICENSE). The pinned
+MultiConIR-derived aggregates, ten transformed examples, and eight parser-error
+excerpts retain their Apache-2.0 attribution in [third-party notices](THIRD_PARTY_NOTICES.md).
+Raw upstream data is not redistributed.
 
 ## Contributing
 
