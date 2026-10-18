@@ -15,9 +15,8 @@ export function EvidenceDrawer({ open, citation, corpusId, onClose }: { open: bo
             <div className="paper-page">
               <span className="page-number">{citation.page}</span>
               <h3>{citation.section}</h3>
-              <p className="faded-lines">Retrieval systems become useful when each stage can be inspected, compared, and improved with evidence.</p>
+              <p className="local-source-note">Cited excerpt · not a full page rendering</p>
               <blockquote>{citation.quote}</blockquote>
-              <p className="faded-lines second">The ranking trace records why this passage was selected and how each strategy changed its final position.</p>
             </div>
           </div>
           <div className="evidence-footer"><span>Grounding score</span><b>{Math.round(citation.score * 100)}%</b><div><i style={{ width: `${citation.score * 100}%` }} /></div></div>
