@@ -73,24 +73,26 @@ function PipelineSkeleton({ advanced }: { advanced?: boolean }) {
 
 export function ExperimentPanel({ comparison, traces, running, onCitation }: Props) {
   const completed = (pipeline: "baseline" | "advanced", stage: string) => traces.some((trace) => trace.pipeline === pipeline && trace.stage === stage);
+  const live = comparison?.mode === "live";
+  const cached = comparison?.baseline.cached || comparison?.advanced.cached;
   const latencyDelta = comparison ? comparison.advanced.latency_ms - comparison.baseline.latency_ms : 0;
   return (
     <section className="experiment-output" aria-live="polite">
       {(running || traces.length > 0) && (
         <div className="live-trace">
-          <div className="trace-title"><span className={running ? "pulse" : "done"}/><b>{running ? "Pipeline trace is live" : "Pipeline trace complete"}</b><span>{traces.length} stages reported</span></div>
+          <div className="trace-title"><span className={running ? "pulse" : "done"}/><b>{running ? "Pipeline trace running" : live ? "Pipeline trace complete" : "Bundled trace replay"}</b><span>{traces.length} trace events received</span></div>
           <div className="trace-lanes">
             {(["baseline", "advanced"] as const).map((pipeline) => (
               <div className="trace-lane" key={pipeline}>
                 <span className="lane-label">{pipeline}</span>
-                {STAGES[pipeline].map((stage) => <span className={completed(pipeline, stage) ? "complete" : running ? "pending" : ""} key={stage} title={stage}>{completed(pipeline, stage) && <Icon name="check"/>}{stage.replaceAll("_", " ")}</span>)}
+                {completed(pipeline, "cache") ? <span className="complete"><Icon name="check"/>Cached result</span> : STAGES[pipeline].map((stage) => <span className={completed(pipeline, stage) ? "complete" : running ? "pending" : ""} key={stage} title={stage}>{completed(pipeline, stage) && <Icon name="check"/>}{stage.replaceAll("_", " ")}</span>)}
               </div>
             ))}
           </div>
         </div>
       )}
 
-      <div className="comparison-label"><span>Same corpus</span><i/><span>Different retrieval strategy</span><i/><span>Measured outcome</span></div>
+      <div className="comparison-label"><span>Same corpus</span><i/><span>Different retrieval strategy</span><i/><span>{live ? "Local API result" : "Bundled example"}</span></div>
       <div className="comparison-grid">
         {comparison && !running ? <PipelineColumn result={comparison.baseline} onCitation={onCitation} /> : <PipelineSkeleton />}
         <div className="versus" aria-hidden="true">vs</div>
@@ -101,7 +103,7 @@ export function ExperimentPanel({ comparison, traces, running, onCitation }: Pro
         <div className="delta-strip">
           <div><span className="delta-label">Confidence lift</span><b>+{Math.round((comparison.advanced.confidence - comparison.baseline.confidence) * 100)} pts</b><small>Grounding improved</small></div>
           <div><span className="delta-label">Evidence rank</span><b>#1</b><small>Correct page surfaced</small></div>
-          <div><span className="delta-label">Latency delta</span><b>{latencyDelta >= 0 ? "+" : ""}{latencyDelta.toFixed(1)} ms</b><small>Measured this run</small></div>
+          <div><span className="delta-label">Latency delta</span><b>{latencyDelta >= 0 ? "+" : ""}{latencyDelta.toFixed(1)} ms</b><small>{live ? cached ? "Stored timing from cached result" : "Measured this run" : "Bundled example timing"}</small></div>
           <div><span className="delta-label">Citation coverage</span><b>{comparison.advanced.citations.length}/{comparison.advanced.citations.length}</b><small>Every claim linked</small></div>
         </div>
       )}

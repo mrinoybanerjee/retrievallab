@@ -181,7 +181,7 @@ export default function Home() {
           <>
             <section className="workspace-intro">
               <div>
-                <span className="eyebrow">Live retrieval experiment</span>
+                <span className="eyebrow">{isRunning ? "Retrieval experiment running" : comparison?.mode === "live" ? "Local API result" : "Bundled demo preview"}</span>
                 <h1>See what changed the answer.</h1>
                 <p>One question. Two pipelines. Every retrieval decision exposed.</p>
               </div>
