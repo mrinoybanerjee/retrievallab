@@ -13,6 +13,11 @@ The corpus, configurations, metric code, and cases are committed to the reposito
 
 ## Metrics
 
+The historical `demo-v1.json` aggregates all 60 cases. For unsupported cases,
+correct abstention contributes 1 to hit rate, MRR, and NDCG; an incorrect answer
+contributes 0. These fields are mixed suite scores. The retrieval definitions
+below apply to answerable cases.
+
 - **Hit rate @5:** `1` when any relevant page appears in the first five results.
 - **MRR:** reciprocal rank of the first relevant page, or zero.
 - **NDCG @10:** binary relevance gain discounted by rank and normalized by the ideal ordering.
@@ -21,7 +26,7 @@ The corpus, configurations, metric code, and cases are committed to the reposito
 
 Correctness regression gate: no metric may fall by more than 0.02 from the committed `data/benchmarks/demo-v1.json`. CI executes this comparison. A new model or corpus requires a new suite version rather than silently replacing results.
 
-## Committed local result
+## Historical mixed-suite result
 
 | Pipeline | Hit @5 | MRR | NDCG @10 | Abstention accuracy | p50 |
 |---|---:|---:|---:|---:|---:|
@@ -29,6 +34,34 @@ Correctness regression gate: no metric may fall by more than 0.02 from the commi
 | Advanced | 96.7% | 94.3% | 94.9% | 98.3% | 4.75 ms |
 
 Two advanced cases remain visible as failures: `citation-1` and `ops-4`. The project deliberately commits those misses instead of tuning the golden set around the implementation.
+
+## Separate retrieval and abstention cohorts
+
+`data/benchmarks/demo-v1-cohorts.json` reports the same local pipeline with separate
+denominators. It includes every case result, corpus and golden-set SHA-256 receipts,
+and the local encoder/reranker configuration. It does not replace the historical
+artifact or change the API, dashboard, or existing regression gate.
+
+| Cohort metric | Naive dense | Advanced |
+|---|---:|---:|
+| Hit @5, 48 answerable cases | 85.42% | 95.83% |
+| MRR, 48 answerable cases | 67.43% | 92.88% |
+| NDCG @10, 48 answerable cases | 72.53% | 93.61% |
+| False abstentions, 48 answerable cases | 6 | 1 |
+| Correct abstentions, 12 unsupported cases | 12/12 | 12/12 |
+
+Retrieval metrics use ranked pages even if the answer stage abstains. The separate
+false-abstention count shows that answer behavior. These are synthetic regression
+measurements, not answer-quality judgments or evidence of real-user outcomes.
+
+Reproduce with the native environment from the README:
+
+```bash
+uv run python scripts/run_demo_cohorts.py --output /tmp/demo-v1-cohorts.json
+```
+
+The script rejects nonlocal model settings. It makes no web-fallback requests and
+reports no latency, avoiding comparisons between unlike machines.
 
 ## Phase 0 complete-before-partial protocol
 
