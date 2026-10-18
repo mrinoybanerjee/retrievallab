@@ -12,7 +12,7 @@ from fastapi import FastAPI, File, Form, HTTPException, Request, UploadFile, sta
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, StreamingResponse
 from retrievallab.evaluation import EvalCase, aggregate, ndcg_at_k, reciprocal_rank
-from retrievallab.ingestion import IngestionError, ingest_pdf
+from retrievallab.ingestion import MAX_FILE_BYTES, IngestionError, ingest_pdf
 from retrievallab.models import JobStatus, PhaseZeroProbeRequest, QueryAccepted, QueryRequest, TraceEvent
 from retrievallab.phase0 import run_artifact_case_probe, run_case_probe, run_phase_zero
 from retrievallab.pipeline import RetrievalEngine
@@ -161,7 +161,15 @@ async def upload_document(corpus_id: str, file: UploadFile = File()) -> dict[str
     corpus = CORPORA.get(corpus_id)
     if corpus is None:
         raise HTTPException(status_code=404, detail="Unknown corpus id.")
-    payload = await file.read()
+    # Bound the in-memory copy before the parser's size check. UploadFile may
+    # already be spooled to disk, but reading it without a limit duplicates it.
+    payload = await file.read(MAX_FILE_BYTES + 1)
+    if len(payload) > MAX_FILE_BYTES:
+        raise HTTPException(
+            status_code=413,
+            detail={"code": "file_too_large", "message": "The PDF is larger than 20 MB.",
+                    "fix": "Upload a PDF of 20 MB or less."},
+        )
     try:
         ingested = ingest_pdf(payload, file.filename or "document.pdf")
     except IngestionError as error:
